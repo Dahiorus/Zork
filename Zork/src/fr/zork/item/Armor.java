@@ -76,8 +76,7 @@ public class Armor extends Equipment {
 	@Override
 	public String getDescription() {
 		return this.name + ": " + this.getItemType() + " " + this.type
-				+ ", bonus +" + this.bonus + ", "
-				+ (this.isBig() ? "GROS, " : "");
+				+ ", bonus +" + this.bonus + (this.isBig() ? ", GROS" : "");
 	}
 
 

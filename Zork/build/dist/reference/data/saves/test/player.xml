@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<player defense="10" hp="200" level="1" maxHp="200" name="toto" power="10">
-    <rightHand lifespawn="15">epee longue</rightHand>
-    <body lifespawn="15">plastron cuir</body>
-    <currentRoom>Entree du donjon</currentRoom>
+<player defense="22" hp="233" level="13" maxHp="320" name="Dahiorus" power="22">
+    <rightHand lifespawn="0">epee longue</rightHand>
+    <leftHand lifespawn="7">hache nain</leftHand>
+    <head lifespawn="20">heaume</head>
+    <body lifespawn="13">plastron cuir</body>
+    <arm lifespawn="25">bracelets or</arm>
+    <leg lifespawn="44">jambieres lourdes</leg>
+    <bag>
+        <item>foudre</item>
+        <item>givre</item>
+        <item>foudre</item>
+        <item>baton magique</item>
+        <item>potion verte</item>
+        <item>massue</item>
+        <item>baton magique</item>
+        <item>potion verte</item>
+        <item>epee longue</item>
+        <item>bracelets or</item>
+        <item>chapeau</item>
+        <item>epee longue</item>
+        <item>baton sorcier</item>
+        <item>hache nain</item>
+        <item>potion verte</item>
+        <item>hache argent</item>
+        <item>chapeau</item>
+        <item unsable="true">hache nain</item>
+        <item>hache nain</item>
+        <item>potion argent</item>
+        <item>fleches magiques</item>
+        <item unsable="true">dague chasse</item>
+    </bag>
+    <currentRoom>5eme etage</currentRoom>
 </player>

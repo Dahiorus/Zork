@@ -21,6 +21,8 @@ import fr.zork.character.Monster;
 import fr.zork.character.enums.Level;
 import fr.zork.item.Armor;
 import fr.zork.item.Item;
+import fr.zork.item.Potion;
+import fr.zork.item.Spell;
 import fr.zork.item.Weapon;
 import fr.zork.world.enums.Dice;
 
@@ -101,12 +103,8 @@ public class MonsterXMLReader {
 
 	
 	private void readMonsters(File xmlFile, Map<String, Monster> map) {
-		Map<String, Item> items = ItemXMLReader.getInstance().getItems();
 		Map<String, Item> uniqueItems = ItemXMLReader.getInstance().getUniqueItems();
-		
-		Map<String, Item> allItems = new HashMap<String, Item>();
-		allItems.putAll(uniqueItems);
-		allItems.putAll(items);
+		Map<String, Item> allItems = ItemXMLReader.getInstance().getAllItems();
 
 		try {
 			document = builder.parse(xmlFile);
@@ -148,7 +146,7 @@ public class MonsterXMLReader {
 					if (armorNodes.getLength() != 0) {
 						String armorName = armorNodes.item(0).getTextContent().trim();
 						
-						// Retrieving Armor from name
+						// retrieving Armor from name
 						Item item = allItems.get(armorName);
 						if (item != null) {
 							if (item instanceof Armor) {
@@ -166,12 +164,12 @@ public class MonsterXMLReader {
 						if (lootNode.getNodeType() == Node.ELEMENT_NODE) {
 							Element lootElement = (Element) lootNode;
 							int lootNumber = Integer.parseInt(lootElement.getAttribute("number").trim());
-							List<Item> itemList = new ArrayList<Item>(items.values());
 							
 							// select lootNumber random items and add them in the monster's loots
 							for (int j = 0; j < lootNumber; j++) {
+								List<Item> itemList = this.getRandomItemsByClass(this.chooseClass());
 								int index = Dice.D100.roll() % itemList.size();
-								monster.getLoots().add(itemList.get(index));
+								monster.getLoots().add((Item) itemList.get(index).clone());
 							}
 						}
 					}
@@ -193,6 +191,41 @@ public class MonsterXMLReader {
 			e.printStackTrace();
 			System.exit(-1);
 		}
+	}
+	
+	
+	private Class<? extends Item> chooseClass() {
+		int choice = Dice.D4.roll();
+		Class<? extends Item> className = null;
+		
+		switch (choice) {
+			case 1:
+				className = Potion.class;
+				break;
+			case 2:
+				className = Spell.class;
+				break;
+			case 3:
+				className = Armor.class;
+				break;
+			case 4:
+				className = Weapon.class;
+				break;
+		}
+		
+		return className;
+	}
+	
+	
+	private List<Item> getRandomItemsByClass(Class<? extends Item> className) {
+		if (className == null) return null;
+		
+		if (className.equals(Potion.class)) return ItemXMLReader.getInstance().getPotions();
+		if (className.equals(Spell.class)) return ItemXMLReader.getInstance().getSpells();
+		if (className.equals(Armor.class)) return ItemXMLReader.getInstance().getArmors();
+		if (className.equals(Weapon.class)) return ItemXMLReader.getInstance().getWeapons();
+		
+		return null;
 	}
 
 }

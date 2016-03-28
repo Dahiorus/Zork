@@ -2,7 +2,9 @@ package fr.zork.utils.reader;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -81,13 +83,71 @@ public class ItemXMLReader {
 	
 	public Map<String, Item> getUniqueItems() {
 		if (this.uniqueItems.isEmpty()) {
-			this.readPotions(xmlUniqueItemFile, this.uniqueItems);
-			this.readSpells(xmlUniqueItemFile, this.uniqueItems);
 			this.readArmors(xmlUniqueItemFile, this.uniqueItems);
 			this.readWeapons(xmlUniqueItemFile, this.uniqueItems);
 		}
 		
 		return this.uniqueItems;
+	}
+	
+	
+	public List<Item> getPotions() {
+		List<Item> potions = new ArrayList<Item>();
+		
+		if (this.items.isEmpty()) {
+			this.getItems();
+		}
+		
+		for (Item item : this.items.values()) {
+			if (item instanceof Potion) potions.add(item);
+		}
+		
+		return potions;
+	}
+	
+	
+	public List<Item> getSpells() {
+		List<Item> spells = new ArrayList<Item>();
+		
+		if (this.items.isEmpty()) {
+			this.getItems();
+		}
+		
+		for (Item item : this.items.values()) {
+			if (item instanceof Spell) spells.add(item);
+		}
+		
+		return spells;
+	}
+	
+	
+	public List<Item> getArmors() {
+		List<Item> armors = new ArrayList<Item>();
+		
+		if (this.items.isEmpty()) {
+			this.getItems();
+		}
+		
+		for (Item item : this.items.values()) {
+			if (item instanceof Armor) armors.add(item);
+		}
+		
+		return armors;
+	}
+	
+	
+	public List<Item> getWeapons() {
+		List<Item> weapons = new ArrayList<Item>();
+		
+		if (this.items.isEmpty()) {
+			this.getItems();
+		}
+		
+		for (Item item : this.items.values()) {
+			if (item instanceof Weapon) weapons.add(item);
+		}
+		
+		return weapons;
 	}
 	
 	

@@ -13,6 +13,7 @@ import fr.zork.item.Spell;
 import fr.zork.item.Weapon;
 import fr.zork.item.enums.ArmorType;
 import fr.zork.item.enums.Hand;
+import fr.zork.item.enums.WeaponType;
 import fr.zork.world.Room;
 import fr.zork.world.enums.Dice;
 
@@ -31,11 +32,18 @@ public class Player extends MortalCharacter {
 	private Player() {
 		super();
 		
-		this.bag = new ArrayList<Item>();
 		this.level = 1;
 		this.maxHp = this.hp = 200;
-		this.power = 10;
-		this.defense = 10;
+		this.power = 20;
+		this.defense = 15;
+		
+		this.setRightHand(new Weapon("epee longue", 16, 15, WeaponType.SWORD, Hand.RIGHT));
+		this.setBody(new Armor("plastron cuir", 10, 15, ArmorType.BODY, false));
+		
+		this.bag = new ArrayList<Item>();
+		this.getBag().add(new Potion("potion verte", 50));
+		this.getBag().add(new Potion("potion verte", 50));
+		this.getBag().add(new Spell("foudre", 30));
 	}
 	
 	
@@ -326,7 +334,9 @@ public class Player extends MortalCharacter {
 	 */
 	public boolean equip(Equipment equipment) throws IllegalArgumentException {
 		if (equipment == null) throw new IllegalArgumentException("equipment is null");
+		
 		if (!this.bag.contains(equipment)) return false;
+		if (!equipment.isUsable()) return false;
 		
 		if (equipment instanceof Armor) {
 			Armor armor = (Armor) equipment;
@@ -350,7 +360,6 @@ public class Player extends MortalCharacter {
 					this.setLeg(armor);
 					break;
 			}
-			
 		} else if (equipment instanceof Weapon) {
 			Weapon weapon = (Weapon) equipment;
 			
@@ -451,10 +460,15 @@ public class Player extends MortalCharacter {
 	}
 	
 	
-	public void throwItem(Item item) {
-		if (!this.bag.contains(item)) return;
+	public boolean throwItem(Item item) {
+		if (!this.bag.contains(item)) return false;
 		
-		this.bag.remove(item);
+		if (item instanceof Equipment) {
+			Equipment equipment = (Equipment) item;
+			if (equipment.isUsable()) return false;
+		}
+		
+		return this.bag.remove(item);
 	}
 	
 	
@@ -510,7 +524,7 @@ public class Player extends MortalCharacter {
 		for (String itemName : copies.keySet()) {
 			Item item = this.getByName(itemName);
 			if (item instanceof Potion || item instanceof Spell) {
-				description += "\n  - (" + copies.get(itemName) + ") " + item.getDescription();
+				description += "\n  - (x" + copies.get(itemName) + ") " + item.getDescription();
 			}
 		}
 		
@@ -525,7 +539,7 @@ public class Player extends MortalCharacter {
 		for (String itemName : copies.keySet()) {
 			Item item = this.getByName(itemName);
 			if (item instanceof Equipment) {
-				description += "\n  - (" + copies.get(itemName) + ") " + item.getDescription();
+				description += "\n  - (x" + copies.get(itemName) + ") " + item.getDescription();
 			}
 		}
 		
@@ -547,10 +561,10 @@ public class Player extends MortalCharacter {
 	private String getArmorDescription() {
 		String description = "Armure:";
 		
-		if (this.head != null) description += "\n  - Tête: " + this.head.getName() + (!this.head.isUsable() ? " [usé]" : "");
-		if (this.body != null) description += "\n  - Corps: " + this.body.getName() + (!this.body.isUsable() ? " [usé]" : "");
-		if (this.arm != null)  description += "\n  - Bras: " + this.arm.getName() + (!this.arm.isUsable() ? " [usé]" : "");
-		if (this.leg != null)  description += "\n  - Jambes: " + this.leg.getName() + (!this.leg.isUsable() ? " [usé]" : "");
+		if (this.head != null) description += "\n  - Tête: " + this.head.getName() + (!this.head.isUsable() ? " [usé]" : " [" + this.head.getLifespawn() + " utilisations]");
+		if (this.body != null) description += "\n  - Corps: " + this.body.getName() + (!this.body.isUsable() ? " [usé]" : " [" + this.body.getLifespawn() + " utilisations]");
+		if (this.arm != null)  description += "\n  - Bras: " + this.arm.getName() + (!this.arm.isUsable() ? " [usé]" : " [" + this.arm.getLifespawn() + " utilisations]");
+		if (this.leg != null)  description += "\n  - Jambes: " + this.leg.getName() + (!this.leg.isUsable() ? " [usé]" : " [" + this.leg.getLifespawn() + " utilisations]");
 		
 		return description;
 	}
@@ -561,9 +575,11 @@ public class Player extends MortalCharacter {
 		
 		if (this.rightHand != null) {
 			description += this.rightHand.isTwoHanded() ? "\n  - 2 mains: " : "\n  - Droite: ";
-			description += this.rightHand.getName() + (!this.rightHand.isUsable() ? " [usé]" : "");
+			description += this.rightHand.getName() + (!this.rightHand.isUsable() ? " [usé]" : " [" + this.rightHand.getLifespawn() + " utilisations]");
 		}
-		if (this.leftHand != null) description += "\n  - Gauche: " + this.leftHand.getName() + (!this.leftHand.isUsable() ? " [usé]" : "");
+		if (this.leftHand != null) {
+			description += "\n  - Gauche: " + this.leftHand.getName() + (!this.leftHand.isUsable() ? " [usé]" : " [" + this.leftHand.getLifespawn() + " utilisations]");
+		}
 		
 		return description;
 	}

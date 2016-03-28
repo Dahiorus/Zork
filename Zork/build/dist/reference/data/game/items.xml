@@ -4,6 +4,9 @@
 		<potion name="potion verte" hpGain="50"/>
 		<potion name="potion bleue" hpGain="100"/>
 		<potion name="potion rouge" hpGain="150"/>
+		<potion name="potion jaune" hpGain="250"/>
+		<potion name="potion cyan" hpGain="300"/>
+		<potion name="potion majenta" hpGain="400"/>
 		<potion name="potion argent" hpGain="500"/>
 		<potion name="potion or" hpGain="1000"/>
 	</potions>

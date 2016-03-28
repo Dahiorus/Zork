@@ -20,7 +20,11 @@ import org.xml.sax.SAXException;
 
 import fr.zork.character.Monster;
 import fr.zork.character.enums.Level;
+import fr.zork.item.Armor;
 import fr.zork.item.Item;
+import fr.zork.item.Potion;
+import fr.zork.item.Spell;
+import fr.zork.item.Weapon;
 import fr.zork.world.Curse;
 import fr.zork.world.Room;
 import fr.zork.world.enums.Dice;
@@ -140,11 +144,10 @@ public class WorldXMLReader {
 							
 							if (treasureNode.getNodeType() == Node.ELEMENT_NODE) {
 								Element treasureElement = (Element) treasureNode;
-								
 								int treasureNumber = Integer.parseInt(treasureElement.getAttribute("number").trim());
-								List<Item> itemList = new ArrayList<Item>(items.values());
 								
 								for (int j = 0; j < treasureNumber; j++) {
+									List<Item> itemList = this.getRandomItemsByClass(this.chooseClass());
 									int index = Dice.D100.roll() % itemList.size();
 									room.getTreasures().add((Item) itemList.get(index).clone());
 								}
@@ -239,6 +242,41 @@ public class WorldXMLReader {
 			e.printStackTrace();
 			System.exit(-1);
 		}
+	}
+	
+	
+	private Class<? extends Item> chooseClass() {
+		int choice = Dice.D4.roll();
+		Class<? extends Item> className = null;
+		
+		switch (choice) {
+			case 1:
+				className = Potion.class;
+				break;
+			case 2:
+				className = Spell.class;
+				break;
+			case 3:
+				className = Armor.class;
+				break;
+			case 4:
+				className = Weapon.class;
+				break;
+		}
+		
+		return className;
+	}
+	
+	
+	private List<Item> getRandomItemsByClass(Class<? extends Item> className) {
+		if (className == null) return null;
+		
+		if (className.equals(Potion.class)) return ItemXMLReader.getInstance().getPotions();
+		if (className.equals(Spell.class)) return ItemXMLReader.getInstance().getSpells();
+		if (className.equals(Armor.class)) return ItemXMLReader.getInstance().getArmors();
+		if (className.equals(Weapon.class)) return ItemXMLReader.getInstance().getWeapons();
+		
+		return null;
 	}
 	
 }

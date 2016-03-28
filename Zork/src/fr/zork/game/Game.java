@@ -81,20 +81,16 @@ public class Game {
 		System.out.println("Entrez un nom de joueur.");
 		System.out.print("> ");
 		
-		String entryLine = null;
+		String entryLine;
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
 		try {
 			entryLine = reader.readLine();
+			player.setName(entryLine.trim());
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-		
-		// set player attributes
-		player.setName(entryLine.trim());
-		player.setRightHand(new Weapon("epee longue", 16, 15, WeaponType.SWORD, Hand.RIGHT));
-		player.setBody(new Armor("plastron cuir", 10, 15, ArmorType.BODY, false));
 	}
 	
 	
@@ -505,20 +501,16 @@ public class Game {
 		}
 		
 		String equipmentName = command.getOptions()[0];
-		Item toEquip = this.getItem(equipmentName, player.getBag());
+		Equipment toEquip = this.getEquipment(equipmentName, true);
 		
 		if (toEquip != null) {
-			if (toEquip instanceof Equipment) {
-				Equipment equipment = (Equipment) toEquip;
-				
-				if (player.equip(equipment)) {
-					System.out.println("Vous vous etes equipe de : " + equipmentName);
-					return true;
-				}
-				
-				System.out.println("Vous ne pouvez pas vous equipe de cet equipement.");
-			} else System.out.println("Cet item n'est pas un equipement.");
-		} else System.out.println("Vous ne possedez pas cet equipement.");
+			if (player.equip(toEquip)) {
+				System.out.println("Vous vous etes equipe de : " + equipmentName);
+				return true;
+			}
+			
+			System.out.println("Vous ne pouvez pas vous equipe de cet item.");
+		} else System.out.println("Vous ne possedez pas cet item.");
 		
 		return false;
 	}
@@ -622,9 +614,17 @@ public class Game {
 		Item toThrow = this.getItem(itemName, player.getBag());
 		
 		if (toThrow != null) {
-			player.throwItem(toThrow);
-			System.out.println("Vous vous etes debarasse de cet item");
-			return true;
+			if (toThrow instanceof Equipment) {
+				toThrow = this.getEquipment(itemName, false);
+			}
+			
+			if (player.throwItem(toThrow)) {
+				System.out.println("Vous vous etes debarasse de cet item.");
+				return true;
+			}
+			
+			System.out.println("Vous ne pouvez pas jeter cet item.");
+			return false;
 		}
 		
 		System.out.println("Cet item n'est pas dans votre inventaire.");	
@@ -726,6 +726,7 @@ public class Game {
 				break;
 			case CombatCommand.USE:
 				nextTurn = this.use(command) ? MONSTER : PLAYER;
+				break;
 			case CombatCommand.CAST:
 				nextTurn = this.cast(command, monster) ? MONSTER : PLAYER;
 				break;
@@ -841,7 +842,7 @@ public class Game {
 	
 	
 	public boolean flee() {
-		System.out.println("Vous tentez de fuire...");
+		System.out.println("Vous tentez de fuir...");
 		
 		try {
 			Thread.sleep(1000);
@@ -886,4 +887,24 @@ public class Game {
 		
 		return null;
 	}
+	
+	
+	private Equipment getEquipment(String name, boolean isUsable) {
+		if (name == null) return null;
+		
+		for (Item item : player.getBag()) {
+			if (item.getName().equals(name) && item instanceof Equipment) {
+				Equipment equipment = (Equipment) item;
+				
+				if (isUsable) {
+					if (equipment.isUsable()) return equipment;
+				} else {
+					if (!equipment.isUsable()) return equipment;
+				}
+			}
+		}
+		
+		return null;
+	}
+	
 }
