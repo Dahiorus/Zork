@@ -116,12 +116,12 @@ public class Game {
 	
 	
 	public boolean displayMenu() {
-		System.out.println("--------------------  Zork MENU  -----------------------------------");
-		System.out.println("-                                                                  -");
-		System.out.println("-  * Nouvelle partie :    'nouveau [facile | normal | difficile]'  -");
-		System.out.println("-  * Charger une partie : 'charger [nom_partie]'                   -");
-		System.out.println("-                                                                  -");
-		System.out.println("--------------------------------------------------------------------");
+		System.out.println("----------------------------  Zork MENU  ----------------------------");
+		System.out.println("-                                                                   -");
+		System.out.println("-  * Nouvelle partie :    'nouveau [facile | normal | difficile]'   -");
+		System.out.println("-  * Charger une partie : 'charger [nom_partie]'                    -");
+		System.out.println("-                                                                   -");
+		System.out.println("---------------------------------------------------------------------");
 		System.out.println();
 		System.out.print("> ");
 		
