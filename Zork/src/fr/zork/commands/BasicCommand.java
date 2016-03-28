@@ -36,7 +36,7 @@ public class BasicCommand implements Command {
 		USE(BasicCommand.USE, 1, "[nom_potion] - Consommer une potion de soin"),
 		EQUIP(BasicCommand.EQUIP, 1, "[nom_equipement] - S'équiper d'un équipement de l'inventaire"),
 		UNEQUIP(BasicCommand.UNEQUIP, 2, "[armure (tete | bras | corps | jambes | _) || arme (droite | gauche | _)] - Retirer un equipement actuellement porte"),
-		THROW(BasicCommand.THROW, 1, "[nom_item] - Jeter un item du sac (supprime definitivement)"),
+		THROW(BasicCommand.THROW, 1, "[nom_item] - Jeter un item (use pour un equipement) du sac (supprime definitivement)"),
 		SAVE(BasicCommand.SAVE, 1, "[nom] - Sauvegarder la partie"),
 		QUIT(BasicCommand.QUIT, 0, "Quitter le jeu"),
 		HELP(BasicCommand.HELP, 0, "Afficher cette aide.");
