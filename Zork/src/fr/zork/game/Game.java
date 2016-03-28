@@ -9,16 +9,11 @@ import java.util.StringTokenizer;
 import fr.zork.character.Monster;
 import fr.zork.character.Player;
 import fr.zork.character.enums.Level;
-import fr.zork.commands.BasicCommand;
-import fr.zork.commands.CombatCommand;
 import fr.zork.commands.execution.PreparedCommand;
 import fr.zork.commands.parsers.BasicCommandParser;
-import fr.zork.commands.parsers.CombatCommandParser;
 import fr.zork.item.Armor;
 import fr.zork.item.Equipment;
 import fr.zork.item.Item;
-import fr.zork.item.Potion;
-import fr.zork.item.Spell;
 import fr.zork.item.Weapon;
 import fr.zork.item.enums.ArmorType;
 import fr.zork.item.enums.Hand;
@@ -28,16 +23,11 @@ import fr.zork.utils.reader.WorldXMLReader;
 import fr.zork.utils.writer.SaveXMLWriter;
 import fr.zork.world.Room;
 import fr.zork.world.World;
-import fr.zork.world.enums.Dice;
 import fr.zork.world.enums.Exit;
 
 public class Game {
 	private static String startRoomName = "Entree du donjon";
 	private static String dungeonBossRoom = "Etage de Zork";
-	
-	private static final int PLAYER = 0;
-	private static final int MONSTER = 1;
-	private static final int END = 2;
 	
 	private static Player player = Player.getInstance();
 	private static World world = World.getInstance();
@@ -46,9 +36,6 @@ public class Game {
 	private int stageNumber;
 	private Monster zork;
 	private Room currentRoom, previousRoom, zorkStage;
-	
-	private static CombatCommandParser combatCommandParser = CombatCommandParser.getInstance();
-	private static BasicCommandParser basicCommandParser = BasicCommandParser.getInstance();
 	
 	private static class GameHolder {
 		private final static Game instance = new Game();
@@ -65,6 +52,16 @@ public class Game {
 	
 	public void setCurrentRoom(Room currentRoom) {
 		this.currentRoom = currentRoom;
+	}
+	
+	
+	public Room getPreviousRoom() {
+		return this.previousRoom;
+	}
+	
+	
+	public void setPreviousRoom(Room previousRoom) {
+		this.previousRoom = previousRoom;
 	}
 	
 	
@@ -111,6 +108,13 @@ public class Game {
 	}
 	
 	
+	public void createZork(final int hp, final int power, final int defense) {
+		this.zork = new Monster("Maitre Zork", hp, power, defense, Level.EXTREME);
+		this.zork.setArmor(new Armor("Armure des ombres", 110, 1, ArmorType.BODY, true));
+		this.zork.setWeapon(new Weapon("Epee des ombres", 120, 1, WeaponType.SWORD, Hand.BOTH));
+	}
+	
+	
 	public boolean displayMenu() {
 		System.out.println("----------------------------  Zork MENU  ----------------------------");
 		System.out.println("-                                                                   -");
@@ -134,25 +138,18 @@ public class Game {
 				if (response.equals("nouveau")) {
 					if (tokenizer.hasMoreTokens()) {
 						String difficulty = tokenizer.nextToken();
-						int zorkHp = 0, zorkPower = 0, zorkDefense = 0;
 						
 						switch (difficulty) {
 							case "facile":
-								zorkHp = 300;
-								zorkPower = 89;
-								zorkDefense = 50;
+								this.createZork(300, 89, 50);
 								this.stageNumber = 10;
 								break;
 							case "normal":
-								zorkHp = 600;
-								zorkPower = 136;
-								zorkDefense = 78;
+								this.createZork(600, 136, 78);
 								this.stageNumber = 20;
 								break;
 							case "difficile":
-								zorkHp = 999;
-								zorkPower = 219;
-								zorkDefense = 170;
+								this.createZork(999, 219, 170);
 								this.stageNumber = 30;
 								break;
 							default:
@@ -167,10 +164,6 @@ public class Game {
 							System.out.println("Nouvelle partie (" + this.difficulty + ")");
 							System.out.println();
 
-							this.zork = new Monster("Maitre Zork", zorkHp, zorkPower, zorkDefense, Level.EXTREME);
-							this.zork.setArmor(new Armor("Armure des ombres", 110, 1, ArmorType.BODY, true));
-							this.zork.setWeapon(new Weapon("Epee des ombres", 120, 1, WeaponType.SWORD, Hand.BOTH));
-							
 							this.newGame();
 						}
 					} else {
@@ -291,14 +284,15 @@ public class Game {
 		System.out.println();
 		
 		boolean end = false;
+		BasicCommandParser parser = BasicCommandParser.getInstance();
 		
 		while (!end && !player.isDead() && !this.wins()) {
 			System.out.println(this.currentRoom.getDescription());
 			System.out.println();
-			basicCommandParser.printCommands();
+			parser.printCommands();
 			
-			PreparedCommand command = basicCommandParser.readEntry();
-			end = this.execute(command);
+			PreparedCommand command = parser.readEntry();
+			end = parser.execute(command);
 			
 			try {
 				Thread.sleep(1000);
@@ -323,562 +317,7 @@ public class Game {
 	}
 	
 	
-	public boolean execute(PreparedCommand command) {
-		if (command.isUnknown()) {
-			System.out.println("Cette action n'existe pas...");
-			return false;
-		}
-		
-		String word = command.getWord();
-		boolean result = false;
-		
-		switch (word) {
-			case BasicCommand.GO:
-				this.go(command);
-				break;
-			case BasicCommand.BACK:
-				this.goBack();
-				break;
-			case BasicCommand.LOOK:
-				this.look(command);
-				break;
-			case BasicCommand.LOOT:
-				this.loot(command);
-				break;
-			case BasicCommand.FIGHT:
-				if (command.hasOptions()) System.out.println("Cette commande n'a pas d'option.");
-				else this.fight();
-				break;
-			case BasicCommand.EQUIP:
-				this.equip(command);
-				break;
-			case BasicCommand.UNEQUIP:
-				this.unequip(command);
-				break;
-			case BasicCommand.USE:
-				this.use(command);
-				break;
-			case BasicCommand.THROW:
-				this.throwOut(command);
-				break;
-			case BasicCommand.SAVE:
-				this.save(command);
-				break;
-			case BasicCommand.QUIT:
-				if (command.hasOptions()) System.out.println("Cette commande n'a pas d'option.");
-				else result = true;
-				break;
-			case BasicCommand.HELP:
-				if (command.hasOptions()) System.out.println("Cette commande n'a pas d'option.");
-				else basicCommandParser.printHelp();
-				break;
-			default:
-				System.out.println("Cette commande est inconnue.");
-				break;
-		}
-		
-		return result;
-	}
-
-
-	public void go(PreparedCommand command) {
-		if (!command.hasOptions()) {
-			System.out.println("Aller ou ?");
-			return;
-		}
-		
-		if (currentRoom.hasMonsters()) {
-			System.out.println("Un monstre vous empeche d'avancer...");
-			return;
-		}
-		
-		String direction = command.getOptions()[0];
-		Exit exit = Exit.find(direction);
-		
-		if (exit == null) {
-			System.out.println("Cette direction est inconnue...");
-			return;
-		}
-		
-		Room nextRoom = currentRoom.getNextRoom(exit);
-		
-		if (nextRoom == null) {
-			System.out.println("Il n'y a pas de porte dans cette direction.");
-			return;
-		}
-		
-		this.previousRoom = this.currentRoom;
-		this.currentRoom = nextRoom;
-		
-		// trigger curse
-		if (this.currentRoom.hasCurse()) {
-			int damage = this.currentRoom.getCurse().getDamage();
-			
-			System.out.println("Cette salle est piegee !");
-			System.out.println("Vous subissez " + damage + " blessures.");
-			
-			this.currentRoom.triggerCurse(player);
-		}
-	}
-	
-	
-	public void goBack() {
-		if (this.previousRoom == null) {
-			System.out.println("Vous ne pouvez pas retourner en arriere.");
-			return;
-		}
-		
-		Room nextRoom = this.previousRoom;
-		this.previousRoom = this.currentRoom;
-		this.currentRoom = nextRoom;
-	}
-	
-	
-	public boolean look(PreparedCommand command) {
-		if (!command.hasOptions()) {
-			System.out.println("Vous pouvez voir :");
-			System.out.println("  joueur, inventaire, equipements, salle");
-			return false;
-		}
-		
-		String option = command.getOptions()[0];
-		boolean result = true;
-		
-		switch (option) {
-			case BasicCommand.PLAYER:
-				System.out.println(player.getDescription());
-				break;
-			case BasicCommand.BAG:
-				System.out.println(player.getBagDescription());
-				break;
-			case BasicCommand.EQUIPMENTS:
-				System.out.println(player.getEquipmentListDescription());
-				break;
-			case BasicCommand.ROOM:
-				System.out.println(this.currentRoom.getDescription());
-				break;
-			default:
-				System.out.println("Cette action est impossible.");
-				result = false;
-				break;
-		}
-		
-		return result;
-	}
-	
-	
-	public boolean loot(PreparedCommand command) {
-		if (!command.hasOptions()) {
-			System.out.println("Prendre quel item ?");
-			return false;
-		}
-		
-		if (this.currentRoom.getTreasures().isEmpty()) {
-			System.out.println("La salle est vide.");
-			return false;
-		}
-		
-		String itemName = command.getOptions()[0];
-		Item toLoot = this.getItem(itemName, this.currentRoom.getTreasures());
-		
-		if (toLoot != null) {
-			player.pickUpItem(toLoot, this.currentRoom);
-			System.out.println("Vous avez pris : " + itemName);
-			
-			return true;
-		}
-		
-		System.out.println("Cet item ne se trouve pas dans cette salle");
-		
-		return false;
-	}
-	
-	
-	public boolean equip(PreparedCommand command) {
-		if (!command.hasOptions()) {
-			System.out.println("Equiper quel equipement ?");
-			return false;
-		}
-		
-		String equipmentName = command.getOptions()[0];
-		Equipment toEquip = this.getEquipment(equipmentName, true);
-		
-		if (toEquip != null) {
-			if (player.equip(toEquip)) {
-				System.out.println("Vous vous etes equipe de : " + equipmentName);
-				return true;
-			}
-			
-			System.out.println("Vous ne pouvez pas vous equipe de cet item.");
-		} else System.out.println("Vous ne possedez pas cet item.");
-		
-		return false;
-	}
-	
-	
-	public boolean unequip(PreparedCommand command) {
-		if (!command.hasOptions()) {
-			System.out.println("Vous pouvez enlever :");
-			System.out.println("  arme (droite, gauche, _)");
-			System.out.println("  armure (tete, corps, bras, jambes, _)");
-			return false;
-		}
-		
-		String className = command.getOptions()[0];
-		String type = null;
-		
-		if (command.getOptionsLength() > 1) {
-			type = command.getOptions()[1];
-		}
-		
-		if (className.equals(BasicCommand.ARMOR)) {
-			if (type != null && !type.equals("")) {
-				ArmorType armorType = ArmorType.find(type);
-				
-				if (armorType != null) {
-					player.unequip(armorType);
-					System.out.println("L'armure se trouve dans votre inventaire.");
-					return true;
-				}
-				
-				System.out.println("Cette armure n'existe pas.");
-			} else {
-				player.unequip(ArmorType.HEAD);
-				player.unequip(ArmorType.BODY);
-				player.unequip(ArmorType.ARM);
-				player.unequip(ArmorType.LEG);
-				
-				System.out.println("Toutes vos armures se trouvent dans votre inventaire.");
-				return true;
-			}
-		} else if (className.equals(BasicCommand.WEAPON)) {
-			if (type != null && !type.equals("")) {
-				if (type.equals(BasicCommand.RIGHT)) {
-					player.unequip(Hand.RIGHT);
-				} else if (type.equals(BasicCommand.LEFT)) {
-					player.unequip(Hand.LEFT);
-				} else {
-					System.out.println("Cette arme n'existe pas.");
-					return false;
-				}
-				
-				System.out.println("Votre arme se trouve dans votre inventaire.");
-				return true;
-			}
-			
-			player.unequip(Hand.BOTH);
-			System.out.println("Vos armes se trouvent dans votre inventaire.");
-			return true;
-		}
-		
-		System.out.println("Ce type d'equipement n'existe pas.");
-		return false;
-	}
-	
-	
-	public boolean use(PreparedCommand command) {
-		if (!command.hasOptions()) {
-			System.out.println("Utiliser quel item ?");
-			return false;
-		}
-		
-		String potionName = command.getOptions()[0];
-		Item toUse = this.getItem(potionName, player.getBag());
-		
-		if (toUse != null) {
-			if (toUse instanceof Potion) {
-				Potion potion = (Potion) toUse;
-				player.heal(potion);
-				
-				System.out.println("Vous gagnez " + potion.getHpGain() + " PV.");
-				
-				return true;
-			}
-			
-			System.out.println("Cet item n'est pas une potion.");
-		} else {
-			System.out.println("Cet item n'est pas dans votre inventaire.");
-		}
-		
-		return false;
-	}
-	
-	
-	public boolean throwOut(PreparedCommand command) {
-		if (!command.hasOptions()) {
-			System.out.println("Jeter quel item ?");
-			return false;
-		}
-		
-		String itemName = command.getOptions()[0];
-		Item toThrow = this.getItem(itemName, player.getBag());
-		
-		if (toThrow != null) {
-			if (toThrow instanceof Equipment) {
-				toThrow = this.getEquipment(itemName, false);
-			}
-			
-			if (player.throwItem(toThrow)) {
-				System.out.println("Vous vous etes debarasse de cet item.");
-				return true;
-			}
-			
-			System.out.println("Vous ne pouvez pas jeter cet item.");
-			return false;
-		}
-		
-		System.out.println("Cet item n'est pas dans votre inventaire.");	
-		return false;
-	}
-	
-	
-	public void fight() {
-		if (!this.currentRoom.hasMonsters()) {
-			System.out.println("Il n'y a pas de monstre dans cette salle.");
-			return;
-		}
-		
-		Monster opponent = this.currentRoom.getMonsters().get(0);
-		int turn = Dice.D10.roll() % 2;
-		
-		System.out.println("Vous affrontez : " + opponent.getName());
-		
-		// combat loop
-		while (!player.isDead() && !opponent.isDead() && turn != END) {
-			if (turn == PLAYER) {
-				System.out.println("C'est votre tour.");
-				combatCommandParser.printCommands();
-				
-				PreparedCommand command = combatCommandParser.readEntry();
-				turn = this.executeCombat(opponent, command);
-			} else if (turn == MONSTER && !opponent.isDead()) {
-				System.out.println("C'est au tour du monstre.");
-				try {
-					Thread.sleep(1000); // simuling AI thinking
-				} catch (InterruptedException e) {
-					Thread.currentThread().interrupt();
-				}
-				System.out.println("Le monstre vous attaque...");
-				int hpBeforeAttack = player.getHp();
-				boolean critical = opponent.attack(player);
-				
-				if (critical) System.out.println("Coup critique !");
-				if (player.getHp() < hpBeforeAttack) {
-					System.out.println("Vous avez perdu " + (hpBeforeAttack - player.getHp()) + "PV.");
-					System.out.println("Il vous reste " + player.getHp() + "PV.");
-				}
-				else System.out.println("Son attaque echoue.");
-				
-				if (player.hasUnusableArmor()) {
-					System.out.println("Vous avez une armure inutilisable");
-					System.out.println("Votre defense est reduite.");
-				}
-				
-				turn = PLAYER;
-			}
-			System.out.println();
-		}
-		
-		// combat results
-		if (player.isDead()) {
-			System.out.println("Vous etes mort.");
-		} else if (opponent.isDead()) {
-			System.out.println("Vous avez gagne contre ce monstre.");
-			System.out.println("Vous gagnez un niveau.");
-			
-			player.levelUp();
-			
-			System.out.println(player.getDescription());
-			System.out.println();
-			
-			if (!opponent.getLoots().isEmpty()) {
-				System.out.println("Le monstre a laisse des items dans la salle.");
-				opponent.giveLoots(this.currentRoom);
-			}
-			
-			this.currentRoom.getMonsters().remove(opponent);
-			opponent = null;
-		} else {
-			System.out.println("Vous avez pris la fuite");
-			opponent.setHp(opponent.getMaxHp());
-		}
-	}
-	
-	
-	public int executeCombat(Monster monster, PreparedCommand command) {
-		if (command.isUnknown()) {
-			System.out.println("Cette action est inconnue.");
-			return PLAYER;
-		}
-		
-		String word = command.getWord();
-		int nextTurn = PLAYER;
-		
-		switch (word) {
-			case CombatCommand.ATTACK:
-				if (command.hasOptions()) {
-					System.out.println("Cette commande n'a pas d'option.");
-					nextTurn = PLAYER;
-				} else {
-					this.attack(monster);
-					nextTurn = MONSTER;
-				}
-				break;
-			case CombatCommand.USE:
-				nextTurn = this.use(command) ? MONSTER : PLAYER;
-				break;
-			case CombatCommand.CAST:
-				nextTurn = this.cast(command, monster) ? MONSTER : PLAYER;
-				break;
-			case CombatCommand.LOOK:
-				this.lookCombat(command, monster);
-				nextTurn = PLAYER;
-				break;
-			case CombatCommand.EQUIP:
-				this.equip(command);
-				nextTurn = PLAYER;
-				break;
-			case CombatCommand.FLEE:
-				if (command.hasOptions()) {
-					System.out.println("Cette commande n'a pas d'option");
-					nextTurn = PLAYER;
-				} else {
-					nextTurn = this.flee() ? END : MONSTER;
-				}
-				break;
-			case CombatCommand.HELP:
-				if (command.hasOptions()) System.out.println("Cette commande n'a pas d'option");
-				else combatCommandParser.printHelp();
-				nextTurn = PLAYER;
-				break;
-			default:
-				System.out.println("Cette action est impossible.");
-				nextTurn = PLAYER;
-				break;
-		}
-		
-		return nextTurn;
-	}
-	
-	
-	public void attack(Monster monster) {
-		System.out.println("Vous attaquez...");
-		
-		int hpBeforeAttack = monster.getHp();
-		boolean critical = player.attack(monster);
-		
-		if (critical) System.out.println("Coup critique !");
-		if (monster.getHp() < hpBeforeAttack) System.out.println("Le monstre a perdu " + (hpBeforeAttack - monster.getHp()) + "PV.");
-		else System.out.println("Votre attaque echoue.");
-		
-		if (player.hasUnusableWeapon()) {
-			System.out.println("Vous avez une arme inutilisable");
-			System.out.println("Votre force est reduite.");
-		}
-	}
-	
-	
-	public boolean cast(PreparedCommand command, Monster monster) {
-		if (!command.hasOptions()) {
-			System.out.println("Lancer quel sort ?");
-			return false;
-		}
-		
-		String spellName = command.getOptions()[0];
-		Item toCast = this.getItem(spellName, player.getBag());
-		
-		if (toCast != null) {
-			if (toCast instanceof Spell) {
-				Spell spell = (Spell) toCast;
-				int damage = spell.getDamage();
-				
-				player.cast(spell, monster);
-				System.out.println("Vous avez lance un sort.");
-				System.out.println("Le monstre subit " + damage + " blessures");
-				
-				return true;
-			}
-			
-			System.out.println("Cet item n'est pas un sort.");
-		} else {
-			System.out.println("Cet item n'est pas dans votre inventaire.");
-		}
-		
-		return false;
-	}
-	
-	
-	public boolean lookCombat(PreparedCommand command, Monster monster) {
-		if (!command.hasOptions()) {
-			System.out.println("Vous pouvez voir :");
-			System.out.println("  inventaire, equipements, joueur, monstres");
-			return false;
-		}
-		
-		String option = command.getOptions()[0];
-		boolean result = true;
-		
-		switch (option) {
-			case CombatCommand.BAG:
-				System.out.println(player.getBagDescription());
-				break;
-			case CombatCommand.EQUIPMENTS:
-				System.out.println(player.getEquipmentListDescription());
-				break;
-			case CombatCommand.PLAYER:
-				System.out.println(player.getDescription());
-				break;
-			case CombatCommand.MONSTERS:
-				System.out.println(monster.getDescription());
-				break;
-			default:
-				System.out.println("Cette action est impossible.");
-				result = false;
-				break;
-		}
-		
-		return result;
-	}
-	
-	
-	public boolean flee() {
-		System.out.println("Vous tentez de fuir...");
-		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
-		
-		if (Dice.D6.roll() >= 5) {
-			System.out.println("Vous fuyez.");
-			return true;
-		}
-		
-		System.out.println("Vous n'y arrivez pas.");
-		return false;
-	}
-	
-	
-	public boolean save(PreparedCommand command) {
-		if (!command.hasOptions()) {
-			System.out.println("Entrez un nom pour la sauvegarde.");
-			return false;
-		}
-		
-		String name = command.getOptions()[0];
-		
-		if (SaveXMLWriter.getInstance().saveGame(name)) {
-			System.out.println("Votre partie a été enregistrée dans " + name + ".");
-			return true;
-		}
-		
-		System.out.println("Un problème est survenu lors de la sauvegarde.");
-		return false;
-	}
-	
-	
-	private Item getItem(String name, List<Item> list) {
+	public Item getItem(String name, List<Item> list) {
 		if (name == null) return null;
 		
 		for (Item item : list) {
@@ -889,7 +328,7 @@ public class Game {
 	}
 	
 	
-	private Equipment getEquipment(String name, boolean isUsable) {
+	public Equipment getEquipment(String name, boolean isUsable) {
 		if (name == null) return null;
 		
 		for (Item item : player.getBag()) {
