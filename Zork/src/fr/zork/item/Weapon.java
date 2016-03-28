@@ -80,8 +80,7 @@ public class Weapon extends Equipment {
 	@Override
 	public String getDescription() {
 		return this.name + ": " + this.getItemType() + " " + this.type 
-				+ ", " + this.hand + ", bonus +" + this.bonus + ", "
-				+ (this.isUsable() ? this.lifespawn + " utilisations" : "inutilisable");
+				+ ", " + this.hand + ", bonus +" + this.bonus;
 	}
 
 

@@ -77,8 +77,7 @@ public class Armor extends Equipment {
 	public String getDescription() {
 		return this.name + ": " + this.getItemType() + " " + this.type
 				+ ", bonus +" + this.bonus + ", "
-				+ (this.isBig() ? "GROS, " : "")
-				+ (this.isUsable() ? this.lifespawn + " utilisations" : "inutilisable");
+				+ (this.isBig() ? "GROS, " : "");
 	}
 
 

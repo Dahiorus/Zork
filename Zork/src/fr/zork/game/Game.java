@@ -877,10 +877,10 @@ public class Game {
 	}
 	
 	
-	private Item getItem(String name, List<Item> items) {
+	private Item getItem(String name, List<Item> list) {
 		if (name == null) return null;
 		
-		for (Item item : items) {
+		for (Item item : list) {
 			if (item.getName().equals(name)) return item;
 		}
 		

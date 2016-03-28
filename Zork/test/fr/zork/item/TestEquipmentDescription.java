@@ -1,8 +1,6 @@
 package fr.zork.item;
 import fr.zork.character.Player;
 import fr.zork.item.Armor;
-import fr.zork.item.Equipment;
-import fr.zork.item.Item;
 import fr.zork.item.Weapon;
 import fr.zork.item.enums.ArmorType;
 import fr.zork.item.enums.Hand;
@@ -33,9 +31,12 @@ Player player = Player.getInstance();
 		player.getBag().add(body);
 		player.getBag().add(leg);
 		player.getBag().add(hat);
+		player.getBag().add(katana);
+		player.getBag().add(katana);
+		player.getBag().add(leg);
+		player.getBag().add(leg);
+		player.getBag().add(leg);
 		
-		for (Item item : player.getBag()) {
-			if (item instanceof Equipment) System.out.println(item.getDescription() + "\n");
-		}
+		System.out.println(player.getEquipmentListDescription());
 	}
 }

@@ -1,7 +1,9 @@
 package fr.zork.character;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import fr.zork.item.Armor;
 import fr.zork.item.Equipment;
@@ -47,14 +49,6 @@ public class Player extends MortalCharacter {
 	 */
 	public List<Item> getBag() {
 		return bag;
-	}
-
-
-	/**
-	 * @param bag the bag to set
-	 */
-	public void setBag(List<Item> bag) {
-		this.bag = bag;
 	}
 
 
@@ -378,9 +372,7 @@ public class Player extends MortalCharacter {
 			}
 		}
 		
-		this.bag.remove(equipment);
-		
-		return true;
+		return this.bag.remove(equipment);
 	}
 	
 	
@@ -513,10 +505,12 @@ public class Player extends MortalCharacter {
 	
 	public String getBagDescription() {
 		String description = "Sac:";
+		Map<String, Integer> copies = this.getItemCopies();
 		
-		for (Item item : this.bag) {
-			if ((item instanceof Potion) || (item instanceof Spell)) {
-				description += "\n  - " + item.getDescription();
+		for (String itemName : copies.keySet()) {
+			Item item = this.getByName(itemName);
+			if (item instanceof Potion || item instanceof Spell) {
+				description += "\n  - (" + copies.get(itemName) + ") " + item.getDescription();
 			}
 		}
 		
@@ -525,11 +519,13 @@ public class Player extends MortalCharacter {
 	
 	
 	public String getEquipmentListDescription() {
-		String description = "Equipements:";
+		String description = "Sac:";
+		Map<String, Integer> copies = this.getItemCopies();
 		
-		for (Item item : this.bag) {
+		for (String itemName : copies.keySet()) {
+			Item item = this.getByName(itemName);
 			if (item instanceof Equipment) {
-				description += "\n  - " + item.getDescription();
+				description += "\n  - (" + copies.get(itemName) + ") " + item.getDescription();
 			}
 		}
 		
@@ -621,4 +617,28 @@ public class Player extends MortalCharacter {
 		
 		return result;
 	}
+	
+	
+	private Map<String, Integer> getItemCopies() {
+		Map<String, Integer> copies = new HashMap<String, Integer>();
+		
+		for (Item item : this.bag) {
+			if (!copies.containsKey(item.getName())) copies.put(item.getName(), 1);
+			else copies.put(item.getName(), copies.get(item.getName()) + 1);
+		}
+		
+		return copies;
+	}
+	
+	
+	private Item getByName(String name) {
+		if (name == null) return null;
+		
+		for (Item item : this.bag) {
+			if (item.getName().equals(name)) return item;
+		}
+		
+		return null;
+	}
+	
 }
