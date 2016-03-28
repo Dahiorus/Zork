@@ -373,16 +373,14 @@ public class BasicCommandParser extends CommandParser {
 		
 		System.out.println("Vous affrontez : " + opponent.getName());
 		
-		
-		
 		// combat loop
 		while (!player.isDead() && !opponent.isDead() && turn != CombatCommandParser.END) {
 			if (turn == CombatCommandParser.PLAYER) {
 				System.out.println("C'est votre tour.");
 				combatCommandParser.printCommands();
 				
-				PreparedCommand command = combatCommandParser.readEntry();
-				turn = combatCommandParser.execute(opponent, command);
+				PreparedCommand preparedCommand = combatCommandParser.readEntry();
+				turn = combatCommandParser.execute(opponent, preparedCommand);
 			} else if (turn == CombatCommandParser.MONSTER && !opponent.isDead()) {
 				System.out.println("C'est au tour du monstre.");
 				try {
