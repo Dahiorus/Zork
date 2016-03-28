@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monsters>
+	<monster name="Dragon" maxHp="800" power="200" defense="160" level="EXTREME">
+		<loots number="9"/>
+		<unique>Ensorceleur</unique>
+	</monster>
+	<monster name="Colosse d'acier" maxHp="671" power="147" defense="123" level="EXTREME">
+		<weapon>fleau</weapon>
+		<armor>armure magique</armor>
+		<loots number="6"/>
+		<unique>Plastron Mithril</unique>
+	</monster>
+	<monster name="Cephalopodzilla" maxHp="750" power="180" defense="150" level="EXTREME">
+		<loots number="6"/>
+		<unique>Mjolnir</unique>
+	</monster>
+	<monster name="Gardien obscur" maxHp="576" power="111" defense="91" level="EXTREME">
+		<weapon>baton magique</weapon>
+		<armor>robe sorcier</armor>
+		<loots number="7"></loots>
+		<unique>Excalibur</unique>
+	</monster>
+	<monster name="Manticore" maxHp="600" power="103" defense="85" level="EXTREME">
+		<loots number="6"/>
+		<unique>Assassine</unique>
+	</monster>
+	<monster name="Golem" maxHp="468" power="82" defense="62" level="EXTREME">
+		<loots number="5"/>
+		<unique>Jambieres Mithril</unique>
+	</monster>
+	<monster name="Demon majeur" maxHp="780" power="184" defense="130" level="EXTREME">
+		<weapon>fleau</weapon>
+		<loots number="7"/>
+		<unique>Durandil</unique>
+		<unique>Gantelets Mithril</unique>
+	</monster>
+	<monster name="Pharaon maudit" maxHp="703" power="186" defense="93" level="EXTREME">
+		<weapon>baton sorcier</weapon>
+		<armor>bracelets or</armor>
+		<loots number="8"/>
+		<unique>Heaume Mithril</unique>
+	</monster>
+</monsters>

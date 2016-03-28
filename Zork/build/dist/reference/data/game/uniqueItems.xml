@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+	<weapons>
+		<weapon name="Excalibur" bonus="130" lifespawn="1000">
+			<type>SWORD</type>
+			<hands>BOTH</hands>
+		</weapon>
+		<weapon name="Durandil" bonus="130" lifespawn="1000">
+			<type>AXE</type>
+			<hands>BOTH</hands>
+		</weapon>
+		<weapon name="Assassine" bonus="130" lifespawn="1000">
+			<type>DAGGER</type>
+			<hands>BOTH</hands>
+		</weapon>
+		<weapon name="Mjolnir" bonus="130" lifespawn="1000">
+			<type>HAMMER</type>
+			<hands>BOTH</hands>
+		</weapon>
+		<weapon name="Ensorceleur" bonus="130" lifespawn="150">
+			<type>ROD</type>
+			<hands>BOTH</hands>
+		</weapon>
+	</weapons>
+	
+	<armors>
+		<armor name="Heaume Mithril" bonus="50" lifespawn="1000" isBig="false">
+			<type>HEAD</type>
+		</armor>
+		<armor name="Plastron Mithril" bonus="100" lifespawn="1000" isBig="true">
+			<type>BODY</type>
+		</armor>
+		<armor name="Gantelets Mithril" bonus="60" lifespawn="1000" isBig="false">
+			<type>ARM</type>
+		</armor>
+		<armor name="Jambieres Mithril" bonus="80" lifespawn="1000" isBig="false">
+			<type>LEG</type>
+		</armor>
+	</armors>
+</items>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rooms>
+	<room name="Entree du donjon">
+	</room>
+	<room name="Reserve">
+		<treasures number="2"></treasures>
+	</room>
+	<room name="Couloir sombre">
+		<treasures number="1"/>
+		<monsters number="1" level="facile"/>
+	</room>
+	
+	<room name="1er etage">
+		<treasures number="2"></treasures>
+		<monsters number="2" level="facile"/>
+	</room>
+	<room name="Salle de torture">
+		<curse>true</curse>
+		<monsters number="1" level="facile"/>
+	</room>
+	
+	<room name="2eme etage">
+		<treasures number="1"/>
+		<monsters number="1" level="facile"/>
+	</room>
+	<room name="Chambre sinistre">
+		<curse>true</curse>
+		<treasures number="1"/>
+	</room>
+	<room name="Salon en ruine">
+		<monsters number="2" level="facile"/>
+	</room>
+	
+	<room name="3eme etage">
+		<treasures number="2"/>
+		<monsters number="2" level="facile"/>
+	</room>
+	
+	<room name="4eme etage">
+		<curse>true</curse>
+		<treasures number="1"/>
+		<monsters number="3" level="facile"/>
+	</room>
+	<room name="Impasse">
+		<monsters number="2" level="normal"/>
+	</room>
+	
+	<room name="5eme etage">
+		<boss>Golem</boss>
+		<treasures number="2"/>
+	</room>
+	
+	<room name="6eme etage">
+		<curse>true</curse>
+		<treasures number="1"/>
+	</room>
+	<room name="Escalier bloque">
+	</room>
+	<room name="Balcon">
+		<treasures number="1"/>
+	</room>
+	
+	<room name="7eme etage">
+		<monsters number="3" level="facile"/>
+	</room>
+	<room name="Salle vide">
+		<curse>true</curse>
+	</room>
+	
+	<room name="8eme etage">
+		<curse>true</curse>
+		<treasures number="2"/>
+	</room>
+	
+	<room name="9eme etage">
+		<monsters number="1" level="facile"/>
+		<treasures number="2"/>
+	</room>
+	<room name="Salle de repos">
+		<treasures number="3"/>
+	</room>
+	<room name="Chambre rouge">
+		<curse>true</curse>
+	</room>
+	
+	<room name="10eme etage">
+		<boss>Gardien obscur</boss>
+		<treasures number="2"/>
+	</room>
+	
+	<room name="11eme etage">
+	</room>
+	
+	<room name="12eme etage">
+		<monsters number="1" level="normal"/>
+	</room>
+	<room name="Prison">
+		<curse>true</curse>
+	</room>
+	
+	<room name="13eme etage">
+		<monsters number="2" level="normal"/>
+		<treasures number="1"/>
+	</room>
+	<room name="Arene">
+		<monsters number="5" level="facile"/>
+	</room>
+	
+	<room name="14eme etage">
+		<curse>true</curse>
+		<treasures number="2"/>
+	</room>
+	<room name="Arene de sang">
+		<monsters number="1" level="difficile"/>
+	</room>
+	
+	<room name="15eme etage">
+		<boss>Manticore</boss>
+	</room>
+	<room name="Chambre de torture">
+		<curse>true</curse>
+	</room>
+	
+	<room name="16eme etage">
+		<monsters number="2" level="normal"/>
+		<treasures number="2"/>
+	</room>
+	
+	<room name="17eme etage">
+		<curse>true</curse>
+		<treasures number="3"/>
+	</room>
+	<room name="Couloir hante">
+		<monsters number="2" level="normal"/>
+		<treasures number="1"/>
+	</room>
+	<room name="Couloir sans issue">
+		<curse>true</curse>
+		<treasures number="1"/>
+	</room>
+	
+	<room name="18eme etage">
+		<treasures number="2"/>
+	</room>
+	<room name="Arene sinitre">
+		<monsters number="2" level="normal"/>
+		<treasures number="1"/>
+	</room>
+	
+	<room name="19eme etage">
+		<curse>true</curse>
+		<treasures number="1"/>
+	</room>
+	<room name="Salle blanche">
+		<treasures number="3"/>
+	</room>
+	
+	<room name="20eme etage">
+		<boss>Colosse d'acier</boss>
+		<treasures number="1"/>
+	</room>
+	
+	<room name="21eme etage">
+		<curse>true</curse>
+		<monsters number="1" level="difficile"/>
+	</room>
+	<room name="Chambre maudite">
+		<monsters number="2" level="difficile"/>
+	</room>
+	
+	<room name="22e etage">
+		<monsters number="1" level="difficile"/>
+	</room>
+	
+	<room name="23eme etage">
+		<boss>Cephalopodzilla</boss>
+	</room>
+	
+	<room name="24eme etage">
+		<curse>true</curse>
+		<monsters number="1" level="difficile"></monsters>
+	</room>
+	<room name="Salle de l'arbre">
+		<monsters number="2" level="difficile"/>
+	</room>
+	<room name="Chambre des fleurs noires">
+		<monsters number="1" level="difficile"/>
+	</room>
+	
+	<room name="25eme etage">
+		<curse>true</curse>
+		<boss>Pharaon maudit</boss>
+	</room>
+	
+	<room name="26eme etage">
+		<monsters number="1" level="difficile"/>
+	</room>
+	<room name="Cachot desert">
+		<curse>true</curse>
+		<boss>Demon majeur</boss>
+	</room>
+	
+	<room name="27eme etage">
+		<monsters number="3" level="difficile"/>
+	</room>
+	<room name="Escalier en ruine">
+		<curse>true</curse>
+		<monsters number="1" level="difficile"/>
+	</room>
+	
+	<room name="28eme etage">
+		<curse>true</curse>
+		<monsters number="2" level="difficile"/>
+	</room>
+	
+	<room name="29eme etage">
+		<monsters number="1" level="difficile"/>
+	</room>
+	<room name="Taverne etrange">
+		<monsters number="3" level="difficile"/>
+	</room>
+	<room name="Chambre de tresor">
+		<curse>true</curse>
+		<treasures number="4"/>
+	</room>
+	
+	<room name="30eme etage">
+		<boss>Dragon</boss>
+	</room>
+</rooms>

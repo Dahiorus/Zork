@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<player defense="10" hp="200" level="1" maxHp="200" name="toto" power="10">
+    <rightHand lifespawn="15">epee longue</rightHand>
+    <body lifespawn="15">plastron cuir</body>
+    <currentRoom>Entree du donjon</currentRoom>
+</player>

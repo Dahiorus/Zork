@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exits>
+	<exit source="Entree du donjon">
+		<north>1er etage</north>
+		<east>Reserve</east>
+		<west>Couloir sombre</west>
+	</exit>
+	
+	<exit source="1er etage">
+		<north>Salle de torture</north>
+		<east>2eme etage</east>
+	</exit>
+	<exit source="2eme etage">
+		<north>Chambre sinistre</north>
+		<east>Salon en ruine</east>
+		<west>3eme etage</west>
+	</exit>
+	<exit source="3eme etage">
+		<north>4eme etage</north>
+	</exit>
+	<exit source="4eme etage">
+		<east>Impasse</east>
+		<west>5eme etage</west>
+	</exit>
+	<exit source="5eme etage">
+		<north>6eme etage</north>
+	</exit>
+	<exit source="6eme etage">
+		<north>Escalier bloque</north>
+		<east>Balcon</east>
+		<west>7eme etage</west>
+	</exit>
+	<exit source="7eme etage">
+		<north>8eme etage</north>
+		<east>Salle vide</east>
+	</exit>
+	<exit source="8eme etage">
+		<west>9eme etage</west>
+	</exit>
+	<exit source="9eme etage">
+		<north>10eme etage</north>
+		<east>Salle de repos</east>
+		<west>Chambre rouge</west>
+	</exit>
+	<exit source="10eme etage">
+		<north>11eme etage</north>
+	</exit>
+	
+	<exit source="11eme etage">
+		<west>12eme etage</west>
+	</exit>
+	<exit source="12eme etage">
+		<north>Prison</north>
+		<east>13eme etage</east>
+	</exit>
+	<exit source="13eme etage">
+		<east>Arene</east>
+		<west>14eme etage</west>
+	</exit>
+	<exit source="14eme etage">
+		<north>Arene de sang</north>
+		<west>15eme etage</west>
+	</exit>
+	<exit source="15eme etage">
+		<north>16eme etage</north>
+		<east>Chambre de torture</east>
+	</exit>
+	<exit source="16eme etage">
+		<north>17eme etage</north>
+	</exit>
+	<exit source="17eme etage">
+		<north>Couloir hante</north>
+		<east>18eme etage</east>
+		<west>Couloir sans issue</west>
+	</exit>
+	<exit source="18eme etage">
+		<north>Arene sinistre</north>
+		<east>19eme etage</east>
+	</exit>
+	<exit source="19eme etage">
+		<north>Salle blanche</north>
+		<west>20eme etage</west>
+	</exit>
+	<exit source="20eme etage">
+		<north>21eme etage</north>
+	</exit>
+	
+	<exit source="21eme etage">
+		<east>22eme etage</east>
+		<west>Chambre maudite</west>
+	</exit>
+	<exit source="22eme etage">
+		<north>23eme etage</north>
+	</exit>
+	<exit source="23eme etage">
+		<west>24eme etage</west>
+	</exit>
+	<exit source="24eme etage">
+		<north>Salle de l'arbre</north>
+		<east>25eme etage</east>
+		<west>Chambre des fleurs noires</west>
+	</exit>
+	<exit source="25eme etage">
+		<west>26eme etage</west>
+	</exit>
+	<exit source="26eme etage">
+		<east>27eme etage</east>
+		<west>Cachot desert</west>
+	</exit>
+	<exit source="27eme etage">
+		<north>28eme etage</north>
+		<east>Escalier en ruine</east>
+	</exit>
+	<exit source="28eme etage">
+		<east>29eme etage</east>
+	</exit>
+	<exit source="29eme etage">
+		<north>30eme etage</north>
+		<east>Taverne etrange</east>
+		<west>Chambre de tresor</west>
+	</exit>
+	<exit source="30eme etage">
+	</exit>
+</exits>

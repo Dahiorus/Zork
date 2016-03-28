@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<exits>
+    <exit source="6eme etage">
+        <north>Escalier bloque</north>
+        <west>7eme etage</west>
+        <east>Balcon</east>
+    </exit>
+    <exit source="9eme etage">
+        <north>10eme etage</north>
+        <west>Chambre rouge</west>
+        <east>Salle de repos</east>
+    </exit>
+    <exit source="17eme etage">
+        <north>Couloir hante</north>
+        <west>Couloir sans issue</west>
+        <east>18eme etage</east>
+    </exit>
+    <exit source="11eme etage">
+        <west>12eme etage</west>
+    </exit>
+    <exit source="20eme etage">
+        <north>Etage de Zork</north>
+    </exit>
+    <exit source="Entree du donjon">
+        <north>1er etage</north>
+        <west>Couloir sombre</west>
+        <east>Reserve</east>
+    </exit>
+    <exit source="3eme etage">
+        <north>4eme etage</north>
+    </exit>
+    <exit source="14eme etage">
+        <north>Arene de sang</north>
+        <west>15eme etage</west>
+    </exit>
+    <exit source="16eme etage">
+        <north>17eme etage</north>
+    </exit>
+    <exit source="19eme etage">
+        <north>Salle blanche</north>
+        <west>20eme etage</west>
+    </exit>
+    <exit source="13eme etage">
+        <west>14eme etage</west>
+        <east>Arene</east>
+    </exit>
+    <exit source="4eme etage">
+        <west>5eme etage</west>
+        <east>Impasse</east>
+    </exit>
+    <exit source="18eme etage">
+        <east>19eme etage</east>
+    </exit>
+    <exit source="7eme etage">
+        <north>8eme etage</north>
+        <east>Salle vide</east>
+    </exit>
+    <exit source="10eme etage">
+        <north>11eme etage</north>
+    </exit>
+    <exit source="5eme etage">
+        <north>6eme etage</north>
+    </exit>
+    <exit source="8eme etage">
+        <west>9eme etage</west>
+    </exit>
+    <exit source="2eme etage">
+        <north>Chambre sinistre</north>
+        <west>3eme etage</west>
+        <east>Salon en ruine</east>
+    </exit>
+    <exit source="1er etage">
+        <north>Salle de torture</north>
+        <east>2eme etage</east>
+    </exit>
+    <exit source="12eme etage">
+        <north>Prison</north>
+        <east>13eme etage</east>
+    </exit>
+    <exit source="15eme etage">
+        <north>16eme etage</north>
+        <east>Chambre de torture</east>
+    </exit>
+</exits>

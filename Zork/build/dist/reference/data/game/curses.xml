@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<curses>
+	<curse damage="15"/>
+	<curse damage="25"/>
+	<curse damage="35"/>
+	<curse damage="45"/>
+	<curse damage="55"/>
+	<curse damage="60"/>
+	<curse damage="65"/>
+	<curse damage="70"/>
+</curses>
