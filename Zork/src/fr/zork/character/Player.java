@@ -37,8 +37,8 @@ public class Player extends MortalCharacter {
 		this.power = 20;
 		this.defense = 15;
 		
-		this.setRightHand(new Weapon("epee longue", 16, 15, WeaponType.SWORD, Hand.RIGHT));
-		this.setBody(new Armor("plastron cuir", 10, 15, ArmorType.BODY, false));
+		this.setRightHand(new Weapon("epee longue", 30, 12, WeaponType.SWORD, Hand.RIGHT));
+		this.setBody(new Armor("plastron de cuir", 10, 15, ArmorType.BODY, false));
 		
 		this.bag = new ArrayList<Item>();
 		this.getBag().add(new Potion("potion verte", 50));
@@ -72,7 +72,7 @@ public class Player extends MortalCharacter {
 	 * @param head the head to set
 	 */
 	public void setHead(Armor head) {
-		if (head.getType() != ArmorType.HEAD) return;
+		if (head != null && head.getType() != ArmorType.HEAD) return;
 		this.head = head;
 	}
 
@@ -89,7 +89,7 @@ public class Player extends MortalCharacter {
 	 * @param body the body to set
 	 */
 	public void setBody(Armor body) {
-		if (body.getType() != ArmorType.BODY) return;
+		if (body != null && body.getType() != ArmorType.BODY) return;
 		this.body = body;
 	}
 
@@ -106,7 +106,7 @@ public class Player extends MortalCharacter {
 	 * @param arm the arm to set
 	 */
 	public void setArm(Armor arm) {
-		if (arm.getType() != ArmorType.ARM) return;
+		if (arm != null && arm.getType() != ArmorType.ARM) return;
 		this.arm = arm;
 	}
 
@@ -123,7 +123,7 @@ public class Player extends MortalCharacter {
 	 * @param leg the leg to set
 	 */
 	public void setLeg(Armor leg) {
-		if (leg.getType() != ArmorType.LEG) return;
+		if (leg != null && leg.getType() != ArmorType.LEG) return;
 		this.leg = leg;
 	}
 
@@ -140,7 +140,7 @@ public class Player extends MortalCharacter {
 	 * @param rightHand the rightHand to set
 	 */
 	public void setRightHand(Weapon rightHand) {
-		if (rightHand.getHand() == Hand.LEFT) return;
+		if (rightHand != null && rightHand.getHand() == Hand.LEFT) return;
 		this.rightHand = rightHand;
 	}
 
@@ -157,7 +157,7 @@ public class Player extends MortalCharacter {
 	 * @param leftHand the leftHand to set
 	 */
 	public void setLeftHand(Weapon leftHand) {
-		if (leftHand.getHand() != Hand.LEFT) return;
+		if (leftHand != null && leftHand.getHand() != Hand.LEFT) return;
 		this.leftHand = leftHand;
 	}
 
@@ -474,8 +474,8 @@ public class Player extends MortalCharacter {
 	
 	public void levelUp() {
 		this.level++;
-		this.power++;
-		this.defense++;
+		this.power += 2;
+		this.defense += 2;
 		this.maxHp += 10;
 		this.setHp(this.hp + 10);
 	}
@@ -561,10 +561,17 @@ public class Player extends MortalCharacter {
 	private String getArmorDescription() {
 		String description = "Armure:";
 		
-		if (this.head != null) description += "\n  - Tête: " + this.head.getName() + (!this.head.isUsable() ? " [usé]" : " [" + this.head.getLifespawn() + " utilisations]");
-		if (this.body != null) description += "\n  - Corps: " + this.body.getName() + (!this.body.isUsable() ? " [usé]" : " [" + this.body.getLifespawn() + " utilisations]");
-		if (this.arm != null)  description += "\n  - Bras: " + this.arm.getName() + (!this.arm.isUsable() ? " [usé]" : " [" + this.arm.getLifespawn() + " utilisations]");
-		if (this.leg != null)  description += "\n  - Jambes: " + this.leg.getName() + (!this.leg.isUsable() ? " [usé]" : " [" + this.leg.getLifespawn() + " utilisations]");
+		if (this.head != null) description += "\n  - Tête: " + this.head.getName() + " +" + this.head.getBonus() + 
+				(!this.head.isUsable() ? " [usé]" : " [" + this.head.getLifespawn() + " utilisations]");
+		
+		if (this.body != null) description += "\n  - Corps: " + this.body.getName() + " +" + this.body.getBonus() + 
+				(!this.body.isUsable() ? " [usé]" : " [" + this.body.getLifespawn() + " utilisations]");
+		
+		if (this.arm != null)  description += "\n  - Bras: " + this.arm.getName() + " +" + this.arm.getBonus() + 
+				(!this.arm.isUsable() ? " [usé]" : " [" + this.arm.getLifespawn() + " utilisations]");
+		
+		if (this.leg != null)  description += "\n  - Jambes: " + this.leg.getName() + " +" + this.leg.getBonus() + 
+				(!this.leg.isUsable() ? " [usé]" : " [" + this.leg.getLifespawn() + " utilisations]");
 		
 		return description;
 	}
@@ -575,10 +582,12 @@ public class Player extends MortalCharacter {
 		
 		if (this.rightHand != null) {
 			description += this.rightHand.isTwoHanded() ? "\n  - 2 mains: " : "\n  - Droite: ";
-			description += this.rightHand.getName() + (!this.rightHand.isUsable() ? " [usé]" : " [" + this.rightHand.getLifespawn() + " utilisations]");
+			description += this.rightHand.getName() + " +" + this.rightHand.getBonus() + 
+					(!this.rightHand.isUsable() ? " [usé]" : " [" + this.rightHand.getLifespawn() + " utilisations]");
 		}
 		if (this.leftHand != null) {
-			description += "\n  - Gauche: " + this.leftHand.getName() + (!this.leftHand.isUsable() ? " [usé]" : " [" + this.leftHand.getLifespawn() + " utilisations]");
+			description += "\n  - Gauche: " + this.leftHand.getName() + " +" + this.leftHand.getBonus() +
+					(!this.leftHand.isUsable() ? " [usé]" : " [" + this.leftHand.getLifespawn() + " utilisations]");
 		}
 		
 		return description;

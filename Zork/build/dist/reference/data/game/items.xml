@@ -12,93 +12,56 @@
 	</potions>
 	
 	<spells>
-		<spell name="foudre" damage="30"/>
-		<spell name="anneau flammes" damage="30"/>
 		<spell name="choc" damage="20"/>
+		<spell name="foudre" damage="30"/>
+		<spell name="anneau de flammes" damage="30"/>
 		<spell name="fleches magiques" damage="40"/>
+		<spell name="givre" damage="50"/>
+		<spell name="tornade" damage="60"/>
+		<spell name="seisme" damage="70"/>
+		<spell name="eboulement" damage="80"/>
 		<spell name="projectiles" damage="100"/>
 		<spell name="boule feu" damage="120"/>
-		<spell name="jet foudre" damage="80"/>
-		<spell name="givre" damage="50"/>
-		<spell name="seisme" damage="70"/>
+		<spell name="tempete" damage="150"/>
 	</spells>
 	
 	<weapons>
-		<weapon name="epee longue" bonus="16" lifespawn="15">
+		<weapon name="epee rouillee" bonus="12" lifespawn="6">
+			<type>SWORD</type>
+			<hands>LEFT</hands>
+		</weapon>
+		<weapon name="epee courte" bonus="22" lifespawn="10">
+			<type>SWORD</type>
+			<hands>LEFT</hands>
+		</weapon>
+		<weapon name="epee longue" bonus="30" lifespawn="12">
 			<type>SWORD</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="massue" bonus="24" lifespawn="20">
+		<weapon name="cimetere" bonus="36" lifespawn="15">
+			<type>SWORD</type>
+			<hands>RIGHT</hands>
+		</weapon>
+		<weapon name="epee magique" bonus="36" lifespawn="18">
+			<type>SWORD</type>
+			<hands>LEFT</hands>
+		</weapon>
+		<weapon name="rapiere" bonus="38" lifespawn="18">
+			<type>SWORD</type>
+			<hands>RIGHT</hands>
+		</weapon>
+		<weapon name="flamberge" bonus="62" lifespawn="21">
+			<type>SWORD</type>
+			<hands>BOTH</hands>
+		</weapon>
+		<weapon name="epee batarde" bonus="70" lifespawn="24">
+			<type>SWORD</type>
+			<hands>BOTH</hands>
+		</weapon>
+		
+		<weapon name="massue" bonus="44" lifespawn="13">
 			<type>HAMMER</type>
 			<hands>BOTH</hands>
-		</weapon>
-		<weapon name="hache" bonus="18" lifespawn="16">
-			<type>AXE</type>
-			<hands>RIGHT</hands>
-		</weapon>
-		<weapon name="hache argent" bonus="40" lifespawn="50">
-			<type>AXE</type>
-			<hands>BOTH</hands>
-		</weapon>
-		<weapon name="epee batarde" bonus="50" lifespawn="50">
-			<type>SWORD</type>
-			<hands>BOTH</hands>
-		</weapon>
-		<weapon name="lance" bonus="21" lifespawn="13">
-			<type>ROD</type>
-			<hands>BOTH</hands>
-		</weapon>
-		<weapon name="sabre tranchant" bonus="26" lifespawn="24">
-			<type>SWORD</type>
-			<hands>RIGHT</hands>
-		</weapon>
-		<weapon name="epee courte" bonus="9" lifespawn="16">
-			<type>SWORD</type>
-			<hands>LEFT</hands>
-		</weapon>
-		<weapon name="dague" bonus="14" lifespawn="26">
-			<type>DAGGER</type>
-			<hands>LEFT</hands>
-		</weapon>
-		<weapon name="cimetere" bonus="23" lifespawn="29">
-			<type>SWORD</type>
-			<hands>RIGHT</hands>
-		</weapon>
-		<weapon name="dague chasse" bonus="18" lifespawn="28">
-			<type>DAGGER</type>
-			<hands>RIGHT</hands>
-		</weapon>
-		<weapon name="flamberge" bonus="42" lifespawn="48">
-			<type>SWORD</type>
-			<hands>BOTH</hands>
-		</weapon>
-		<weapon name="epee magique" bonus="35" lifespawn="50">
-			<type>SWORD</type>
-			<hands>LEFT</hands>
-		</weapon>
-		<weapon name="baton magique" bonus="22" lifespawn="18">
-			<type>ROD</type>
-			<hands>BOTH</hands>
-		</weapon>
-		<weapon name="epee rouillee" bonus="6" lifespawn="5">
-			<type>SWORD</type>
-			<hands>LEFT</hands>
-		</weapon>
-		<weapon name="dague rouillee" bonus="4" lifespawn="5">
-			<type>DAGGER</type>
-			<hands>LEFT</hands>
-		</weapon>
-		<weapon name="hache nain" bonus="16" lifespawn="31">
-			<type>AXE</type>
-			<hands>LEFT</hands>
-		</weapon>
-		<weapon name="baton flammes" bonus="26" lifespawn="24">
-			<type>ROD</type>
-			<hands>BOTH</hands>
-		</weapon>
-		<weapon name="dague voleur" bonus="21" lifespawn="23">
-			<type>DAGGER</type>
-			<hands>LEFT</hands>
 		</weapon>
 		<weapon name="marteau" bonus="27" lifespawn="25">
 			<type>HAMMER</type>
@@ -108,14 +71,70 @@
 			<type>HAMMER</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="baton sorcier" bonus="30" lifespawn="38">
-			<type>ROD</type>
-			<hands>RIGHT</hands>
-		</weapon>
-		<weapon name="hache rouillee" bonus="7" lifespawn="5">
+		
+		<weapon name="hache rouillee" bonus="12" lifespawn="7">
 			<type>AXE</type>
 			<hands>LEFT</hands>
 		</weapon>
+		<weapon name="hache" bonus="25" lifespawn="13">
+			<type>AXE</type>
+			<hands>RIGHT</hands>
+		</weapon>
+		<weapon name="hache nain" bonus="30" lifespawn="16">
+			<type>AXE</type>
+			<hands>LEFT</hands>
+		</weapon>
+		<weapon name="hache en acier" bonus="39" lifespawn="19">
+			<type>AXE</type>
+			<hands>LEFT</hands>
+		</weapon>
+		<weapon name="hache en argent" bonus="48" lifespawn="24">
+			<type>AXE</type>
+			<hands>RIGHT</hands>
+		</weapon>
+		<weapon name="labrys" bonus="54" lifespawn="23">
+			<type>AXE</type>
+			<hands>BOTH</hands>
+		</weapon>
+		<weapon name="bardiche" bonus="62" lifespawn="21">
+			<type>AXE</type>
+			<hands>BOTH</hands>
+		</weapon>
+		
+		
+		<weapon name="lance" bonus="42" lifespawn="16">
+			<type>ROD</type>
+			<hands>BOTH</hands>
+		</weapon>
+		<weapon name="baton magique" bonus="48" lifespawn="15">
+			<type>ROD</type>
+			<hands>BOTH</hands>
+		</weapon>
+		<weapon name="baton de flammes" bonus="55" lifespawn="16">
+			<type>ROD</type>
+			<hands>BOTH</hands>
+		</weapon>
+		<weapon name="baton de sorcier" bonus="62" lifespawn="20">
+			<type>ROD</type>
+			<hands>RIGHT</hands>
+		</weapon>
+		
+		<weapon name="dague rouillee" bonus="9" lifespawn="5">
+			<type>DAGGER</type>
+			<hands>LEFT</hands>
+		</weapon>
+		<weapon name="dague" bonus="16" lifespawn="23">
+			<type>DAGGER</type>
+			<hands>LEFT</hands>
+		</weapon>
+		<weapon name="dague de chasse" bonus="24" lifespawn="28">
+			<type>DAGGER</type>
+			<hands>RIGHT</hands>
+		</weapon>
+		<weapon name="dague de voleur" bonus="30" lifespawn="32">
+			<type>DAGGER</type>
+			<hands>LEFT</hands>
+		</weapon>	
 	</weapons>
 	
 	<armors>
@@ -134,49 +153,55 @@
 		<armor name="casque os" bonus="19" lifespawn="20" isBig="true">
 			<type>HEAD</type>
 		</armor>
-		<armor name="plastron cuir" bonus="10" lifespawn="15" isBig="false">
+		
+		<armor name="plastron de cuir" bonus="10" lifespawn="15" isBig="false">
 			<type>BODY</type>
 		</armor>
-		<armor name="plastron chevalier" bonus="34" lifespawn="25" isBig="false">
+		<armor name="plastron de chevalier" bonus="34" lifespawn="25" isBig="false">
 			<type>BODY</type>
 		</armor>
-		<armor name="armure magique" bonus="48" lifespawn="35" isBig="true">
+		<armor name="armure magique" bonus="38" lifespawn="35" isBig="true">
 			<type>BODY</type>
 		</armor>
-		<armor name="robe sorcier" bonus="17" lifespawn="14" isBig="false">
+		<armor name="robe de sorcier" bonus="17" lifespawn="14" isBig="false">
 			<type>BODY</type>
 		</armor>
-		<armor name="plastron os" bonus="22" lifespawn="20" isBig="false">
+		<armor name="plastron osseux" bonus="20" lifespawn="20" isBig="false">
 			<type>BODY</type>
 		</armor>
+		
 		<armor name="bracelets" bonus="15" lifespawn="20" isBig="false">
 			<type>ARM</type>
 		</armor>
-		<armor name="bracelets or" bonus="30" lifespawn="26" isBig="false">
+		<armor name="gantelets de cuir" bonus="17" lifespawn="18" isBig="false">
 			<type>ARM</type>
 		</armor>
-		<armor name="gantelets cuir" bonus="17" lifespawn="18" isBig="false">
+		<armor name="bracelets en or" bonus="25" lifespawn="26" isBig="false">
 			<type>ARM</type>
 		</armor>
-		<armor name="poignets lourds" bonus="35" lifespawn="26" isBig="true">
+		<armor name="poignets lourds" bonus="30" lifespawn="26" isBig="true">
 			<type>ARM</type>
 		</armor>
-		<armor name="bras bioniques" bonus="42" lifespawn="36" isBig="true">
+		<armor name="bras bioniques" bonus="34" lifespawn="36" isBig="true">
 			<type>ARM</type>
 		</armor>
-		<armor name="poignets os" bonus="15" lifespawn="20" isBig="false">
+		<armor name="poignets osseux" bonus="15" lifespawn="20" isBig="false">
 			<type>ARM</type>
 		</armor>
-		<armor name="jambieres cuir" bonus="20" lifespawn="23" isBig="false">
-			<type>LEG</type>
-		</armor>
-		<armor name="jambieres lourdes" bonus="45" lifespawn="45" isBig="true">
-			<type>LEG</type>
-		</armor>
+		
 		<armor name="pantalon" bonus="12" lifespawn="22" isBig="false">
 			<type>LEG</type>
 		</armor>
-		<armor name="monture vapeur" bonus="50" lifespawn="35" isBig="true">
+		<armor name="jambieres de cuir" bonus="20" lifespawn="23" isBig="false">
+			<type>LEG</type>
+		</armor>
+		<armor name="jambieres en plaques" bonus="29" lifespawn="28" isBig="false">
+			<type>LEG</type>
+		</armor>
+		<armor name="jambieres lourdes" bonus="33" lifespawn="34" isBig="true">
+			<type>LEG</type>
+		</armor>
+		<armor name="monture a vapeur" bonus="38" lifespawn="35" isBig="true">
 			<type>LEG</type>
 		</armor>
 	</armors>
