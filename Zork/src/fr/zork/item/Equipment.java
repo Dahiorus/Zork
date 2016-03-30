@@ -3,16 +3,19 @@ package fr.zork.item;
 public abstract class Equipment extends Item implements Damageable {
 	protected int bonus;
 	protected int lifespawn;
+	protected final int levelMin;
 	
 
-	public Equipment(String name, int bonus, int lifespawn) throws IllegalArgumentException {
+	public Equipment(String name, int bonus, int lifespawn, int levelMin) throws IllegalArgumentException {
 		super(name);
 		
 		if (lifespawn <= 0) throw new IllegalArgumentException("lifespawn is negative");
 		if (bonus < 0) throw new IllegalArgumentException("bonus is negative");
+		if (levelMin < 1) throw new IllegalArgumentException("levelMin is negative");
 		
 		this.bonus = bonus;
 		this.lifespawn = lifespawn;
+		this.levelMin = levelMin;
 	}
 
 	
@@ -44,6 +47,11 @@ public abstract class Equipment extends Item implements Damageable {
 	}
 
 	
+	public int getLevelMin() {
+		return levelMin;
+	}
+
+
 	@Override
 	public void decrementLifespawn() {
 		if (this.isUsable()) this.lifespawn--;

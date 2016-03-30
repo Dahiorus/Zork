@@ -20,12 +20,12 @@ public class TestPlayer {
 		}
 		
 		player.setName("Joueur niveau 20");
-		player.setRightHand(new Weapon("rapiere", 38, 18, WeaponType.SWORD, Hand.RIGHT));
-		player.setLeftHand(new Weapon("epee magique", 36, 18, WeaponType.SWORD, Hand.LEFT));
-		player.setHead(new Armor("heaume", 15, 20, ArmorType.HEAD, false));
-		player.setBody(new Armor("armure magique", 38, 35, ArmorType.BODY, true));
-		player.setArm(new Armor("bracelets en or", 25, 26, ArmorType.ARM, false));
-		player.setLeg(new Armor("jambieres en plaques", 29, 28, ArmorType.LEG, false));
+		player.setRightHand(new Weapon("rapiere", 38, 18, 7, WeaponType.SWORD, Hand.RIGHT));
+		player.setLeftHand(new Weapon("epee magique", 36, 18, 7, WeaponType.SWORD, Hand.LEFT));
+		player.setHead(new Armor("heaume", 15, 20, 1, ArmorType.HEAD, false));
+		player.setBody(new Armor("armure magique", 38, 35, 10, ArmorType.BODY, true));
+		player.setArm(new Armor("bracelets en or", 25, 26, 10, ArmorType.ARM, false));
+		player.setLeg(new Armor("jambieres en plaques", 29, 28, 7, ArmorType.LEG, false));
 		
 		System.out.println(player.getDescription()); // PV: 390/390 - Force: 132 - Defense: 160
 		System.out.println();
@@ -35,12 +35,12 @@ public class TestPlayer {
 		}
 		
 		player.setName("Joueur niveau 50");
-		player.setRightHand(new Weapon("Excalibur", 150, 100, WeaponType.SWORD, Hand.BOTH));
+		player.setRightHand(new Weapon("Excalibur", 150, 100, 20, WeaponType.SWORD, Hand.BOTH));
 		player.setLeftHand(null);
-		player.setHead(new Armor("Casque de Mithril", 30, 200, ArmorType.HEAD, false));
-		player.setBody(new Armor("Plastron de Mithril", 50, 200, ArmorType.BODY, true));
-		player.setArm(new Armor("Gantelets de Mithril", 40, 200, ArmorType.ARM, false));
-		player.setLeg(new Armor("Jambieres de Mithril", 40, 200, ArmorType.LEG, false));
+		player.setHead(new Armor("Casque de Mithril", 30, 200, 20, ArmorType.HEAD, false));
+		player.setBody(new Armor("Plastron de Mithril", 50, 200, 20, ArmorType.BODY, true));
+		player.setArm(new Armor("Gantelets de Mithril", 40, 200, 20, ArmorType.ARM, false));
+		player.setLeg(new Armor("Jambieres de Mithril", 40, 200, 20, ArmorType.LEG, false));
 		
 		System.out.println(player.getDescription()); // PV: 690/690 - Force: 268 - Defense: 273
 		System.out.println();

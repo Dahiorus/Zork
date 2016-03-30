@@ -7,8 +7,8 @@ public class Armor extends Equipment {
 	private final boolean isBig;
 	
 
-	public Armor(String name, int bonus, int lifespawn, ArmorType type, boolean isBig) throws IllegalArgumentException {
-		super(name, bonus, lifespawn);
+	public Armor(String name, int bonus, int lifespawn, int levelMin, ArmorType type, boolean isBig) throws IllegalArgumentException {
+		super(name, bonus, lifespawn, levelMin);
 		
 		this.type = type;
 		this.isBig = isBig;
@@ -76,7 +76,7 @@ public class Armor extends Equipment {
 	@Override
 	public String getDescription() {
 		return this.name + ": " + this.getItemType() + " " + this.type
-				+ ", bonus +" + this.bonus + (this.isBig() ? ", GROS" : "");
+				+ ", bonus +" + this.bonus + ", niveau min. " + this.levelMin + (this.isBig() ? ", GROS" : "");
 	}
 
 

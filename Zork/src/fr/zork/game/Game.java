@@ -110,8 +110,8 @@ public class Game {
 	
 	public void createZork(final int hp, final int power, final int defense) {
 		this.zork = new Monster("Maitre Zork", hp, power, defense, Level.EXTREME);
-		this.zork.setArmor(new Armor("Armure des ombres", 110, 1, ArmorType.BODY, true));
-		this.zork.setWeapon(new Weapon("Epee des ombres", 120, 1, WeaponType.SWORD, Hand.BOTH));
+		this.zork.setArmor(new Armor("Armure des ombres", 200, 1, 1, ArmorType.BODY, true));
+		this.zork.setWeapon(new Weapon("Epee des ombres", 220, 1, 1, WeaponType.SWORD, Hand.BOTH));
 	}
 	
 	

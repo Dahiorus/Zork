@@ -219,10 +219,11 @@ public class ItemXMLReader {
 					String name = element.getAttribute("name").trim();
 					int bonus = Integer.parseInt(element.getAttribute("bonus").trim());
 					int lifespawn = Integer.parseInt(element.getAttribute("lifespawn").trim());
+					int levelMin = Integer.parseInt(element.getAttribute("levelMin").trim());
 					WeaponType type = WeaponType.valueOf(element.getElementsByTagName("type").item(0).getTextContent().trim());
 					Hand hands = Hand.valueOf(element.getElementsByTagName("hands").item(0).getTextContent().trim());
 					
-					map.put(name, new Weapon(name, bonus, lifespawn, type, hands));
+					map.put(name, new Weapon(name, bonus, lifespawn, levelMin, type, hands));
 				}
 			}
 		} catch (IOException | SAXException e) {
@@ -249,10 +250,11 @@ public class ItemXMLReader {
 					String name = element.getAttribute("name").trim();
 					int bonus = Integer.parseInt(element.getAttribute("bonus").trim());
 					int lifespawn = Integer.parseInt(element.getAttribute("lifespawn").trim());
+					int levelMin = Integer.parseInt(element.getAttribute("levelMin").trim());
 					boolean isBig = Boolean.parseBoolean(element.getAttribute("isBig").trim());
 					ArmorType type = ArmorType.valueOf(element.getElementsByTagName("type").item(0).getTextContent().trim());
 					
-					map.put(name, new Armor(name, bonus, lifespawn, type, isBig));
+					map.put(name, new Armor(name, bonus, lifespawn, levelMin, type, isBig));
 				}
 			}
 		} catch (IOException | SAXException e) {

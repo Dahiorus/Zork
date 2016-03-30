@@ -37,8 +37,8 @@ public class Player extends MortalCharacter {
 		this.power = 20;
 		this.defense = 15;
 		
-		this.setRightHand(new Weapon("epee longue", 30, 12, WeaponType.SWORD, Hand.RIGHT));
-		this.setBody(new Armor("plastron de cuir", 10, 15, ArmorType.BODY, false));
+		this.setRightHand(new Weapon("epee courte", 22, 10, 1, WeaponType.SWORD, Hand.RIGHT));
+		this.setBody(new Armor("plastron de cuir", 10, 15, 1, ArmorType.BODY, false));
 		
 		this.bag = new ArrayList<Item>();
 		this.getBag().add(new Potion("potion verte", 50));
@@ -337,6 +337,7 @@ public class Player extends MortalCharacter {
 		
 		if (!this.bag.contains(equipment)) return false;
 		if (!equipment.isUsable()) return false;
+		if (equipment.getLevelMin() < this.getLevel()) return false;
 		
 		if (equipment instanceof Armor) {
 			Armor armor = (Armor) equipment;

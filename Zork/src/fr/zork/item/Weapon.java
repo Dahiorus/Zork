@@ -8,8 +8,8 @@ public class Weapon extends Equipment {
 	private final Hand hand;
 	
 
-	public Weapon(String name, int bonus, int lifespawn, WeaponType type, Hand hands) throws IllegalArgumentException {
-		super(name, bonus, lifespawn);
+	public Weapon(String name, int bonus, int lifespawn, int levelMin, WeaponType type, Hand hands) throws IllegalArgumentException {
+		super(name, bonus, lifespawn, levelMin);
 		
 		this.type = type;
 		this.hand = hands;
@@ -80,7 +80,7 @@ public class Weapon extends Equipment {
 	@Override
 	public String getDescription() {
 		return this.name + ": " + this.getItemType() + " " + this.type 
-				+ ", " + this.hand + ", bonus +" + this.bonus;
+				+ ", " + this.hand + ", bonus +" + this.bonus + ", niveau min. " + this.levelMin;
 	}
 
 

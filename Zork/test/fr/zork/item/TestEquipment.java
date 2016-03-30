@@ -11,14 +11,14 @@ public class TestEquipment {
 	public static void main(String[] args) {
 		Player player = Player.getInstance();
 		
-		Weapon rightSword = new Weapon("épée bâtarde", 9, 13, WeaponType.SWORD, Hand.RIGHT);
-		Weapon leftSword = new Weapon("sabre laser", 15, 10, WeaponType.SWORD, Hand.LEFT);
-		Weapon katana = new Weapon("katana", 11, 20, WeaponType.SWORD, Hand.BOTH);
+		Weapon rightSword = new Weapon("épée bâtarde", 9, 13, 6, WeaponType.SWORD, Hand.RIGHT);
+		Weapon leftSword = new Weapon("sabre laser", 15, 10, 1, WeaponType.SWORD, Hand.LEFT);
+		Weapon katana = new Weapon("katana", 11, 20, 8, WeaponType.SWORD, Hand.BOTH);
 		
-		Armor helmet = new Armor("casque ailé", 6, 10, ArmorType.HEAD, false);
-		Armor body = new Armor("plastron bronze", 15, 13, ArmorType.BODY, true);
-		Armor leg  = new Armor("jambières or", 20, 20, ArmorType.LEG, true);
-		Armor hat = new Armor("chapeau", 2, 10, ArmorType.HEAD, false);
+		Armor helmet = new Armor("casque ailé", 6, 10, 5, ArmorType.HEAD, false);
+		Armor body = new Armor("plastron bronze", 15, 13, 8, ArmorType.BODY, true);
+		Armor leg  = new Armor("jambières or", 20, 20, 6, ArmorType.LEG, true);
+		Armor hat = new Armor("chapeau", 2, 10, 1, ArmorType.HEAD, false);
 		
 		player.setName("Toto");
 		player.getBag().add(rightSword);

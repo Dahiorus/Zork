@@ -26,182 +26,188 @@
 	</spells>
 	
 	<weapons>
-		<weapon name="epee rouillee" bonus="12" lifespawn="6">
+		<weapon name="epee rouillee" bonus="12" lifespawn="6" levelMin="1">
 			<type>SWORD</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="epee courte" bonus="22" lifespawn="10">
+		<weapon name="epee courte" bonus="22" lifespawn="10" levelMin="1">
 			<type>SWORD</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="epee longue" bonus="30" lifespawn="12">
+		<weapon name="epee longue" bonus="30" lifespawn="12" levelMin="3">
 			<type>SWORD</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="cimetere" bonus="36" lifespawn="15">
+		<weapon name="cimetere" bonus="36" lifespawn="15" levelMin="7">
 			<type>SWORD</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="epee magique" bonus="36" lifespawn="18">
-			<type>SWORD</type>
-			<hands>LEFT</hands>
-		</weapon>
-		<weapon name="rapiere" bonus="38" lifespawn="18">
+		<weapon name="epee magique" bonus="36" lifespawn="18" levelMin="7">
 			<type>SWORD</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="flamberge" bonus="62" lifespawn="21">
+		<weapon name="rapiere" bonus="38" lifespawn="18" levelMin="7">
+			<type>SWORD</type>
+			<hands>RIGHT</hands>
+		</weapon>
+		<weapon name="flamberge" bonus="62" lifespawn="21" levelMin="13">
 			<type>SWORD</type>
 			<hands>BOTH</hands>
 		</weapon>
-		<weapon name="epee batarde" bonus="70" lifespawn="24">
+		<weapon name="epee batarde" bonus="70" lifespawn="24" levelMin="15">
 			<type>SWORD</type>
 			<hands>BOTH</hands>
 		</weapon>
 		
-		<weapon name="massue" bonus="44" lifespawn="13">
-			<type>HAMMER</type>
-			<hands>BOTH</hands>
-		</weapon>
-		<weapon name="marteau" bonus="27" lifespawn="25">
+		<weapon name="marteau" bonus="27" lifespawn="25" levelMin="3">
 			<type>HAMMER</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="fleau" bonus="36" lifespawn="30">
+		<weapon name="fleau" bonus="36" lifespawn="30" levelMin="7">
 			<type>HAMMER</type>
 			<hands>LEFT</hands>
 		</weapon>
+		<weapon name="massue" bonus="44" lifespawn="13" levelMin="10">
+			<type>HAMMER</type>
+			<hands>BOTH</hands>
+		</weapon>
 		
-		<weapon name="hache rouillee" bonus="12" lifespawn="7">
+		<weapon name="hache rouillee" bonus="12" lifespawn="7" levelMin="1">
 			<type>AXE</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="hache" bonus="25" lifespawn="13">
+		<weapon name="hache" bonus="25" lifespawn="13" levelMin="1">
 			<type>AXE</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="hache nain" bonus="30" lifespawn="16">
+		<weapon name="hache nain" bonus="30" lifespawn="16" levelMin="4">
 			<type>AXE</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="hache en acier" bonus="39" lifespawn="19">
+		<weapon name="hache en acier" bonus="39" lifespawn="19" levelMin="8">
 			<type>AXE</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="hache en argent" bonus="48" lifespawn="24">
+		<weapon name="hache en argent" bonus="48" lifespawn="24" levelMin="11">
 			<type>AXE</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="labrys" bonus="54" lifespawn="23">
+		<weapon name="labrys" bonus="61" lifespawn="23" levelMin="15">
 			<type>AXE</type>
 			<hands>BOTH</hands>
 		</weapon>
-		<weapon name="bardiche" bonus="62" lifespawn="21">
+		<weapon name="bardiche" bonus="62" lifespawn="21" levelMin="15">
 			<type>AXE</type>
 			<hands>BOTH</hands>
 		</weapon>
 		
-		
-		<weapon name="lance" bonus="42" lifespawn="16">
+		<weapon name="baguette de novice" bonus="15" lifespawn="12" levelMin="1">
 			<type>ROD</type>
 			<hands>BOTH</hands>
 		</weapon>
-		<weapon name="baton magique" bonus="48" lifespawn="15">
+		<weapon name="lance" bonus="42" lifespawn="16" levelMin="5">
 			<type>ROD</type>
 			<hands>BOTH</hands>
 		</weapon>
-		<weapon name="baton de flammes" bonus="55" lifespawn="16">
+		<weapon name="baton magique" bonus="48" lifespawn="15" levelMin="8">
 			<type>ROD</type>
 			<hands>BOTH</hands>
 		</weapon>
-		<weapon name="baton de sorcier" bonus="62" lifespawn="20">
+		<weapon name="baton de flammes" bonus="55" lifespawn="16" levelMin="13">
+			<type>ROD</type>
+			<hands>BOTH</hands>
+		</weapon>
+		<weapon name="baton de sorcier" bonus="62" lifespawn="20" levelMin="16">
 			<type>ROD</type>
 			<hands>RIGHT</hands>
 		</weapon>
 		
-		<weapon name="dague rouillee" bonus="9" lifespawn="5">
+		<weapon name="dague rouillee" bonus="9" lifespawn="5" levelMin="1">
 			<type>DAGGER</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="dague" bonus="16" lifespawn="23">
+		<weapon name="dague" bonus="16" lifespawn="23" levelMin="1">
 			<type>DAGGER</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="dague de chasse" bonus="24" lifespawn="28">
+		<weapon name="dague de chasse" bonus="24" lifespawn="28" levelMin="3">
 			<type>DAGGER</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="dague de voleur" bonus="30" lifespawn="32">
+		<weapon name="dague de voleur" bonus="30" lifespawn="32" levelMin="5">
 			<type>DAGGER</type>
 			<hands>LEFT</hands>
 		</weapon>	
 	</weapons>
 	
 	<armors>
-		<armor name="casque" bonus="10" lifespawn="15" isBig="false">
+		<armor name="casque" bonus="10" lifespawn="15" isBig="false" levelMin="1">
 			<type>HEAD</type>
 		</armor>
-		<armor name="heaume" bonus="15" lifespawn="20" isBig="false">
+		<armor name="heaume" bonus="15" lifespawn="20" isBig="false" levelMin="3">
 			<type>HEAD</type>
 		</armor>
-		<armor name="casque aile" bonus="13" lifespawn="16" isBig="false">
+		<armor name="casque aile" bonus="13" lifespawn="16" isBig="false" levelMin="1">
 			<type>HEAD</type>
 		</armor>
-		<armor name="chapeau" bonus="9" lifespawn="12" isBig="false">
+		<armor name="chapeau" bonus="9" lifespawn="12" isBig="false" levelMin="1">
 			<type>HEAD</type>
 		</armor>
-		<armor name="casque os" bonus="19" lifespawn="20" isBig="true">
+		<armor name="crane cornu" bonus="19" lifespawn="20" isBig="true" levelMin="5">
 			<type>HEAD</type>
 		</armor>
 		
-		<armor name="plastron de cuir" bonus="10" lifespawn="15" isBig="false">
+		<armor name="plastron de cuir" bonus="10" lifespawn="15" isBig="false" levelMin="1">
 			<type>BODY</type>
 		</armor>
-		<armor name="plastron de chevalier" bonus="34" lifespawn="25" isBig="false">
+		<armor name="plastron de chevalier" bonus="34" lifespawn="25" isBig="false" levelMin="15">
 			<type>BODY</type>
 		</armor>
-		<armor name="armure magique" bonus="38" lifespawn="35" isBig="true">
+		<armor name="armure magique" bonus="38" lifespawn="35" isBig="true" levelMin="10">
 			<type>BODY</type>
 		</armor>
-		<armor name="robe de sorcier" bonus="17" lifespawn="14" isBig="false">
+		<armor name="robe de sorcier" bonus="17" lifespawn="14" isBig="false" levelMin="1">
 			<type>BODY</type>
 		</armor>
-		<armor name="plastron osseux" bonus="20" lifespawn="20" isBig="false">
+		<armor name="plastron en os" bonus="20" lifespawn="17" isBig="false" levelMin="13">
 			<type>BODY</type>
 		</armor>
 		
-		<armor name="bracelets" bonus="15" lifespawn="20" isBig="false">
+		<armor name="bracelets en cuir" bonus="10" lifespawn="15" isBig="false" levelMin="1">
 			<type>ARM</type>
 		</armor>
-		<armor name="gantelets de cuir" bonus="17" lifespawn="18" isBig="false">
+		<armor name="bracelets" bonus="15" lifespawn="20" isBig="false" levelMin="5">
 			<type>ARM</type>
 		</armor>
-		<armor name="bracelets en or" bonus="25" lifespawn="26" isBig="false">
+		<armor name="gantelets de cuir" bonus="17" lifespawn="18" isBig="false" levelMin="5">
 			<type>ARM</type>
 		</armor>
-		<armor name="poignets lourds" bonus="30" lifespawn="26" isBig="true">
+		<armor name="bracelets en or" bonus="25" lifespawn="26" isBig="false" levelMin="10">
 			<type>ARM</type>
 		</armor>
-		<armor name="bras bioniques" bonus="34" lifespawn="36" isBig="true">
+		<armor name="poignets lourds" bonus="30" lifespawn="26" isBig="true" levelMin="13">
 			<type>ARM</type>
 		</armor>
-		<armor name="poignets osseux" bonus="15" lifespawn="20" isBig="false">
+		<armor name="bras bioniques" bonus="34" lifespawn="36" isBig="true" levelMin="16">
+			<type>ARM</type>
+		</armor>
+		<armor name="plaques en os" bonus="15" lifespawn="20" isBig="false" levelMin="5">
 			<type>ARM</type>
 		</armor>
 		
-		<armor name="pantalon" bonus="12" lifespawn="22" isBig="false">
+		<armor name="pantalon" bonus="12" lifespawn="22" isBig="false" levelMin="1">
 			<type>LEG</type>
 		</armor>
-		<armor name="jambieres de cuir" bonus="20" lifespawn="23" isBig="false">
+		<armor name="jambieres de cuir" bonus="20" lifespawn="23" isBig="false" levelMin="3">
 			<type>LEG</type>
 		</armor>
-		<armor name="jambieres en plaques" bonus="29" lifespawn="28" isBig="false">
+		<armor name="jambieres en plaques" bonus="29" lifespawn="28" isBig="false" levelMin="7">
 			<type>LEG</type>
 		</armor>
-		<armor name="jambieres lourdes" bonus="33" lifespawn="34" isBig="true">
+		<armor name="jambieres lourdes" bonus="33" lifespawn="34" isBig="true" levelMin="12">
 			<type>LEG</type>
 		</armor>
-		<armor name="monture a vapeur" bonus="38" lifespawn="35" isBig="true">
+		<armor name="monture a vapeur" bonus="38" lifespawn="35" isBig="true" levelMin="18">
 			<type>LEG</type>
 		</armor>
 	</armors>

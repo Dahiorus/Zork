@@ -6,7 +6,7 @@ import fr.zork.item.enums.WeaponType;
 public class TestClone {
 
 	public static void main(String[] args) {
-		Weapon object = new Weapon("katana", 100, 10, WeaponType.SWORD, Hand.BOTH);
+		Weapon object = new Weapon("katana", 100, 10, 6, WeaponType.SWORD, Hand.BOTH);
 		Weapon clone = (Weapon) object.clone();
 		
 		if (object == clone) {

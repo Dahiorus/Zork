@@ -10,7 +10,7 @@ public class TestClone {
 
 	public static void main(String[] args) {
 		Monster object = new Monster("Dragon", 500, 80, 60, Level.HARD);
-		object.setWeapon(new Weapon("griffes", 50, 100, WeaponType.SWORD, Hand.BOTH));
+		object.setWeapon(new Weapon("griffes", 50, 100, 1, WeaponType.SWORD, Hand.BOTH));
 		
 		Monster clone = (Monster) object.clone();
 		
