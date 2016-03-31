@@ -115,7 +115,7 @@ public class WorldXMLReader {
 			
 			NodeList nodes = document.getElementsByTagName("room");
 			
-			for (int i = 0; i < nodes.getLength() && stages <= stageNumber; i++) {
+			for (int i = 0; i < nodes.getLength() && stages < stageNumber; i++) {
 				Node node = nodes.item(i);
 				
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
