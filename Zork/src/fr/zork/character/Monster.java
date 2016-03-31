@@ -176,7 +176,7 @@ public class Monster extends MortalCharacter implements Cloneable {
 	
 	/**
 	 * <p>Ce monstre lance une attaque sur une cible spécifiée.</p>
-	 * <p>Lors de l'attaque, un jet de D20 détermine les dégats de base
+	 * <p>Lors de l'attaque, un jet de D12 détermine les dégats de base
 	 * auxquels on ajoute sa force effective. Puis on soustrait les dégâts
 	 * par la défense effective de la cible. Si l'attaque est un coup critique,
 	 * alors on ajoute un bonus d'attaque.</p>
@@ -194,7 +194,7 @@ public class Monster extends MortalCharacter implements Cloneable {
 		int totalDmg;
 		
 		// damage generation
-		int basicDmg = Dice.D20.roll();
+		int basicDmg = Dice.D12.roll();
 		totalDmg = basicDmg + this.getEffectivePower();
 		
 		// critical damage calculation

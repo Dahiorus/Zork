@@ -26,6 +26,13 @@ import fr.zork.world.World;
 import fr.zork.world.enums.Exit;
 
 public class Game {
+	public static final String EASY   = "facile";
+	public static final String NORMAL = "normal";
+	public static final String HARD   = "difficile";
+	
+	public static final String NEW  = "nouveau";
+	public static final String LOAD = "charger";
+	
 	private static String startRoomName = "Entree du donjon";
 	private static String dungeonBossRoom = "Etage de Zork";
 	
@@ -135,20 +142,20 @@ public class Game {
 			if (tokenizer.hasMoreTokens()) {
 				String response = tokenizer.nextToken();
 				
-				if (response.equals("nouveau")) {
+				if (response.equals(NEW)) {
 					if (tokenizer.hasMoreTokens()) {
 						String difficulty = tokenizer.nextToken();
 						
 						switch (difficulty) {
-							case "facile":
+							case EASY:
 								this.createZork(300, 89, 50);
 								this.stageNumber = 10;
 								break;
-							case "normal":
+							case NORMAL:
 								this.createZork(600, 136, 78);
 								this.stageNumber = 20;
 								break;
-							case "difficile":
+							case HARD:
 								this.createZork(999, 219, 170);
 								this.stageNumber = 30;
 								break;
@@ -171,7 +178,7 @@ public class Game {
 						System.out.println();
 						result = false;
 					}
-				} else if (response.equals("charger")) {
+				} else if (response.equals(LOAD)) {
 					if (tokenizer.hasMoreTokens()) {
 						String name = tokenizer.nextToken();
 						

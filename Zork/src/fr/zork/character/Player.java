@@ -34,16 +34,21 @@ public class Player extends MortalCharacter {
 		
 		this.level = 1;
 		this.maxHp = this.hp = 200;
-		this.power = 20;
-		this.defense = 15;
+		this.power = 30;
+		this.defense = 25;
 		
-		this.setRightHand(new Weapon("epee courte", 22, 10, 1, WeaponType.SWORD, Hand.RIGHT));
+		Weapon epeeCourte = new Weapon("epee courte", 22, 18, 1, WeaponType.SWORD, Hand.RIGHT);
+		Potion potionVerte = new Potion("potion verte", 50);
+		Spell foudre = new Spell("foudre", 30);
+		
+		this.setRightHand((Weapon) epeeCourte.clone());
 		this.setBody(new Armor("plastron de cuir", 10, 15, 1, ArmorType.BODY, false));
 		
 		this.bag = new ArrayList<Item>();
-		this.getBag().add(new Potion("potion verte", 50));
-		this.getBag().add(new Potion("potion verte", 50));
-		this.getBag().add(new Spell("foudre", 30));
+		this.getBag().add((Item) potionVerte.clone());
+		this.getBag().add((Item) potionVerte.clone());
+		this.getBag().add((Item) foudre.clone());
+		this.getBag().add((Item) epeeCourte.clone());
 	}
 	
 	
@@ -337,7 +342,7 @@ public class Player extends MortalCharacter {
 		
 		if (!this.bag.contains(equipment)) return false;
 		if (!equipment.isUsable()) return false;
-		if (equipment.getLevelMin() < this.getLevel()) return false;
+		if (this.level < equipment.getLevelMin()) return false;
 		
 		if (equipment instanceof Armor) {
 			Armor armor = (Armor) equipment;
@@ -475,7 +480,7 @@ public class Player extends MortalCharacter {
 	
 	public void levelUp() {
 		this.level++;
-		this.power += 2;
+		this.power += 3;
 		this.defense += 2;
 		this.maxHp += 10;
 		this.setHp(this.hp + 10);

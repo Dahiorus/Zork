@@ -20,6 +20,7 @@ import org.xml.sax.SAXException;
 
 import fr.zork.character.Monster;
 import fr.zork.character.enums.Level;
+import fr.zork.game.Game;
 import fr.zork.item.Armor;
 import fr.zork.item.Item;
 import fr.zork.item.Potion;
@@ -106,7 +107,6 @@ public class WorldXMLReader {
 	
 	
 	private void readRooms(final String difficulty, final int stageNumber) {
-		Map<String, Item> items = ItemXMLReader.getInstance().getItems();
 		int stages = 0;
 		
 		try {
@@ -137,37 +137,51 @@ public class WorldXMLReader {
 					}
 					
 					// setting random treasures
-					if (difficulty.equals("facile") || difficulty.equals("normal")) {
-						NodeList treasureNodes = element.getElementsByTagName("treasures");
-						if (treasureNodes.getLength() != 0) {
-							Node treasureNode = treasureNodes.item(0);
-							
-							if (treasureNode.getNodeType() == Node.ELEMENT_NODE) {
-								Element treasureElement = (Element) treasureNode;
-								int treasureNumber = Integer.parseInt(treasureElement.getAttribute("number").trim());
+					if (difficulty.equals(Game.EASY) || difficulty.equals(Game.NORMAL)) {
+						int nbTreasures = 0;
+						
+						// if "facile" then read <treasures> line in the XML file
+						if (difficulty.equals(Game.EASY)) {
+							NodeList treasureNodes = element.getElementsByTagName("treasures");
+							if (treasureNodes.getLength() != 0) {
+								Node treasureNode = treasureNodes.item(0);
 								
-								for (int j = 0; j < treasureNumber; j++) {
-									List<Item> itemList = this.getRandomItemsByClass(this.chooseClass());
-									int index = Dice.D100.roll() % itemList.size();
-									room.getTreasures().add((Item) itemList.get(index).clone());
+								if (treasureNode.getNodeType() == Node.ELEMENT_NODE) {
+									Element treasureElement = (Element) treasureNode;
+									nbTreasures = Integer.parseInt(treasureElement.getAttribute("number").trim());
 								}
 							}
+						} else { // else random treasure number
+							nbTreasures = Dice.D4.roll() - 1;
+						}
+						
+						for (int j = 0; j < nbTreasures; j++) {
+							List<Item> itemList = this.getRandomItemsByClass(this.chooseClass());
+							int index = Dice.D100.roll() % itemList.size();
+							room.getTreasures().add((Item) itemList.get(index).clone());
 						}
 					}
 					
 					// setting random monsters
+					int nbMonsters = 0;
 					NodeList monsterNodes = element.getElementsByTagName("monsters");
+					
 					if (monsterNodes.getLength() != 0) {
 						Node monsterNode = monsterNodes.item(0);
 						
 						if (monsterNode.getNodeType() == Node.ELEMENT_NODE) {
 							Element monsterElement = (Element) monsterNode;
-							
-							int monsterNumber = Integer.parseInt(monsterElement.getAttribute("number").trim());
 							Level roomLevel = Level.find(monsterElement.getAttribute("level").trim());
+							
+							if (difficulty.equals(Game.HARD)) {
+								nbMonsters = Dice.D6.roll();
+							} else {
+								nbMonsters = Integer.parseInt(monsterElement.getAttribute("number").trim());
+							}
+							
 							List<Monster> monsterList = MonsterXMLReader.getInstance().getMonsters(roomLevel);
 							
-							for (int j = 0; j < monsterNumber; j++) {
+							for (int j = 0; j < nbMonsters; j++) {
 								int index = (Dice.D100.roll() * Dice.D100.roll()) % monsterList.size();
 								room.getMonsters().add((Monster) monsterList.get(index).clone());
 							}

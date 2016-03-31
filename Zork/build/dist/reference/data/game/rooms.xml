@@ -3,7 +3,7 @@
 	<room name="Entree du donjon">
 	</room>
 	<room name="Reserve">
-		<treasures number="2"></treasures>
+		<treasures number="2"/>
 	</room>
 	<room name="Couloir sombre">
 		<treasures number="1"/>
@@ -11,7 +11,7 @@
 	</room>
 	
 	<room name="1er etage">
-		<treasures number="2"></treasures>
+		<treasures number="2"/>
 		<monsters number="2" level="facile"/>
 	</room>
 	<room name="Salle de torture">

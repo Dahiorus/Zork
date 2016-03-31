@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<player defense="22" hp="233" level="13" maxHp="320" name="Dahiorus" power="22">
-    <rightHand lifespawn="0">epee longue</rightHand>
-    <leftHand lifespawn="7">hache nain</leftHand>
+<player defense="39" hp="238" level="8" maxHp="270" name="Dahiorus" power="51">
+    <rightHand lifespawn="6">hache</rightHand>
+    <leftHand lifespawn="0">dague rouillee</leftHand>
     <head lifespawn="20">heaume</head>
-    <body lifespawn="13">plastron cuir</body>
-    <arm lifespawn="25">bracelets or</arm>
-    <leg lifespawn="44">jambieres lourdes</leg>
+    <body lifespawn="9">plastron de cuir</body>
     <bag>
+        <item>potion verte</item>
         <item>foudre</item>
+        <item>epee courte</item>
+        <item>tempete</item>
         <item>givre</item>
+        <item>givre</item>
+        <item>epee magique</item>
+        <item>bras bioniques</item>
         <item>foudre</item>
-        <item>baton magique</item>
-        <item>potion verte</item>
-        <item>massue</item>
-        <item>baton magique</item>
-        <item>potion verte</item>
-        <item>epee longue</item>
-        <item>bracelets or</item>
-        <item>chapeau</item>
-        <item>epee longue</item>
-        <item>baton sorcier</item>
-        <item>hache nain</item>
-        <item>potion verte</item>
-        <item>hache argent</item>
-        <item>chapeau</item>
-        <item unsable="true">hache nain</item>
-        <item>hache nain</item>
+        <item>potion cyan</item>
+        <item>potion cyan</item>
+        <item unsable="true">epee courte</item>
+        <item>potion rouge</item>
+        <item>foudre</item>
+        <item>bardiche</item>
         <item>potion argent</item>
-        <item>fleches magiques</item>
-        <item unsable="true">dague chasse</item>
+        <item>bracelets en or</item>
+        <item unsable="true">epee rouillee</item>
+        <item>epee longue</item>
+        <item>potion majenta</item>
+        <item>bracelets en or</item>
+        <item>epee magique</item>
+        <item>bras bioniques</item>
+        <item>foudre</item>
+        <item>epee courte</item>
     </bag>
-    <currentRoom>5eme etage</currentRoom>
+    <currentRoom>3eme etage</currentRoom>
 </player>

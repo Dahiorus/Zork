@@ -1,132 +1,427 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <map>
     <room name="Reserve"/>
+    <room name="Arene de sang">
+        <tresures>
+            <item>baton de sorcier</item>
+            <item>tornade</item>
+            <item>potion verte</item>
+        </tresures>
+        <monsters>
+            <monster name="Zombies">
+                <loots>
+                    <loot>pantalon</loot>
+                    <loot>rapiere</loot>
+                    <loot>hache rouillee</loot>
+                    <loot>dague de chasse</loot>
+                </loots>
+            </monster>
+        </monsters>
+    </room>
     <room name="Couloir sombre"/>
     <room name="6eme etage">
-        <curse damage="60"/>
+        <curse damage="55"/>
         <tresures>
-            <item>choc</item>
+            <item>tempete</item>
+            <item>plastron de chevalier</item>
+            <item>gantelets de cuir</item>
         </tresures>
     </room>
     <room name="9eme etage">
         <tresures>
-            <item>plastron cuir</item>
-            <item>baton flammes</item>
+            <item>marteau</item>
+            <item>potion rouge</item>
+            <item>tornade</item>
         </tresures>
         <monsters>
-            <monster name="Slime">
+            <monster name="Vermine">
                 <loots>
-                    <loot>bracelets or</loot>
+                    <loot>bracelets en or</loot>
                 </loots>
             </monster>
         </monsters>
     </room>
-    <room name="11eme etage"/>
-    <room name="Salon en ruine"/>
-    <room name="7eme etage">
+    <room name="17eme etage">
+        <curse damage="65"/>
+        <tresures>
+            <item>bracelets en or</item>
+        </tresures>
+    </room>
+    <room name="11eme etage">
+        <tresures>
+            <item>potion argent</item>
+            <item>plastron de chevalier</item>
+            <item>crane cornu</item>
+        </tresures>
+    </room>
+    <room name="20eme etage">
+        <tresures>
+            <item>choc</item>
+            <item>plaques en os</item>
+        </tresures>
         <monsters>
-            <monster name="Chauve-souris">
+            <monster name="Colosse d'acier">
                 <loots>
-                    <loot>hache nain</loot>
-                </loots>
-            </monster>
-            <monster name="Cafards"/>
-            <monster name="Barbare">
-                <loots>
-                    <loot>potion verte</loot>
-                    <loot>hache argent</loot>
-                    <loot>heaume</loot>
+                    <loot>bracelets en cuir</loot>
+                    <loot>choc</loot>
                 </loots>
             </monster>
         </monsters>
     </room>
+    <room name="Salon en ruine"/>
     <room name="Entree du donjon"/>
     <room name="Salle vide">
-        <curse damage="25"/>
+        <curse damage="45"/>
+        <tresures>
+            <item>baton de sorcier</item>
+        </tresures>
     </room>
     <room name="Chambre sinistre"/>
-    <room name="3eme etage"/>
+    <room name="3eme etage">
+        <monsters>
+            <monster name="Cafards">
+                <loots>
+                    <loot>bras bioniques</loot>
+                    <loot>labrys</loot>
+                    <loot>boule feu</loot>
+                    <loot>boule feu</loot>
+                </loots>
+            </monster>
+            <monster name="Vermine">
+                <loots>
+                    <loot>bracelets en or</loot>
+                </loots>
+            </monster>
+        </monsters>
+    </room>
+    <room name="14eme etage">
+        <curse damage="15"/>
+        <tresures>
+            <item>epee longue</item>
+        </tresures>
+    </room>
     <room name="Impasse">
         <monsters>
-            <monster name="Mercenaire">
+            <monster name="Squelettes">
                 <loots>
-                    <loot>potion argent</loot>
-                    <loot>dague rouillee</loot>
-                    <loot>dague chasse</loot>
+                    <loot>hache</loot>
+                    <loot>potion majenta</loot>
+                    <loot>massue</loot>
+                    <loot>potion verte</loot>
+                </loots>
+            </monster>
+            <monster name="Savant fou">
+                <loots>
+                    <loot>plastron de cuir</loot>
+                    <loot>epee batarde</loot>
+                    <loot>boule feu</loot>
+                </loots>
+            </monster>
+        </monsters>
+    </room>
+    <room name="Escalier bloque">
+        <tresures>
+            <item>bracelets en cuir</item>
+        </tresures>
+    </room>
+    <room name="Prison">
+        <curse damage="25"/>
+    </room>
+    <room name="16eme etage">
+        <monsters>
+            <monster name="Loup-garou">
+                <loots>
+                    <loot>potion majenta</loot>
+                    <loot>potion or</loot>
+                </loots>
+            </monster>
+            <monster name="Squelettes">
+                <loots>
+                    <loot>hache</loot>
+                    <loot>potion majenta</loot>
+                    <loot>massue</loot>
+                    <loot>potion verte</loot>
+                </loots>
+            </monster>
+        </monsters>
+    </room>
+    <room name="19eme etage">
+        <curse damage="65"/>
+        <tresures>
+            <item>potion bleue</item>
+            <item>potion bleue</item>
+            <item>massue</item>
+        </tresures>
+    </room>
+    <room name="Chambre de torture">
+        <curse damage="70"/>
+        <tresures>
+            <item>hache en acier</item>
+        </tresures>
+    </room>
+    <room name="13eme etage">
+        <tresures>
+            <item>labrys</item>
+        </tresures>
+        <monsters>
+            <monster name="Cheval de cauchemar">
+                <loots>
+                    <loot>choc</loot>
+                </loots>
+            </monster>
+            <monster name="Squelettes">
+                <loots>
+                    <loot>hache</loot>
+                    <loot>potion majenta</loot>
+                    <loot>massue</loot>
+                    <loot>potion verte</loot>
+                </loots>
+            </monster>
+        </monsters>
+    </room>
+    <room name="Couloir hante">
+        <tresures>
+            <item>givre</item>
+            <item>epee batarde</item>
+        </tresures>
+        <monsters>
+            <monster name="Squelettes">
+                <loots>
+                    <loot>hache</loot>
+                    <loot>potion majenta</loot>
+                    <loot>massue</loot>
+                    <loot>potion verte</loot>
                 </loots>
             </monster>
             <monster name="Loup-garou">
                 <loots>
-                    <loot>poignets lourds</loot>
-                    <loot>boule feu</loot>
-                    <loot>chapeau</loot>
+                    <loot>potion majenta</loot>
+                    <loot>potion or</loot>
                 </loots>
             </monster>
         </monsters>
     </room>
-    <room name="Escalier bloque"/>
+    <room name="4eme etage">
+        <curse damage="55"/>
+        <tresures>
+            <item>labrys</item>
+        </tresures>
+        <monsters>
+            <monster name="Barbares">
+                <loots>
+                    <loot>hache</loot>
+                    <loot>givre</loot>
+                    <loot>potion rouge</loot>
+                    <loot>epee rouillee</loot>
+                </loots>
+            </monster>
+            <monster name="Barbares">
+                <loots>
+                    <loot>hache</loot>
+                    <loot>givre</loot>
+                    <loot>potion rouge</loot>
+                    <loot>epee rouillee</loot>
+                </loots>
+            </monster>
+            <monster name="Vermine">
+                <loots>
+                    <loot>bracelets en or</loot>
+                </loots>
+            </monster>
+        </monsters>
+    </room>
+    <room name="Balcon">
+        <tresures>
+            <item>tornade</item>
+        </tresures>
+    </room>
+    <room name="Chambre rouge">
+        <curse damage="70"/>
+    </room>
+    <room name="21eme etage">
+        <curse damage="15"/>
+        <tresures>
+            <item>casque</item>
+        </tresures>
+        <monsters>
+            <monster name="Zombies">
+                <loots>
+                    <loot>pantalon</loot>
+                    <loot>rapiere</loot>
+                    <loot>hache rouillee</loot>
+                    <loot>dague de chasse</loot>
+                </loots>
+            </monster>
+        </monsters>
+    </room>
+    <room name="Arene">
+        <tresures>
+            <item>hache en argent</item>
+            <item>baguette de novice</item>
+        </tresures>
+        <monsters>
+            <monster name="Vermine">
+                <loots>
+                    <loot>bracelets en or</loot>
+                </loots>
+            </monster>
+            <monster name="Slime">
+                <loots>
+                    <loot>epee magique</loot>
+                    <loot>bras bioniques</loot>
+                    <loot>foudre</loot>
+                </loots>
+            </monster>
+            <monster name="Slime">
+                <loots>
+                    <loot>epee magique</loot>
+                    <loot>bras bioniques</loot>
+                    <loot>foudre</loot>
+                </loots>
+            </monster>
+            <monster name="Cafards">
+                <loots>
+                    <loot>bras bioniques</loot>
+                    <loot>labrys</loot>
+                    <loot>boule feu</loot>
+                    <loot>boule feu</loot>
+                </loots>
+            </monster>
+            <monster name="Barbares">
+                <loots>
+                    <loot>hache</loot>
+                    <loot>givre</loot>
+                    <loot>potion rouge</loot>
+                    <loot>epee rouillee</loot>
+                </loots>
+            </monster>
+        </monsters>
+    </room>
+    <room name="Arene sinitre">
+        <tresures>
+            <item>jambieres en plaques</item>
+            <item>jambieres en plaques</item>
+        </tresures>
+        <monsters>
+            <monster name="Loup-garou">
+                <loots>
+                    <loot>potion majenta</loot>
+                    <loot>potion or</loot>
+                </loots>
+            </monster>
+            <monster name="Chevalier maudit">
+                <loots>
+                    <loot>potion rouge</loot>
+                </loots>
+            </monster>
+        </monsters>
+    </room>
+    <room name="Couloir sans issue">
+        <curse damage="65"/>
+        <tresures>
+            <item>plastron en os</item>
+            <item>casque aile</item>
+        </tresures>
+    </room>
+    <room name="18eme etage">
+        <tresures>
+            <item>anneau de flammes</item>
+        </tresures>
+    </room>
+    <room name="7eme etage">
+        <monsters>
+            <monster name="Vermine">
+                <loots>
+                    <loot>bracelets en or</loot>
+                </loots>
+            </monster>
+            <monster name="Barbares">
+                <loots>
+                    <loot>hache</loot>
+                    <loot>givre</loot>
+                    <loot>potion rouge</loot>
+                    <loot>epee rouillee</loot>
+                </loots>
+            </monster>
+            <monster name="Barbares">
+                <loots>
+                    <loot>hache</loot>
+                    <loot>givre</loot>
+                    <loot>potion rouge</loot>
+                    <loot>epee rouillee</loot>
+                </loots>
+            </monster>
+        </monsters>
+    </room>
     <room name="10eme etage">
         <tresures>
-            <item>anneau flammes</item>
-            <item>fleches magiques</item>
+            <item>epee rouillee</item>
         </tresures>
         <monsters>
             <monster name="Gardien obscur">
                 <loots>
-                    <loot>flamberge</loot>
-                    <loot>epee magique</loot>
-                    <loot>massue</loot>
-                    <loot>epee batarde</loot>
-                    <loot>foudre</loot>
-                    <loot>baton flammes</loot>
-                    <loot>projectiles</loot>
+                    <loot>baton de sorcier</loot>
+                    <loot>anneau de flammes</loot>
+                    <loot>plaques en os</loot>
+                    <loot>heaume</loot>
                     <loot>Excalibur</loot>
                 </loots>
             </monster>
         </monsters>
     </room>
     <room name="5eme etage">
+        <tresures>
+            <item>bracelets en or</item>
+        </tresures>
         <monsters>
             <monster name="Golem">
                 <loots>
-                    <loot>jet foudre</loot>
-                    <loot>potion or</loot>
-                    <loot>gantelets cuir</loot>
-                    <loot>projectiles</loot>
-                    <loot>projectiles</loot>
-                    <loot>Jambieres Mithril</loot>
+                    <loot>seisme</loot>
                 </loots>
             </monster>
         </monsters>
     </room>
     <room name="8eme etage">
-        <curse damage="60"/>
+        <curse damage="25"/>
         <tresures>
-            <item>potion argent</item>
-            <item>gantelets cuir</item>
+            <item>chapeau</item>
+            <item>choc</item>
         </tresures>
     </room>
     <room name="Salle de torture"/>
-    <room name="Salle de repos">
-        <tresures>
-            <item>dague voleur</item>
-            <item>potion bleue</item>
-            <item>baton magique</item>
-        </tresures>
-    </room>
+    <room name="Salle de repos"/>
     <room name="2eme etage"/>
     <room name="1er etage"/>
-    <room name="4eme etage">
-        <tresures>
-            <item>bracelets or</item>
-        </tresures>
+    <room name="12eme etage">
+        <monsters>
+            <monster name="Loup-garou">
+                <loots>
+                    <loot>potion majenta</loot>
+                    <loot>potion or</loot>
+                </loots>
+            </monster>
+        </monsters>
     </room>
-    <room name="Balcon">
+    <room name="15eme etage">
         <tresures>
-            <item>potion argent</item>
+            <item>choc</item>
+            <item>casque</item>
         </tresures>
+        <monsters>
+            <monster name="Manticore">
+                <loots>
+                    <loot>hache nain</loot>
+                    <loot>tornade</loot>
+                    <loot>Assassine</loot>
+                </loots>
+            </monster>
+        </monsters>
     </room>
-    <room name="Chambre rouge">
-        <curse damage="65"/>
+    <room name="Salle blanche">
+        <tresures>
+            <item>givre</item>
+            <item>potion jaune</item>
+            <item>givre</item>
+        </tresures>
     </room>
 </map>

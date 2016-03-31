@@ -30,44 +30,44 @@
 			<type>SWORD</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="epee courte" bonus="22" lifespawn="10" levelMin="1">
+		<weapon name="epee courte" bonus="22" lifespawn="18" levelMin="1">
 			<type>SWORD</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="epee longue" bonus="30" lifespawn="12" levelMin="3">
+		<weapon name="epee longue" bonus="30" lifespawn="20" levelMin="3">
 			<type>SWORD</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="cimetere" bonus="36" lifespawn="15" levelMin="7">
+		<weapon name="cimetere" bonus="36" lifespawn="22" levelMin="7">
 			<type>SWORD</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="epee magique" bonus="36" lifespawn="18" levelMin="7">
+		<weapon name="epee magique" bonus="36" lifespawn="23" levelMin="7">
 			<type>SWORD</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="rapiere" bonus="38" lifespawn="18" levelMin="7">
+		<weapon name="rapiere" bonus="38" lifespawn="23" levelMin="7">
 			<type>SWORD</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="flamberge" bonus="62" lifespawn="21" levelMin="13">
+		<weapon name="flamberge" bonus="62" lifespawn="26" levelMin="13">
 			<type>SWORD</type>
 			<hands>BOTH</hands>
 		</weapon>
-		<weapon name="epee batarde" bonus="70" lifespawn="24" levelMin="15">
+		<weapon name="epee batarde" bonus="70" lifespawn="29" levelMin="15">
 			<type>SWORD</type>
 			<hands>BOTH</hands>
 		</weapon>
 		
-		<weapon name="marteau" bonus="27" lifespawn="25" levelMin="3">
+		<weapon name="marteau" bonus="27" lifespawn="28" levelMin="3">
 			<type>HAMMER</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="fleau" bonus="36" lifespawn="30" levelMin="7">
+		<weapon name="fleau" bonus="36" lifespawn="32" levelMin="7">
 			<type>HAMMER</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="massue" bonus="44" lifespawn="13" levelMin="10">
+		<weapon name="massue" bonus="44" lifespawn="17" levelMin="10">
 			<type>HAMMER</type>
 			<hands>BOTH</hands>
 		</weapon>
@@ -76,27 +76,27 @@
 			<type>AXE</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="hache" bonus="25" lifespawn="13" levelMin="1">
+		<weapon name="hache" bonus="25" lifespawn="18" levelMin="1">
 			<type>AXE</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="hache nain" bonus="30" lifespawn="16" levelMin="4">
+		<weapon name="hache nain" bonus="30" lifespawn="20" levelMin="4">
 			<type>AXE</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="hache en acier" bonus="39" lifespawn="19" levelMin="8">
+		<weapon name="hache en acier" bonus="39" lifespawn="23" levelMin="8">
 			<type>AXE</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="hache en argent" bonus="48" lifespawn="24" levelMin="11">
+		<weapon name="hache en argent" bonus="48" lifespawn="28" levelMin="11">
 			<type>AXE</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="labrys" bonus="61" lifespawn="23" levelMin="15">
+		<weapon name="labrys" bonus="61" lifespawn="26" levelMin="15">
 			<type>AXE</type>
 			<hands>BOTH</hands>
 		</weapon>
-		<weapon name="bardiche" bonus="62" lifespawn="21" levelMin="15">
+		<weapon name="bardiche" bonus="62" lifespawn="25" levelMin="15">
 			<type>AXE</type>
 			<hands>BOTH</hands>
 		</weapon>
@@ -105,19 +105,19 @@
 			<type>ROD</type>
 			<hands>BOTH</hands>
 		</weapon>
-		<weapon name="lance" bonus="42" lifespawn="16" levelMin="5">
+		<weapon name="lance" bonus="42" lifespawn="19" levelMin="5">
 			<type>ROD</type>
 			<hands>BOTH</hands>
 		</weapon>
-		<weapon name="baton magique" bonus="48" lifespawn="15" levelMin="8">
+		<weapon name="baton magique" bonus="48" lifespawn="21" levelMin="8">
 			<type>ROD</type>
 			<hands>BOTH</hands>
 		</weapon>
-		<weapon name="baton de flammes" bonus="55" lifespawn="16" levelMin="13">
+		<weapon name="baton de flammes" bonus="55" lifespawn="21" levelMin="13">
 			<type>ROD</type>
 			<hands>BOTH</hands>
 		</weapon>
-		<weapon name="baton de sorcier" bonus="62" lifespawn="20" levelMin="16">
+		<weapon name="baton de sorcier" bonus="62" lifespawn="24" levelMin="16">
 			<type>ROD</type>
 			<hands>RIGHT</hands>
 		</weapon>
@@ -179,6 +179,9 @@
 		<armor name="bracelets" bonus="15" lifespawn="20" isBig="false" levelMin="5">
 			<type>ARM</type>
 		</armor>
+		<armor name="plaques en os" bonus="15" lifespawn="20" isBig="false" levelMin="5">
+			<type>ARM</type>
+		</armor>
 		<armor name="gantelets de cuir" bonus="17" lifespawn="18" isBig="false" levelMin="5">
 			<type>ARM</type>
 		</armor>
@@ -189,9 +192,6 @@
 			<type>ARM</type>
 		</armor>
 		<armor name="bras bioniques" bonus="34" lifespawn="36" isBig="true" levelMin="16">
-			<type>ARM</type>
-		</armor>
-		<armor name="plaques en os" bonus="15" lifespawn="20" isBig="false" levelMin="5">
 			<type>ARM</type>
 		</armor>
 		

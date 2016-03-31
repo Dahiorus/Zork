@@ -1,28 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monsters>
-	<monster name="Orc moche" maxHp="150" power="26" defense="30" level="HARD">
-		<weapon>massue</weapon>
-		<armor>casque os</armor>
-		<loots number="3"/>
+	<monster name="Slime" maxHp="113" power="42" defense="31" level="EASY">
 	</monster>
-	<monster name="Squelettes" maxHp="50" power="12" defense="10" level="NORMAL">
-		<level></level>
-		<weapon>epee courte</weapon>
+	<monster name="Rats de donjon" maxHp="120" power="48" defense="36" level="EASY">
 	</monster>
-	<monster name="Vampire" maxHp="168" power="30" defense="23" level="NORMAL">
-		<loots number="2"/>
+	<monster name="Vermine" maxHp="122" power="40" defense="34" level="EASY">
 	</monster>
-	<monster name="Rats de donjon" maxHp="50" power="26" defense="13" level="EASY">
+	<monster name="Chauve-souris" maxHp="132" power="50" defense="39" level="EASY">
+	</monster>
+	<monster name="Cafards" maxHp="128" power="45" defense="43" level="EASY">
+	</monster>
+	<monster name="Apparation sinistre" maxHp="146" power="45" defense="42" level="EASY">
+	</monster>
+	<monster name="Barbares" maxHp="160" power="34" defense="35" level="EASY">
+		<weapon>epee courte</weapon> <!-- +22 -->
+		<armor>casque aile</armor> <!-- +13 -->
+	</monster>
+	
+	<monster name="Chevalier maudit" maxHp="400" power="125" defense="68" level="NORMAL">
+		<weapon>epee longue</weapon> <!-- +30 -->
+		<armor>plastron de chevalier</armor> <!-- +34 -->
+	</monster>
+	<monster name="Loup-garou" maxHp="416" power="150" defense="101" level="NORMAL">
+	</monster>
+	<monster name="Mercenaire" maxHp="444" power="119" defense="87" level="NORMAL">
+		<weapon>fleau</weapon> <!-- +36 -->
+		<armor>gantelets de cuir</armor> <!-- +17 -->
+	</monster>
+	<monster name="Savant fou" maxHp="350" power="99" defense="68" level="NORMAL">
+		<weapon>baton de flammes</weapon> <!-- +55 -->
+		<armor>monture a vapeur</armor> <!-- +38 -->
+	</monster>
+	<monster name="Squelettes" maxHp="340" power="123" defense="96" level="NORMAL">
+		<weapon>epee courte</weapon> <!-- +22 -->
+	</monster>
+	<monster name="Vampire" maxHp="483" power="159" defense="103" level="NORMAL">
+	</monster>
+	<monster name="Cheval de cauchemar" maxHp="400" power="145" defense="95" level="NORMAL">
+	</monster>
+	<monster name="Momie" maxHp="362" power="150" defense="90" level="NORMAL">
+	</monster>
+	
+	<monster name="Troll" maxHp="120" power="64" defense="35" level="HARD">
+		<weapon>dague</weapon>
+		<armor>plastron cuir</armor>
 	</monster>
 	<monster name="Geant" maxHp="150" power="50" defense="40" level="HARD">
 		<weapon>hache</weapon>
 		<armor>plastron cuir</armor>
-		<loots number="4"/>
 	</monster>
 	<monster name="Sorciere" maxHp="100" power="80" defense="36" level="HARD">
 		<weapon>baton magique</weapon>
 		<armor>robe sorcier</armor>
-		<loots number="2"/>
 	</monster>
 	<monster name="Zombies" maxHp="200" power="43" defense="26" level="HARD">
 		<weapon>epee rouillee</weapon>
@@ -30,53 +59,9 @@
 	<monster name="Gobelins" maxHp="250" power="58" defense="32" level="HARD">
 		<weapon>epee courte</weapon>
 		<armor>plastron cuir</armor>
-		<loots number="3" />
 	</monster>
-	<monster name="Cheval de cauchemar" maxHp="89" power="38" defense="26" level="NORMAL">
-		<loots number="2"/>
-	</monster>
-	<monster name="Momie" maxHp="60" power="79" defense="50" level="NORMAL">
-		<loots number="1"/>
-	</monster>
-	<monster name="Troll" maxHp="120" power="64" defense="35" level="HARD">
-		<weapon>dague</weapon>
-		<armor>plastron cuir</armor>
-		<loots number="3"/>
-	</monster>
-	<monster name="Vermine" maxHp="30" power="16" defense="11" level="EASY">
-		<loots number="3"/>
-	</monster>
-	<monster name="Chauve-souris" maxHp="50" power="32" defense="21" level="EASY">
-		<loots number="1"/>
-	</monster>
-	<monster name="Chevalier maudit" maxHp="68" power="42" defense="30" level="NORMAL">
-		<weapon>epee longue</weapon>
-		<armor>plastron chevalier</armor>
-		<loots number="2"/>
-	</monster>
-	<monster name="Apparation sinistre" maxHp="56" power="28" defense="15" level="EASY">
-	</monster>
-	<monster name="Slime" maxHp="26" power="15" defense="18" level="EASY">
-		<loots number="1"/>
-	</monster>
-	<monster name="Loup-garou" maxHp="97" power="49" defense="35" level="NORMAL">
-		<loots number="3"/>
-	</monster>
-	<monster name="Mercenaire" maxHp="72" power="43" defense="35" level="NORMAL">
-		<weapon>epee batarde</weapon>
-		<armor>plastron chevalier</armor>
-		<loots number="3"/>
-	</monster>
-	<monster name="Savant fou" maxHp="64" power="24" defense="16" level="NORMAL">
-		<weapon>baton flammes</weapon>
-		<armor>monture vapeur</armor>
-		<loots number="3"></loots>
-	</monster>
-	<monster name="Barbare" maxHp="44" power="32" defense="24" level="EASY">
-		<weapon>epee courte</weapon>
-		<armor>casque aile</armor>
-		<loots number="3"/>
-	</monster>
-	<monster name="Cafards" maxHp="54" power="31" defense="23" level="EASY">
+	<monster name="Orc moche" maxHp="150" power="26" defense="30" level="HARD">
+		<weapon>massue</weapon>
+		<armor>casque os</armor>
 	</monster>
 </monsters>

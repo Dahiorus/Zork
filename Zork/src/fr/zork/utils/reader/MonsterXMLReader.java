@@ -156,22 +156,12 @@ public class MonsterXMLReader {
 						}
 					}
 					
-					// adding loots to the monster
-					NodeList lootNodes = element.getElementsByTagName("loots");
-					if (lootNodes.getLength() != 0) {
-						Node lootNode = lootNodes.item(0);
-						
-						if (lootNode.getNodeType() == Node.ELEMENT_NODE) {
-							Element lootElement = (Element) lootNode;
-							int lootNumber = Integer.parseInt(lootElement.getAttribute("number").trim());
-							
-							// select lootNumber random items and add them in the monster's loots
-							for (int j = 0; j < lootNumber; j++) {
-								List<Item> itemList = this.getRandomItemsByClass(this.chooseClass());
-								int index = Dice.D100.roll() % itemList.size();
-								monster.getLoots().add((Item) itemList.get(index).clone());
-							}
-						}
+					// adding random loots to the monster
+					int nbLoots = Dice.D4.roll();
+					for (int j = 0; j < nbLoots; j++) {
+						List<Item> itemList = this.getRandomItemsByClass(this.chooseClass());
+						int index = Dice.D100.roll() % itemList.size();
+						monster.getLoots().add((Item) itemList.get(index).clone());
 					}
 					
 					// setting unique items loot to the monster's loots
