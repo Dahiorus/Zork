@@ -30,11 +30,22 @@ public class TestPlayer {
 		System.out.println(player.getDescription()); // PV: 290/290 - Force: 131 - Defense: 150
 		System.out.println();
 		
-		for (int i = 10; i < 40; i++) {
+		for (int i = 10; i < 30; i++) {
 			player.levelUp();
 		}
 		
-		player.setName("Joueur niveau 40");
+		player.setName("Joueur niveau 30");
+		player.setRightHand(new Weapon("flamberge", 62, 26, 13, WeaponType.SWORD, Hand.BOTH));
+		player.setLeftHand(null);
+		player.setHead(new Armor("heaume de chevalier", 24, 26, 15, ArmorType.HEAD, false));
+		player.setBody(new Armor("armure magique", 38, 35, 16, ArmorType.BODY, true));
+		player.setArm(new Armor("plaques en os", 15, 20, 20, ArmorType.ARM, false));
+		player.setLeg(new Armor("jambieres en plaques", 27, 28, 7, ArmorType.LEG, false));
+		
+		System.out.println("Avec stuff normal");
+		System.out.println(player.getDescription()); // PV: 490/490 - Force: 179 - Defense: 187
+		System.out.println();
+		
 		player.setRightHand(new Weapon("Excalibur", 150, 100, 20, WeaponType.SWORD, Hand.BOTH));
 		player.setLeftHand(null);
 		player.setHead(new Armor("Casque de Mithril", 30, 200, 20, ArmorType.HEAD, false));
@@ -42,7 +53,8 @@ public class TestPlayer {
 		player.setArm(new Armor("Gantelets de Mithril", 40, 200, 20, ArmorType.ARM, false));
 		player.setLeg(new Armor("Jambieres de Mithril", 40, 200, 20, ArmorType.LEG, false));
 		
-		System.out.println(player.getDescription()); // PV: 590/590 - Force: 297 - Defense: 263
+		System.out.println("Avec stuff legendaire");
+		System.out.println(player.getDescription()); // PV: 490/490 - Force: 267 - Defense: 243
 		System.out.println();
 	}
 

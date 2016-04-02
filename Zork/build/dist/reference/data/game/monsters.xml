@@ -41,27 +41,27 @@
 	<monster name="Momie" maxHp="362" power="150" defense="90" level="NORMAL">
 	</monster>
 	
-	<monster name="Troll" maxHp="120" power="64" defense="35" level="HARD">
-		<weapon>dague</weapon>
-		<armor>plastron cuir</armor>
+	<monster name="Troll" maxHp="630" power="160" defense="123" level="HARD">
+		<weapon>dague</weapon> <!-- +16 -->
+		<armor>plastron cuir</armor> <!-- +10 -->
 	</monster>
-	<monster name="Geant" maxHp="150" power="50" defense="40" level="HARD">
-		<weapon>hache</weapon>
-		<armor>plastron cuir</armor>
+	<monster name="Geant" maxHp="700" power="148" defense="128" level="HARD">
+		<weapon>hache</weapon> <!-- +25 -->
+		<armor>plastron cuir</armor> <!-- +10 -->
 	</monster>
-	<monster name="Sorciere" maxHp="100" power="80" defense="36" level="HARD">
-		<weapon>baton magique</weapon>
-		<armor>robe sorcier</armor>
+	<monster name="Sorciere" maxHp="684" power="134" defense="129" level="HARD">
+		<weapon>baton magique</weapon> <!-- +48 -->
+		<armor>robe sorcier</armor> <!-- +17 -->
 	</monster>
-	<monster name="Zombies" maxHp="200" power="43" defense="26" level="HARD">
-		<weapon>epee rouillee</weapon>
+	<monster name="Zombies" maxHp="643" power="154" defense="130" level="HARD">
+		<weapon>epee rouillee</weapon> <!-- +12 -->
 	</monster>
-	<monster name="Gobelins" maxHp="250" power="58" defense="32" level="HARD">
-		<weapon>epee courte</weapon>
-		<armor>plastron cuir</armor>
+	<monster name="Gobelins" maxHp="721" power="153" defense="112" level="HARD">
+		<weapon>epee courte</weapon> <!-- +22 -->
+		<armor>plastron cuir</armor> <!-- +10 -->
 	</monster>
-	<monster name="Orc moche" maxHp="150" power="26" defense="30" level="HARD">
-		<weapon>massue</weapon>
-		<armor>casque os</armor>
+	<monster name="Orc moche" maxHp="767" power="137" defense="114" level="HARD">
+		<weapon>massue</weapon> <!-- +44 -->
+		<armor>crane cornu</armor> <!-- +19 -->
 	</monster>
 </monsters>

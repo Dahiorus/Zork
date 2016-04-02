@@ -137,7 +137,11 @@
 		<weapon name="dague de voleur" bonus="30" lifespawn="32" levelMin="5">
 			<type>DAGGER</type>
 			<hands>LEFT</hands>
-		</weapon>	
+		</weapon>
+		<weapon name="dague de voleur" bonus="30" lifespawn="32" levelMin="5">
+			<type>DAGGER</type>
+			<hands>LEFT</hands>
+		</weapon>
 	</weapons>
 	
 	<armors>
@@ -156,6 +160,9 @@
 		<armor name="crane cornu" bonus="19" lifespawn="20" isBig="true" levelMin="5">
 			<type>HEAD</type>
 		</armor>
+		<armor name="heaume de chevalier" bonus="24" lifespawn="26" isBig="false" levelMin="15">
+			<type>HEAD</type>
+		</armor>
 		
 		<armor name="plastron de cuir" bonus="10" lifespawn="15" isBig="false" levelMin="1">
 			<type>BODY</type>
@@ -163,13 +170,22 @@
 		<armor name="plastron de chevalier" bonus="34" lifespawn="25" isBig="false" levelMin="15">
 			<type>BODY</type>
 		</armor>
-		<armor name="armure magique" bonus="38" lifespawn="35" isBig="true" levelMin="10">
+		<armor name="armure magique" bonus="38" lifespawn="35" isBig="true" levelMin="16">
 			<type>BODY</type>
 		</armor>
 		<armor name="robe de sorcier" bonus="17" lifespawn="14" isBig="false" levelMin="1">
 			<type>BODY</type>
 		</armor>
 		<armor name="plastron en os" bonus="20" lifespawn="17" isBig="false" levelMin="13">
+			<type>BODY</type>
+		</armor>
+		<armor name="plastron cloute" bonus="24" lifespawn="22" isBig="false" levelMin="7">
+			<type>BODY</type>
+		</armor>
+		<armor name="plastron en acier" bonus="28" lifespawn="20" isBig="false" levelMin="12">
+			<type>BODY</type>
+		</armor>
+		<armor name="robe de mage" bonus="23" lifespawn="20" isBig="false" levelMin="9">
 			<type>BODY</type>
 		</armor>
 		
@@ -208,6 +224,12 @@
 			<type>LEG</type>
 		</armor>
 		<armor name="monture a vapeur" bonus="38" lifespawn="35" isBig="true" levelMin="18">
+			<type>LEG</type>
+		</armor>
+		<armor name="jambieres en acier" bonus="28" lifespawn="26" isBig="true" levelMin="7">
+			<type>LEG</type>
+		</armor>
+		<armor name="jambieres enchantees" bonus="35" lifespawn="32" isBig="true" levelMin="15">
 			<type>LEG</type>
 		</armor>
 	</armors>

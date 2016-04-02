@@ -47,6 +47,7 @@
 	</exit>
 	
 	<exit source="11eme etage">
+		<north>Armurerie</north>
 		<west>12eme etage</west>
 	</exit>
 	<exit source="12eme etage">
@@ -59,14 +60,15 @@
 	</exit>
 	<exit source="14eme etage">
 		<north>Arene de sang</north>
+		<east>Salle silencieuse</east>
 		<west>15eme etage</west>
 	</exit>
 	<exit source="15eme etage">
 		<north>16eme etage</north>
-		<east>Chambre de torture</east>
 	</exit>
 	<exit source="16eme etage">
 		<north>17eme etage</north>
+		<west>Chambre au rocher</west>
 	</exit>
 	<exit source="17eme etage">
 		<north>Couloir hante</north>
@@ -91,6 +93,7 @@
 	</exit>
 	<exit source="22eme etage">
 		<north>23eme etage</north>
+		<east>Chambre de torture</east>
 	</exit>
 	<exit source="23eme etage">
 		<west>24eme etage</west>

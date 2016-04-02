@@ -1,43 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monsters>
-	<monster name="Dragon" maxHp="800" power="200" defense="160" level="EXTREME">
-		<loots number="9"/>
-		<unique>Ensorceleur</unique>
+	<monster name="Golem" maxHp="210" power="64" defense="52" level="EXTREME">
+		<loots number="5"/>
 	</monster>
-	<monster name="Colosse d'acier" maxHp="671" power="147" defense="123" level="EXTREME">
-		<weapon>fleau</weapon>
-		<armor>armure magique</armor>
-		<loots number="6"/>
-		<unique>Plastron Mithril</unique>
+	<monster name="Gardien obscur" maxHp="264" power="20" defense="32" level="EXTREME">
+		<weapon>baton magique</weapon> <!-- +48 -->
+		<armor>robe de mage</armor> <!-- +23 -->
+		<loots number="7"></loots>
 	</monster>
-	<monster name="Cephalopodzilla" maxHp="750" power="180" defense="150" level="EXTREME">
+	<monster name="Cephalopodzilla" maxHp="515" power="162" defense="108" level="EXTREME">
 		<loots number="6"/>
 		<unique>Mjolnir</unique>
 	</monster>
-	<monster name="Gardien obscur" maxHp="576" power="111" defense="91" level="EXTREME">
-		<weapon>baton magique</weapon>
-		<armor>robe sorcier</armor>
-		<loots number="7"></loots>
-		<unique>Excalibur</unique>
-	</monster>
-	<monster name="Manticore" maxHp="600" power="103" defense="85" level="EXTREME">
-		<loots number="6"/>
-		<unique>Assassine</unique>
-	</monster>
-	<monster name="Golem" maxHp="468" power="82" defense="62" level="EXTREME">
-		<loots number="5"/>
-		<unique>Jambieres Mithril</unique>
-	</monster>
-	<monster name="Demon majeur" maxHp="780" power="184" defense="130" level="EXTREME">
-		<weapon>fleau</weapon>
+	<monster name="Demon majeur" maxHp="532" power="134" defense="110" level="EXTREME">
+		<weapon>fleau</weapon> <!-- +36 -->
 		<loots number="7"/>
-		<unique>Durandil</unique>
-		<unique>Gantelets Mithril</unique>
+		<unique>Ensorceleur</unique>
 	</monster>
-	<monster name="Pharaon maudit" maxHp="703" power="186" defense="93" level="EXTREME">
-		<weapon>baton sorcier</weapon>
-		<armor>bracelets or</armor>
-		<loots number="8"/>
-		<unique>Heaume Mithril</unique>
+	<monster name="Colosse de bronze" maxHp="813" power="125" defense="104" level="EXTREME">
+		<weapon>labrys</weapon> <!-- +61 -->
+		<armor>armure magique</armor> <!-- +38 -->
+		<loots number="6"/>
+		<unique>Plastron de Mithril</unique>
+	</monster>
+	<monster name="Dragon" maxHp="850" power="190" defense="140" level="EXTREME">
+		<loots number="9"/>
+		<unique>Jambieres de Mithril</unique>
 	</monster>
 </monsters>

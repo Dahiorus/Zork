@@ -90,6 +90,9 @@
 	
 	<room name="11eme etage">
 	</room>
+	<room name="Armurerie">
+		<unique>Durandil</unique>
+	</room>
 	
 	<room name="12eme etage">
 		<monsters number="1" level="normal"/>
@@ -111,19 +114,24 @@
 		<treasures number="2"/>
 	</room>
 	<room name="Arene de sang">
-		<monsters number="1" level="difficile"/>
+		<monsters number="2" level="normal"/>
+		<unique>Assassine</unique>
+	</room>
+	<room name="Salle silencieuse">
+		<treasures number="3"/>
 	</room>
 	
 	<room name="15eme etage">
-		<boss>Manticore</boss>
-	</room>
-	<room name="Chambre de torture">
-		<curse>true</curse>
+		<boss>Cephalopodzilla</boss>
 	</room>
 	
 	<room name="16eme etage">
 		<monsters number="2" level="normal"/>
 		<treasures number="2"/>
+	</room>
+	<room name="Chambre au rocher">
+		<curse>true</curse>
+		<unique>Excalibur</unique>
 	</room>
 	
 	<room name="17eme etage">
@@ -144,7 +152,7 @@
 	</room>
 	<room name="Arene sinitre">
 		<monsters number="2" level="normal"/>
-		<treasures number="1"/>
+		<unique>Gantelets de Mithril</unique>
 	</room>
 	
 	<room name="19eme etage">
@@ -156,7 +164,7 @@
 	</room>
 	
 	<room name="20eme etage">
-		<boss>Colosse d'acier</boss>
+		<boss>Demon majeur</boss>
 		<treasures number="1"/>
 	</room>
 	
@@ -171,9 +179,12 @@
 	<room name="22e etage">
 		<monsters number="1" level="difficile"/>
 	</room>
+	<room name="Chambre de torture">
+		<monsters number="1" level="difficile"/>
+	</room>
 	
 	<room name="23eme etage">
-		<boss>Cephalopodzilla</boss>
+		<monsters number="1" level="difficile"/>
 	</room>
 	
 	<room name="24eme etage">
@@ -189,7 +200,7 @@
 	
 	<room name="25eme etage">
 		<curse>true</curse>
-		<boss>Pharaon maudit</boss>
+		<boss>Colosse de bronze</boss>
 	</room>
 	
 	<room name="26eme etage">
@@ -197,7 +208,7 @@
 	</room>
 	<room name="Cachot desert">
 		<curse>true</curse>
-		<boss>Demon majeur</boss>
+		<monsters number="1" level="difficile"/>
 	</room>
 	
 	<room name="27eme etage">
@@ -221,7 +232,8 @@
 	</room>
 	<room name="Chambre de tresor">
 		<curse>true</curse>
-		<treasures number="4"/>
+		<treasures number="3"/>
+		<unique>Heaume de Mithril</unique>
 	</room>
 	
 	<room name="30eme etage">

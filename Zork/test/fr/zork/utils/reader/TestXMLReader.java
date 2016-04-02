@@ -9,7 +9,7 @@ import fr.zork.world.Room;
 public class TestXMLReader {
 
 	public static void main(String[] args) {
-		List<Room> rooms = WorldXMLReader.getInstance().getWorldMap(Game.EASY, 10);
+		List<Room> rooms = WorldXMLReader.getInstance().getWorldMap(Game.HARD, 30);
 		System.out.println("Nombre de salles lues: " + rooms.size());
 		
 		int nbMonsters = 0;
