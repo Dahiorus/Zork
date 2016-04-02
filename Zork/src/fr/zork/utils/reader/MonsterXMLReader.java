@@ -157,7 +157,23 @@ public class MonsterXMLReader {
 					}
 					
 					// adding random loots to the monster
-					int nbLoots = Dice.D4.roll();
+					int nbLoots = 0;
+					
+					if (xmlFile.equals(xmlMonsterFile)) {
+						nbLoots = Dice.D4.roll();
+					} else {
+						NodeList lootNodes = element.getElementsByTagName("loots");
+						
+						if (lootNodes.getLength() != 0) {
+							Node lootNode = lootNodes.item(0);
+							
+							if (lootNode.getNodeType() == Node.ELEMENT_NODE) {
+								Element lootElement = (Element) lootNode;
+								nbLoots = Integer.parseInt(lootElement.getAttribute("number").trim());
+							}
+						}
+					}
+					
 					for (int j = 0; j < nbLoots; j++) {
 						List<Item> itemList = this.getRandomItemsByClass(this.chooseClass());
 						int index = Dice.D100.roll() % itemList.size();

@@ -21,7 +21,7 @@
 		<spell name="seisme" damage="70"/>
 		<spell name="eboulement" damage="80"/>
 		<spell name="projectiles" damage="100"/>
-		<spell name="boule feu" damage="120"/>
+		<spell name="boule de feu" damage="120"/>
 		<spell name="tempete" damage="150"/>
 	</spells>
 	
