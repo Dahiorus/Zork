@@ -162,6 +162,21 @@ public class WorldXMLReader {
 						}
 					}
 					
+					// setting unique items
+					NodeList uniqueNodes = element.getElementsByTagName("unique");
+					
+					if (uniqueNodes.getLength() != 0) {
+						
+						Node uniqueNode = uniqueNodes.item(0);
+						if (uniqueNode.getNodeType() == Node.ELEMENT_NODE) {
+							Element uniqueElement = (Element) uniqueNode;
+							String itemName = uniqueElement.getTextContent();
+							Item uniqueItem = ItemXMLReader.getInstance().getUniqueItems().get(itemName);
+							
+							room.getTreasures().add(uniqueItem);
+						}
+					}
+					
 					// setting random monsters
 					int nbMonsters = 0;
 					NodeList monsterNodes = element.getElementsByTagName("monsters");
