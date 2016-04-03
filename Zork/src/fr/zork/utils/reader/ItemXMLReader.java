@@ -39,7 +39,7 @@ public class ItemXMLReader {
 
 	
 	private ItemXMLReader() {
-		String path = "build/dist/reference/data/game/";
+		String path = "resources/data/game/";
 		
 		xmlItemFile = new File(path + "items.xml");
 		xmlUniqueItemFile = new File(path + "uniqueItems.xml");

@@ -33,6 +33,22 @@ public class Game {
 	public static final String NEW  = "nouveau";
 	public static final String LOAD = "charger";
 	
+	private enum ZorkStats {
+		EASY(300, 75, 65),
+		NORMAL(600, 175, 115),
+		HARD(999, 195, 150);
+		
+		private final int hp;
+		private final int power;
+		private final int defense;
+		
+		ZorkStats(final int hp, final int power, final int defense) {
+			this.hp = hp;
+			this.power = power;
+			this.defense = defense;
+		}
+	}
+	
 	private static String startRoomName = "Entree du donjon";
 	private static String dungeonBossRoom = "Etage de Zork";
 	
@@ -91,6 +107,7 @@ public class Game {
 		try {
 			entryLine = reader.readLine();
 			player.setName(entryLine.trim());
+			player.setStarterStuff();
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(-1);
@@ -110,15 +127,16 @@ public class Game {
 		
 		Room room = world.getRoom(String.valueOf(this.stageNumber) + "eme etage");
 		room.setExits(this.zorkStage, room.getNextRoom(Exit.EAST), room.getNextRoom(Exit.WEST));
+		world.getWorldMap().add(this.zorkStage);
 		
 		this.currentRoom = world.getRoom(startRoomName);
 	}
 	
 	
-	public void createZork(final int hp, final int power, final int defense) {
-		this.zork = new Monster("Maitre Zork", hp, power, defense, Level.EXTREME);
-		this.zork.setArmor(new Armor("Armure des ombres", 200, 1, 1, ArmorType.BODY, true));
-		this.zork.setWeapon(new Weapon("Epee des ombres", 220, 1, 1, WeaponType.SWORD, Hand.BOTH));
+	public void createZork(ZorkStats stats) {
+		this.zork = new Monster("Maitre Zork", stats.hp, 0, 0, Level.EXTREME);
+		this.zork.setArmor(new Armor("Armure des ombres", stats.power, 1, 1, ArmorType.BODY, true));
+		this.zork.setWeapon(new Weapon("Epee des ombres", stats.defense, 1, 1, WeaponType.SWORD, Hand.BOTH));
 	}
 	
 	
@@ -148,15 +166,15 @@ public class Game {
 						
 						switch (difficulty) {
 							case EASY:
-								this.createZork(300, 89, 50);
+								this.createZork(ZorkStats.EASY);
 								this.stageNumber = 10;
 								break;
 							case NORMAL:
-								this.createZork(600, 136, 78);
+								this.createZork(ZorkStats.NORMAL);
 								this.stageNumber = 20;
 								break;
 							case HARD:
-								this.createZork(999, 219, 170);
+								this.createZork(ZorkStats.HARD);
 								this.stageNumber = 30;
 								break;
 							default:
@@ -212,7 +230,7 @@ public class Game {
 	public void displayWelcome() {
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("-                                                         -");
-		System.out.println("-  Vous entrez dans le donjon du terrifiant Maitre Zork.  -");
+		System.out.println("-  Vous entrez dans la tour du terrifiant Maitre Zork.    -");
 		System.out.println("-                                                         -");
 		System.out.println("-  Votre but, en tant qu'aventurier, est de parcourir ce  -");
 		System.out.println("-  donjon et de vaincre Maitre Zork.                      -");

@@ -27,7 +27,7 @@ import fr.zork.world.World;
 import fr.zork.world.enums.Exit;
 
 public class SaveXMLWriter {
-	private static final String PATH = "build/dist/reference/data/saves/";
+	private static final String PATH = "resources/data/saves/";
 	private static final String PLAYER_FILE = "player.xml";
 	private static final String ROOM_FILE = "rooms.xml";
 	private static final String EXIT_FILE = "exits.xml";
@@ -146,7 +146,7 @@ public class SaveXMLWriter {
 				
 				if (item instanceof Equipment) {
 					Equipment equipment = (Equipment) item;
-					if (!equipment.isUsable()) itemElement.setAttribute("unsable", String.valueOf(true));
+					itemElement.setAttribute("lifespawn", String.valueOf(equipment.getLifespawn()));
 				}
 			}
 		}

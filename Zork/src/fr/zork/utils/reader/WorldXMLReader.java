@@ -45,7 +45,7 @@ public class WorldXMLReader {
 	
 
 	private WorldXMLReader() {
-		String path = "build/dist/reference/data/game/";
+		String path = "resources/data/game/";
 		
 		xmlCursesFile = new File(path + "curses.xml");
 		xmlRoomsFile  = new File(path + "rooms.xml");

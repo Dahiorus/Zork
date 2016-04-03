@@ -19,6 +19,7 @@ import fr.zork.character.Monster;
 import fr.zork.character.Player;
 import fr.zork.game.Game;
 import fr.zork.item.Armor;
+import fr.zork.item.Equipment;
 import fr.zork.item.Item;
 import fr.zork.item.Weapon;
 import fr.zork.world.Curse;
@@ -380,7 +381,18 @@ public class LoadXMLReader {
 									String itemName = itemElement.getTextContent();
 									Item item = items.get(itemName);
 									
-									if (item != null) player.getBag().add(item);
+									if (item != null) {
+										if (item instanceof Equipment) {
+											System.out.println(itemName);
+											Equipment equipment = (Equipment) item;
+											int lifespawn = Integer.parseInt(itemElement.getAttribute("lifespawn").trim());
+											equipment.setLifespawn(lifespawn);
+											
+											player.getBag().add(equipment);
+										} else {
+											player.getBag().add(item);
+										}
+									}
 								}
 							}
 						}

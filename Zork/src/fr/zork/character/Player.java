@@ -37,18 +37,7 @@ public class Player extends MortalCharacter {
 		this.power = 30;
 		this.defense = 25;
 		
-		Weapon epeeCourte = new Weapon("epee courte", 22, 18, 1, WeaponType.SWORD, Hand.RIGHT);
-		Potion potionVerte = new Potion("potion verte", 50);
-		Spell foudre = new Spell("foudre", 30);
-		
-		this.setRightHand((Weapon) epeeCourte.clone());
-		this.setBody(new Armor("plastron de cuir", 10, 15, 1, ArmorType.BODY, false));
-		
 		this.bag = new ArrayList<Item>();
-		this.getBag().add((Item) potionVerte.clone());
-		this.getBag().add((Item) potionVerte.clone());
-		this.getBag().add((Item) foudre.clone());
-		this.getBag().add((Item) epeeCourte.clone());
 	}
 	
 	
@@ -209,6 +198,22 @@ public class Player extends MortalCharacter {
 	}
 	
 	
+	public void setStarterStuff() {
+		Weapon epeeCourte = new Weapon("epee courte", 22, 18, 1, WeaponType.SWORD, Hand.RIGHT);
+		Armor plastronCuir = new Armor("plastron de cuir", 10, 15, 1, ArmorType.BODY, false);
+		Potion potionVerte = new Potion("potion verte", 50);
+		Spell foudre = new Spell("foudre", 30);
+		
+		this.setRightHand((Weapon) epeeCourte.clone());
+		this.setBody((Armor) plastronCuir.clone());
+		
+		this.getBag().add((Item) potionVerte.clone());
+		this.getBag().add((Item) potionVerte.clone());
+		this.getBag().add((Item) foudre.clone());
+		this.getBag().add((Item) epeeCourte.clone());
+	}
+	
+	
 	/**
 	 * <p>Indique si le joueur a une arme usée.</p>
 	 * @return <code>true</code> si le joueur a une arme usée,
@@ -262,12 +267,9 @@ public class Player extends MortalCharacter {
 		// critical damage calculation
 		int ccProba = Dice.D100.roll() + this.level;
 		if (ccProba >= 90) {
-			int bonus = Dice.D6.roll();
+			int bonus = Dice.D12.roll();
 			totalDmg += bonus;
 			critical = true;
-		} else if (ccProba < 20) {
-			int malus = Dice.D6.roll();
-			totalDmg -= malus;
 		}
 		
 		// target defense calculation

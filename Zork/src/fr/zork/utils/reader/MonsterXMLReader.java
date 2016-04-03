@@ -39,7 +39,7 @@ public class MonsterXMLReader {
 	
 	
 	private MonsterXMLReader() {
-		String path = "build/dist/reference/data/game/";
+		String path = "resources/data/game/";
 		
 		xmlMonsterFile = new File(path + "monsters.xml");
 		xmlBossFile    = new File(path + "boss.xml");
