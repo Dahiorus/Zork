@@ -422,7 +422,7 @@ public class LoadXMLReader {
 						}
 					}
 					
-					// setting currentRoom
+					// setting previousRoom
 					NodeList previousRoomNodes = playerElement.getElementsByTagName("previousRoom");
 					if (previousRoomNodes.getLength() != 0) {
 						Node previousRoomNode = previousRoomNodes.item(0);
