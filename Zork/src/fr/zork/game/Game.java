@@ -47,6 +47,26 @@ public class Game {
 			this.power = power;
 			this.defense = defense;
 		}
+		
+		public static ZorkStats getByDifficulty(final String difficulty) {
+			if (difficulty == null) return null;
+			
+			ZorkStats stats = null;
+			
+			switch (difficulty) {
+				case Game.EASY:
+					stats = ZorkStats.EASY;
+					break;
+				case Game.NORMAL:
+					stats = ZorkStats.NORMAL;
+					break;
+				case Game.HARD:
+					stats = ZorkStats.HARD;
+					break;
+			}
+			
+			return stats;
+		}
 	}
 	
 	private static String startRoomName = "Entree du donjon";
@@ -88,6 +108,16 @@ public class Game {
 	}
 	
 	
+	public String getDifficulty() {
+		return difficulty;
+	}
+	
+	
+	public void setDifficulty(final String difficulty) {
+		this.difficulty = difficulty;
+	}
+
+
 	public static Game getInstance() {
 		return GameHolder.instance;
 	}
@@ -133,7 +163,9 @@ public class Game {
 	}
 	
 	
-	public void createZork(ZorkStats stats) {
+	public void createZork() {
+		ZorkStats stats = ZorkStats.getByDifficulty(this.difficulty);
+		
 		this.zork = new Monster("Maitre Zork", stats.hp, 0, 0, Level.EXTREME);
 		this.zork.setArmor(new Armor("Armure des ombres", stats.power, 1, 1, ArmorType.BODY, true));
 		this.zork.setWeapon(new Weapon("Epee des ombres", stats.defense, 1, 1, WeaponType.SWORD, Hand.BOTH));
@@ -166,15 +198,12 @@ public class Game {
 						
 						switch (difficulty) {
 							case EASY:
-								this.createZork(ZorkStats.EASY);
 								this.stageNumber = 10;
 								break;
 							case NORMAL:
-								this.createZork(ZorkStats.NORMAL);
 								this.stageNumber = 20;
 								break;
 							case HARD:
-								this.createZork(ZorkStats.HARD);
 								this.stageNumber = 30;
 								break;
 							default:
@@ -185,6 +214,7 @@ public class Game {
 						
 						if (result) {
 							this.difficulty = difficulty;
+							this.createZork();
 							
 							System.out.println("Nouvelle partie (" + this.difficulty + ")");
 							System.out.println();

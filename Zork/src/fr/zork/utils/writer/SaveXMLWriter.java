@@ -156,6 +156,12 @@ public class SaveXMLWriter {
 		root.appendChild(currentRoomElement);
 		currentRoomElement.appendChild(document.createTextNode(Game.getInstance().getCurrentRoom().getName()));
 		
+		
+		// element "previousRoom"
+		Element previousRoomElement = document.createElement("previousRoom");
+		root.appendChild(previousRoomElement);
+		previousRoomElement.appendChild(document.createTextNode(Game.getInstance().getPreviousRoom().getName()));
+		
 		document.getDocumentElement().normalize();
 		
 		// write the document into file
@@ -186,6 +192,11 @@ public class SaveXMLWriter {
 		// root element "map"
 		Element root = document.createElement("map");
 		document.appendChild(root);
+		
+		// difficulty element "difficulty"
+		Element difficulty = document.createElement("difficulty");
+		root.appendChild(difficulty);
+		difficulty.setTextContent(Game.getInstance().getDifficulty());
 		
 		// room elements "room"
 		for (Room room : world.getWorldMap()) {

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<player defense="25" hp="200" level="1" maxHp="200" name="toto" power="30">
-    <rightHand lifespawn="18">epee courte</rightHand>
+<player defense="25" hp="200" level="1" maxHp="200" name="Toto" power="30">
     <body lifespawn="15">plastron de cuir</body>
     <bag>
         <item>potion verte</item>
         <item>potion verte</item>
         <item>foudre</item>
         <item lifespawn="18">epee courte</item>
+        <item lifespawn="18">epee courte</item>
+        <item lifespawn="22">cimetere</item>
     </bag>
     <currentRoom>Entree du donjon</currentRoom>
+    <previousRoom>Reserve</previousRoom>
 </player>

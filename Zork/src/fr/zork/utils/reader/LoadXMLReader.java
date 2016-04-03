@@ -27,7 +27,7 @@ import fr.zork.world.Room;
 import fr.zork.world.World;
 
 public class LoadXMLReader {
-	private static final String PATH = "build/dist/reference/data/saves/";
+	private static final String PATH = "resources/data/saves/";
 	private static final String PLAYER_FILE = "player.xml";
 	private static final String ROOM_FILE = "rooms.xml";
 	private static final String EXIT_FILE = "exits.xml";
@@ -83,6 +83,19 @@ public class LoadXMLReader {
 			Document document = builder.parse(this.xmlRoomFile);
 			document.getDocumentElement().normalize();
 			
+			// reading difficulty element
+			NodeList difficultyNodes = document.getElementsByTagName("difficulty");
+			if (difficultyNodes.getLength() != 0) {
+				Node difficultyNode = difficultyNodes.item(0);
+				String difficulty = difficultyNode.getTextContent();
+				
+				if (difficulty != null) {
+					Game.getInstance().setDifficulty(difficulty.trim());
+					Game.getInstance().createZork();
+				}
+			}
+			
+			// reading room elements
 			NodeList roomNodes = document.getElementsByTagName("room");
 			
 			for (int i = 0; i < roomNodes.getLength(); i++) {
@@ -174,7 +187,6 @@ public class LoadXMLReader {
 		} catch (SAXException | IOException e) {
 			e.printStackTrace();
 		}
-		
 		
 	}
 	
@@ -383,7 +395,6 @@ public class LoadXMLReader {
 									
 									if (item != null) {
 										if (item instanceof Equipment) {
-											System.out.println(itemName);
 											Equipment equipment = (Equipment) item;
 											int lifespawn = Integer.parseInt(itemElement.getAttribute("lifespawn").trim());
 											equipment.setLifespawn(lifespawn);
@@ -408,6 +419,19 @@ public class LoadXMLReader {
 							String roomName = currentRoomElement.getTextContent().trim();
 							Room currentRoom = this.rooms.get(roomName);
 							if (currentRoom != null) Game.getInstance().setCurrentRoom(currentRoom);
+						}
+					}
+					
+					// setting currentRoom
+					NodeList previousRoomNodes = playerElement.getElementsByTagName("previousRoom");
+					if (previousRoomNodes.getLength() != 0) {
+						Node previousRoomNode = previousRoomNodes.item(0);
+						
+						if (previousRoomNode.getNodeType() == Node.ELEMENT_NODE) {
+							Element previousRoomElement = (Element) previousRoomNode;
+							String roomName = previousRoomElement.getTextContent().trim();
+							Room previousRoom = this.rooms.get(roomName);
+							if (previousRoom != null) Game.getInstance().setPreviousRoom(previousRoom);
 						}
 					}
 				} // END if (playerNode.getNodeType() == Node.ELEMENT_NODE)
