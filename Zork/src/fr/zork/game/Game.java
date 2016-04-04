@@ -214,7 +214,6 @@ public class Game {
 						
 						if (result) {
 							this.difficulty = difficulty;
-							this.createZork();
 							
 							System.out.println("Nouvelle partie (" + this.difficulty + ")");
 							System.out.println();
@@ -325,6 +324,7 @@ public class Game {
 	
 	public void newGame() {
 		this.createPlayer();
+		this.createZork();
 		this.createWorld();
 	}
 	

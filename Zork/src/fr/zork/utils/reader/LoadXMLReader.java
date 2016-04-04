@@ -142,7 +142,7 @@ public class LoadXMLReader {
 									String itemName = itemElement.getTextContent();
 									Item item = items.get(itemName);
 									
-									if (item != null) room.getTreasures().add(item);
+									if (item != null) room.getTreasures().add((Item) item.clone());
 								}
 							}
 						}
@@ -172,11 +172,11 @@ public class LoadXMLReader {
 										String lootName = lootElement.getTextContent();
 										Item loot = items.get(lootName);
 										
-										if (loot != null) monster.getLoots().add(loot);
+										if (loot != null) monster.getLoots().add((Item) loot.clone());
 									}
 								}
 								
-								room.getMonsters().add(monster);
+								room.getMonsters().add((Monster) monster.clone());
 							}
 						}
 					}
@@ -399,9 +399,9 @@ public class LoadXMLReader {
 											int lifespawn = Integer.parseInt(itemElement.getAttribute("lifespawn").trim());
 											equipment.setLifespawn(lifespawn);
 											
-											player.getBag().add(equipment);
+											player.getBag().add((Equipment) equipment.clone());
 										} else {
-											player.getBag().add(item);
+											player.getBag().add((Item) item.clone());
 										}
 									}
 								}
