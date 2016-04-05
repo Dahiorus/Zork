@@ -482,8 +482,8 @@ public class Player extends MortalCharacter {
 	
 	public void levelUp() {
 		this.level++;
-		this.power += 3;
-		this.defense += 2;
+		this.power += 2;
+		this.defense += 1;
 		this.maxHp += 10;
 		this.setHp(this.hp + 10);
 	}

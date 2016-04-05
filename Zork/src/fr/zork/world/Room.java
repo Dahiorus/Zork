@@ -164,5 +164,13 @@ public class Room {
 		
 		return description.trim();
 	}
+	
+	
+	public void increaseMonstersStats() {
+		for (Monster monster : this.monsters) {
+			monster.setPower(monster.getPower() + 1);
+			monster.setDefense(monster.getDefense() + 1);
+		}
+	}
 
 }

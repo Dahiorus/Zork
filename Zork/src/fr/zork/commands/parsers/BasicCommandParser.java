@@ -1,5 +1,7 @@
 package fr.zork.commands.parsers;
 
+import java.util.List;
+
 import fr.zork.character.Monster;
 import fr.zork.character.Player;
 import fr.zork.commands.BasicCommand;
@@ -12,6 +14,7 @@ import fr.zork.item.enums.ArmorType;
 import fr.zork.item.enums.Hand;
 import fr.zork.utils.writer.SaveXMLWriter;
 import fr.zork.world.Room;
+import fr.zork.world.World;
 import fr.zork.world.enums.Dice;
 import fr.zork.world.enums.Exit;
 
@@ -420,6 +423,15 @@ public class BasicCommandParser extends CommandParser {
 			
 			System.out.println(player.getDescription());
 			System.out.println();
+			
+			// each 5 levels, increase all monsters power and defense
+			if (player.getLevel() % 5 == 0) {
+				List<Room> rooms = World.getInstance().getWorldMap();
+				
+				for (Room room : rooms) {
+					room.increaseMonstersStats();
+				}
+			}
 			
 			if (!opponent.getLoots().isEmpty()) {
 				System.out.println("Le monstre a laisse des items dans la salle.");
