@@ -1,7 +1,7 @@
 package fr.zork.utils.reader;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,10 +27,7 @@ import fr.zork.item.enums.Hand;
 import fr.zork.item.enums.WeaponType;
 
 public class ItemXMLReader {
-	private static File xmlItemFile, xmlUniqueItemFile;
-	private static DocumentBuilder builder;
-	private static Document document;
-	
+	private Document itemDocument, uniqueItemDocument;
 	private Map<String, Item> items, uniqueItems;
 	
 	private static class ItemXMLReaderHolder {
@@ -39,17 +36,19 @@ public class ItemXMLReader {
 
 	
 	private ItemXMLReader() {
-		String path = "resources/data/game/";
+		String path = "data/game/";
 		
-		xmlItemFile = new File(path + "items.xml");
-		xmlUniqueItemFile = new File(path + "uniqueItems.xml");
+		InputStream xmlItemFile		  = ItemXMLReader.class.getClassLoader().getResourceAsStream(path + "items.xml");
+		InputStream xmlUniqueItemFile = ItemXMLReader.class.getClassLoader().getResourceAsStream(path + "uniqueItems.xml");
 		
-		this.items = new HashMap<String, Item>();
+		this.items		 = new HashMap<String, Item>();
 		this.uniqueItems = new HashMap<String, Item>();
 		
 		try {
-			builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
+			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			this.itemDocument		= builder.parse(xmlItemFile);
+			this.uniqueItemDocument = builder.parse(xmlUniqueItemFile);
+		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 			System.exit(-1);
 		}
@@ -71,10 +70,10 @@ public class ItemXMLReader {
 	
 	public Map<String, Item> getItems() {
 		if (this.items.isEmpty()) {
-			this.readPotions(xmlItemFile, this.items);
-			this.readSpells(xmlItemFile, this.items);
-			this.readArmors(xmlItemFile, this.items);
-			this.readWeapons(xmlItemFile, this.items);
+			this.readPotions(this.itemDocument, this.items);
+			this.readSpells(this.itemDocument, this.items);
+			this.readArmors(this.itemDocument, this.items);
+			this.readWeapons(this.itemDocument, this.items);
 		}
 		
 		return this.items;
@@ -83,8 +82,8 @@ public class ItemXMLReader {
 	
 	public Map<String, Item> getUniqueItems() {
 		if (this.uniqueItems.isEmpty()) {
-			this.readArmors(xmlUniqueItemFile, this.uniqueItems);
-			this.readWeapons(xmlUniqueItemFile, this.uniqueItems);
+			this.readArmors(this.uniqueItemDocument, this.uniqueItems);
+			this.readWeapons(this.uniqueItemDocument, this.uniqueItems);
 		}
 		
 		return this.uniqueItems;
@@ -151,115 +150,91 @@ public class ItemXMLReader {
 	}
 	
 	
-	private void readPotions(File xmlFile, Map<String, Item> map) {
-		try {
-			document = builder.parse(xmlFile);
-			document.getDocumentElement().normalize();
+	private void readPotions(Document document, Map<String, Item> map) {
+		document.getDocumentElement().normalize();
+		
+		NodeList nodes = document.getElementsByTagName("potion");
+		
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node node = nodes.item(i);
 			
-			NodeList nodes = document.getElementsByTagName("potion");
-			
-			for (int i = 0; i < nodes.getLength(); i++) {
-				Node node = nodes.item(i);
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
+				Element element = (Element) node;
 				
-				if (node.getNodeType() == Node.ELEMENT_NODE) {
-					Element element = (Element) node;
-					
-					String name = element.getAttribute("name").trim();
-					int hpGain = Integer.parseInt(element.getAttribute("hpGain").trim());
-					
-					map.put(name, new Potion(name, hpGain));
-				}
+				String name = element.getAttribute("name").trim();
+				int hpGain = Integer.parseInt(element.getAttribute("hpGain").trim());
+				
+				map.put(name, new Potion(name, hpGain));
 			}
-		} catch (IOException | SAXException e) {
-			e.printStackTrace();
-			System.exit(-1);
 		}
 	}
 
 	
-	private void readSpells(File xmlFile, Map<String, Item> map) {
-		try {
-			document = builder.parse(xmlFile);
-			document.getDocumentElement().normalize();
+	private void readSpells(Document document, Map<String, Item> map) {
+		document.getDocumentElement().normalize();
+		
+		NodeList nodes = document.getElementsByTagName("spell");
+		
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node node = nodes.item(i);
 			
-			NodeList nodes = document.getElementsByTagName("spell");
-			
-			for (int i = 0; i < nodes.getLength(); i++) {
-				Node node = nodes.item(i);
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
+				Element element = (Element) node;
 				
-				if (node.getNodeType() == Node.ELEMENT_NODE) {
-					Element element = (Element) node;
-					
-					String name = element.getAttribute("name").trim();
-					int damage = Integer.parseInt(element.getAttribute("damage").trim());
-					
-					map.put(name, new Spell(name, damage));
-				}
+				String name = element.getAttribute("name").trim();
+				int damage = Integer.parseInt(element.getAttribute("damage").trim());
+				
+				map.put(name, new Spell(name, damage));
 			}
-		} catch (IOException | SAXException e) {
-			e.printStackTrace();
-			System.exit(-1);
 		}
 	}
 	
 	
-	private void readWeapons(File xmlFile, Map<String, Item> map) {
-		try {
-			document = builder.parse(xmlFile);
-			document.getDocumentElement().normalize();
+	private void readWeapons(Document document, Map<String, Item> map) {
+		document.getDocumentElement().normalize();
+		
+		NodeList nodes = document.getElementsByTagName("weapon");
+		
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node node = nodes.item(i);
 			
-			NodeList nodes = document.getElementsByTagName("weapon");
-			
-			for (int i = 0; i < nodes.getLength(); i++) {
-				Node node = nodes.item(i);
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
+				Element element = (Element) node;
 				
-				if (node.getNodeType() == Node.ELEMENT_NODE) {
-					Element element = (Element) node;
-					
-					String name = element.getAttribute("name").trim();
-					int bonus = Integer.parseInt(element.getAttribute("bonus").trim());
-					int lifespawn = Integer.parseInt(element.getAttribute("lifespawn").trim());
-					int levelMin = Integer.parseInt(element.getAttribute("levelMin").trim());
-					WeaponType type = WeaponType.valueOf(element.getElementsByTagName("type").item(0).getTextContent().trim());
-					Hand hands = Hand.valueOf(element.getElementsByTagName("hands").item(0).getTextContent().trim());
-					
-					map.put(name, new Weapon(name, bonus, lifespawn, levelMin, type, hands));
-				}
+				String name = element.getAttribute("name").trim();
+				int bonus = Integer.parseInt(element.getAttribute("bonus").trim());
+				int lifespawn = Integer.parseInt(element.getAttribute("lifespawn").trim());
+				int levelMin = Integer.parseInt(element.getAttribute("levelMin").trim());
+				WeaponType type = WeaponType.valueOf(element.getElementsByTagName("type").item(0).getTextContent().trim());
+				Hand hands = Hand.valueOf(element.getElementsByTagName("hands").item(0).getTextContent().trim());
+				
+				map.put(name, new Weapon(name, bonus, lifespawn, levelMin, type, hands));
 			}
-		} catch (IOException | SAXException e) {
-			e.printStackTrace();
-			System.exit(-1);
 		}
 		
 	}
 	
 	
-	private void readArmors(File xmlFile, Map<String, Item> map) {
-		try {
-			document = builder.parse(xmlFile);
-			document.getDocumentElement().normalize();
+	private void readArmors(Document document, Map<String, Item> map) {
+		document.getDocumentElement().normalize();
+		
+		NodeList nodes = document.getElementsByTagName("armor");
+		
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node node = nodes.item(i);
 			
-			NodeList nodes = document.getElementsByTagName("armor");
-			
-			for (int i = 0; i < nodes.getLength(); i++) {
-				Node node = nodes.item(i);
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
+				Element element = (Element) node;
 				
-				if (node.getNodeType() == Node.ELEMENT_NODE) {
-					Element element = (Element) node;
-					
-					String name = element.getAttribute("name").trim();
-					int bonus = Integer.parseInt(element.getAttribute("bonus").trim());
-					int lifespawn = Integer.parseInt(element.getAttribute("lifespawn").trim());
-					int levelMin = Integer.parseInt(element.getAttribute("levelMin").trim());
-					boolean isBig = Boolean.parseBoolean(element.getAttribute("isBig").trim());
-					ArmorType type = ArmorType.valueOf(element.getElementsByTagName("type").item(0).getTextContent().trim());
-					
-					map.put(name, new Armor(name, bonus, lifespawn, levelMin, type, isBig));
-				}
+				String name = element.getAttribute("name").trim();
+				int bonus = Integer.parseInt(element.getAttribute("bonus").trim());
+				int lifespawn = Integer.parseInt(element.getAttribute("lifespawn").trim());
+				int levelMin = Integer.parseInt(element.getAttribute("levelMin").trim());
+				boolean isBig = Boolean.parseBoolean(element.getAttribute("isBig").trim());
+				ArmorType type = ArmorType.valueOf(element.getElementsByTagName("type").item(0).getTextContent().trim());
+				
+				map.put(name, new Armor(name, bonus, lifespawn, levelMin, type, isBig));
 			}
-		} catch (IOException | SAXException e) {
-			e.printStackTrace();
-			System.exit(-1);
 		}	
 	}
 	

@@ -27,7 +27,7 @@ import fr.zork.world.Room;
 import fr.zork.world.World;
 
 public class LoadXMLReader {
-	private static final String PATH = "resources/data/saves/";
+	private static final String PATH = "data/saves/";
 	private static final String PLAYER_FILE = "player.xml";
 	private static final String ROOM_FILE = "rooms.xml";
 	private static final String EXIT_FILE = "exits.xml";

@@ -1,7 +1,7 @@
 package fr.zork.utils.reader;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,10 +27,7 @@ import fr.zork.item.Weapon;
 import fr.zork.world.enums.Dice;
 
 public class MonsterXMLReader {
-	private static File xmlMonsterFile, xmlBossFile;
-	private static DocumentBuilder builder;
-	private static Document document;
-	
+	private Document monsterDocument, bossDocument;
 	private Map<String, Monster> monsters, bosses;
 	
 	private static class MonsterXMLReaderHolder {
@@ -39,17 +36,19 @@ public class MonsterXMLReader {
 	
 	
 	private MonsterXMLReader() {
-		String path = "resources/data/game/";
+		String path = "data/game/";
 		
-		xmlMonsterFile = new File(path + "monsters.xml");
-		xmlBossFile    = new File(path + "boss.xml");
+		InputStream monsterFile = MonsterXMLReader.class.getClassLoader().getResourceAsStream(path + "monsters.xml");
+		InputStream bossFile	= MonsterXMLReader.class.getClassLoader().getResourceAsStream(path + "boss.xml");
 		
 		this.monsters = new HashMap<String, Monster>();
-		this.bosses = new HashMap<String, Monster>();
+		this.bosses   = new HashMap<String, Monster>();
 		
 		try {
-			builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
+			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			this.monsterDocument = builder.parse(monsterFile);
+			this.bossDocument	 = builder.parse(bossFile);
+		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 			System.exit(-1);
 		}
@@ -71,7 +70,7 @@ public class MonsterXMLReader {
 	
 	public Map<String, Monster> getMonsters() {
 		if (this.monsters.isEmpty()) {
-			this.readMonsters(xmlMonsterFile, this.monsters);
+			this.readMonsters(this.monsterDocument, this.monsters);
 		}
 		
 		return this.monsters;
@@ -82,7 +81,7 @@ public class MonsterXMLReader {
 		List<Monster> monsters = new ArrayList<Monster>();
 		
 		if (this.monsters.isEmpty()) {
-			this.readMonsters(xmlMonsterFile, this.monsters);
+			this.readMonsters(this.monsterDocument, this.monsters);
 		}
 		
 		for (Monster monster : this.monsters.values()) {
@@ -95,108 +94,102 @@ public class MonsterXMLReader {
 	
 	public Map<String, Monster> getBosses() {
 		if (this.bosses.isEmpty()) {
-			this.readMonsters(xmlBossFile, this.bosses);
+			this.readMonsters(this.bossDocument, this.bosses);
 		}
 		
 		return this.bosses;
 	}
 
 	
-	private void readMonsters(File xmlFile, Map<String, Monster> map) {
+	private void readMonsters(Document document, Map<String, Monster> map) {
 		Map<String, Item> uniqueItems = ItemXMLReader.getInstance().getUniqueItems();
 		Map<String, Item> allItems = ItemXMLReader.getInstance().getAllItems();
 
-		try {
-			document = builder.parse(xmlFile);
-			document.getDocumentElement().normalize();
+		document.getDocumentElement().normalize();
+		
+		NodeList nodes = document.getElementsByTagName("monster");
+		
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node node = nodes.item(i);
 			
-			NodeList nodes = document.getElementsByTagName("monster");
-			
-			for (int i = 0; i < nodes.getLength(); i++) {
-				Node node = nodes.item(i);
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
+				Element element = (Element) node;
 				
-				if (node.getNodeType() == Node.ELEMENT_NODE) {
-					Element element = (Element) node;
+				// creating a monster from read data
+				String name = element.getAttribute("name").trim();
+				int maxHp = Integer.parseInt(element.getAttribute("maxHp").trim());
+				int power = Integer.parseInt(element.getAttribute("power").trim());
+				int defense = Integer.parseInt(element.getAttribute("defense").trim());
+				Level level = Level.valueOf(element.getAttribute("level").trim());
+				
+				Monster monster = new Monster(name, maxHp, power, defense, level);
+				
+				// adding weapon and armor to the monster
+				NodeList weaponNodes = element.getElementsByTagName("weapon");
+				if (weaponNodes.getLength() != 0) {
+					String weaponName = weaponNodes.item(0).getTextContent().trim();
 					
-					// creating a monster from read data
-					String name = element.getAttribute("name").trim();
-					int maxHp = Integer.parseInt(element.getAttribute("maxHp").trim());
-					int power = Integer.parseInt(element.getAttribute("power").trim());
-					int defense = Integer.parseInt(element.getAttribute("defense").trim());
-					Level level = Level.valueOf(element.getAttribute("level").trim());
-					
-					Monster monster = new Monster(name, maxHp, power, defense, level);
-					
-					// adding weapon and armor to the monster
-					NodeList weaponNodes = element.getElementsByTagName("weapon");
-					if (weaponNodes.getLength() != 0) {
-						String weaponName = weaponNodes.item(0).getTextContent().trim();
-						
-						// Retrieving Weapon from name
-						Item item = allItems.get(weaponName);
-						if (item != null) {
-							if (item instanceof Weapon) {
-								Weapon weapon = (Weapon) item;
-								monster.setWeapon(weapon);
-							}
+					// Retrieving Weapon from name
+					Item item = allItems.get(weaponName);
+					if (item != null) {
+						if (item instanceof Weapon) {
+							Weapon weapon = (Weapon) item;
+							monster.setWeapon(weapon);
 						}
 					}
+				}
+				
+				NodeList armorNodes = element.getElementsByTagName("armor");
+				if (armorNodes.getLength() != 0) {
+					String armorName = armorNodes.item(0).getTextContent().trim();
 					
-					NodeList armorNodes = element.getElementsByTagName("armor");
-					if (armorNodes.getLength() != 0) {
-						String armorName = armorNodes.item(0).getTextContent().trim();
-						
-						// retrieving Armor from name
-						Item item = allItems.get(armorName);
-						if (item != null) {
-							if (item instanceof Armor) {
-								Armor armor = (Armor) item;
-								monster.setArmor(armor);
-							}
+					// retrieving Armor from name
+					Item item = allItems.get(armorName);
+					if (item != null) {
+						if (item instanceof Armor) {
+							Armor armor = (Armor) item;
+							monster.setArmor(armor);
 						}
 					}
+				}
+				
+				// adding random loots to the monster
+				int nbLoots = 0;
+				
+				if (document.equals(this.monsterDocument)) {
+					nbLoots = Dice.D4.roll();
+				} else {
+					NodeList lootNodes = element.getElementsByTagName("loots");
 					
-					// adding random loots to the monster
-					int nbLoots = 0;
-					
-					if (xmlFile.equals(xmlMonsterFile)) {
-						nbLoots = Dice.D4.roll();
-					} else {
-						NodeList lootNodes = element.getElementsByTagName("loots");
+					if (lootNodes.getLength() != 0) {
+						Node lootNode = lootNodes.item(0);
 						
-						if (lootNodes.getLength() != 0) {
-							Node lootNode = lootNodes.item(0);
-							
-							if (lootNode.getNodeType() == Node.ELEMENT_NODE) {
-								Element lootElement = (Element) lootNode;
-								nbLoots = Integer.parseInt(lootElement.getAttribute("number").trim());
-							}
+						if (lootNode.getNodeType() == Node.ELEMENT_NODE) {
+							Element lootElement = (Element) lootNode;
+							nbLoots = Integer.parseInt(lootElement.getAttribute("number").trim());
 						}
 					}
+				}
+				
+				for (int j = 0; j < nbLoots; j++) {
+					List<Item> itemList = this.getRandomItemsByClass(this.chooseClass());
+					int index = Dice.D100.roll() % itemList.size();
+					monster.getLoots().add((Item) itemList.get(index).clone());
+				}
+				
+				// setting unique items loot to the monster's loots
+				NodeList uniqueNodes = element.getElementsByTagName("unique");
+				for (int k = 0; k < uniqueNodes.getLength(); k++) {
+					String itemName = uniqueNodes.item(k).getTextContent().trim();
 					
-					for (int j = 0; j < nbLoots; j++) {
-						List<Item> itemList = this.getRandomItemsByClass(this.chooseClass());
-						int index = Dice.D100.roll() % itemList.size();
-						monster.getLoots().add((Item) itemList.get(index).clone());
-					}
-					
-					// setting unique items loot to the monster's loots
-					NodeList uniqueNodes = element.getElementsByTagName("unique");
-					for (int k = 0; k < uniqueNodes.getLength(); k++) {
-						String itemName = uniqueNodes.item(k).getTextContent().trim();
-						
-						// retrieving unique item from name
-						Item item = uniqueItems.get(itemName);
-						if (item != null) monster.getLoots().add(item);
-					}
-					
-					map.put(name, monster); // adding the new created monster
-				} // END if (node.getNodeType() == Node.ELEMENT_NODE)
-			} // END for (int i = 0; i < nodes.getLength(); i++)
-		} catch (SAXException | IOException e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
+					// retrieving unique item from name
+					Item item = uniqueItems.get(itemName);
+					if (item != null) monster.getLoots().add(item);
+				}
+				
+				map.put(name, monster); // adding the new created monster
+			} // END if (node.getNodeType() == Node.ELEMENT_NODE)
+		} // END for (int i = 0; i < nodes.getLength(); i++)
 	}
 	
 	
