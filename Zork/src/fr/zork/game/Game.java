@@ -32,6 +32,7 @@ public class Game {
 	
 	public static final String NEW  = "nouveau";
 	public static final String LOAD = "charger";
+	public static final String QUIT = "quitter";
 	
 	private enum ZorkStats {
 		EASY(300, 75, 65),
@@ -177,6 +178,7 @@ public class Game {
 		System.out.println("-                                                                   -");
 		System.out.println("-  * Nouvelle partie :    'nouveau [facile | normal | difficile]'   -");
 		System.out.println("-  * Charger une partie : 'charger [nom_partie]'                    -");
+		System.out.println("-  * Quitter le jeu :     'quitter'                                 -");
 		System.out.println("-                                                                   -");
 		System.out.println("---------------------------------------------------------------------");
 		System.out.println();
@@ -237,6 +239,9 @@ public class Game {
 							result = false;
 						}
 					}
+				} else if (response.equals(QUIT)) {
+					System.out.println("Vous quittez la partie.");
+					System.exit(0);
 				} else {
 					System.out.println("Cette option ne se trouve pas dans le menu.");
 					System.out.println();
@@ -362,10 +367,15 @@ public class Game {
 		
 		if (end) {
 			this.displayQuit();
-		} else if (player.isDead()) {
-			this.displayLose();
-		} else if (this.wins()) {
-			this.displayWin();
+			System.exit(0);
+		} else {
+			if (player.isDead()) {
+				this.displayLose();
+			} else if (this.wins()) {
+				this.displayWin();
+			}
+			
+			System.out.println();
 		}
 		
 		System.out.println();

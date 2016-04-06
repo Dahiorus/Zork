@@ -199,12 +199,12 @@ public class Player extends MortalCharacter {
 	
 	
 	public void setStarterStuff() {
-		Weapon epeeCourte = new Weapon("epee courte", 22, 18, 1, WeaponType.SWORD, Hand.RIGHT);
+		Weapon epeeCourte = new Weapon("epee courte", 22, 18, 1, WeaponType.SWORD, Hand.LEFT);
 		Armor plastronCuir = new Armor("plastron de cuir", 10, 15, 1, ArmorType.BODY, false);
 		Potion potionVerte = new Potion("potion verte", 50);
 		Spell foudre = new Spell("foudre", 30);
 		
-		this.setRightHand((Weapon) epeeCourte.clone());
+		this.setLeftHand((Weapon) epeeCourte.clone());
 		this.setBody((Armor) plastronCuir.clone());
 		
 		this.getBag().add((Item) potionVerte.clone());

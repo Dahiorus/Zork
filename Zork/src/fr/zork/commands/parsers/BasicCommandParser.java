@@ -376,6 +376,12 @@ public class BasicCommandParser extends CommandParser {
 		
 		System.out.println("Vous affrontez : " + opponent.getName());
 		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			Thread.currentThread().interrupt();
+		}
+		
 		// combat loop
 		while (!player.isDead() && !opponent.isDead() && turn != CombatCommandParser.END) {
 			if (turn == CombatCommandParser.PLAYER) {
@@ -456,11 +462,11 @@ public class BasicCommandParser extends CommandParser {
 		String name = command.getOptions()[0];
 		
 		if (SaveXMLWriter.getInstance().saveGame(name)) {
-			System.out.println("Votre partie a été enregistrée dans " + name + ".");
+			System.out.println("Votre partie a ete enregistree dans " + name + ".");
 			return true;
 		}
 		
-		System.out.println("Un problème est survenu lors de la sauvegarde.");
+		System.out.println("Un probleme est survenu lors de la sauvegarde.");
 		return false;
 	}
 	

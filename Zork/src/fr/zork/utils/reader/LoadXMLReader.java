@@ -28,7 +28,7 @@ import fr.zork.world.Room;
 import fr.zork.world.World;
 
 public class LoadXMLReader {
-	private static final String SOURCE_DIRECTORY = "game/saves/";
+	private static final String SOURCE_DIRECTORY = ".game/saves/";
 	private static final String PLAYER_FILE = "player.xml";
 	private static final String ROOM_FILE = "rooms.xml";
 	
@@ -280,7 +280,7 @@ public class LoadXMLReader {
 							Item item = items.get(weaponName);
 							
 							if (item != null && item instanceof Weapon) {
-								Weapon rightHand = (Weapon) item;
+								Weapon rightHand = (Weapon) item.clone();
 								rightHand.setLifespawn(lifespawn);
 								player.setRightHand(rightHand);
 							} 
@@ -298,7 +298,7 @@ public class LoadXMLReader {
 							Item item = items.get(weaponName);
 							
 							if (item != null && item instanceof Weapon) {
-								Weapon leftHand = (Weapon) item;
+								Weapon leftHand = (Weapon) item.clone();
 								leftHand.setLifespawn(lifespawn);
 								player.setLeftHand(leftHand);
 							} 
@@ -317,7 +317,7 @@ public class LoadXMLReader {
 							Item item = items.get(armorName);
 							
 							if (item != null && item instanceof Armor) {
-								Armor head = (Armor) item;
+								Armor head = (Armor) item.clone();
 								head.setLifespawn(lifespawn);
 								player.setHead(head);
 							} 
@@ -335,7 +335,7 @@ public class LoadXMLReader {
 							Item item = items.get(armorName);
 							
 							if (item != null && item instanceof Armor) {
-								Armor body = (Armor) item;
+								Armor body = (Armor) item.clone();
 								body.setLifespawn(lifespawn);
 								player.setBody(body);
 							} 
@@ -353,7 +353,7 @@ public class LoadXMLReader {
 							Item item = items.get(armorName);
 							
 							if (item != null && item instanceof Armor) {
-								Armor arm = (Armor) item;
+								Armor arm = (Armor) item.clone();
 								arm.setLifespawn(lifespawn);
 								player.setArm(arm);
 							} 
@@ -371,7 +371,7 @@ public class LoadXMLReader {
 							Item item = items.get(armorName);
 							
 							if (item != null && item instanceof Armor) {
-								Armor leg = (Armor) item;
+								Armor leg = (Armor) item.clone();
 								leg.setLifespawn(lifespawn);
 								player.setLeg(leg);
 							} 

@@ -26,7 +26,7 @@ import fr.zork.world.Room;
 import fr.zork.world.World;
 
 public class SaveXMLWriter {
-	private static final String TARGET_DIRECTORY = "game/saves/";
+	private static final String TARGET_DIRECTORY = ".game/saves/";
 	private static final String PLAYER_FILE = "player.xml";
 	private static final String ROOM_FILE = "rooms.xml";
 	
@@ -88,46 +88,52 @@ public class SaveXMLWriter {
 		root.setAttribute("defense", String.valueOf(player.getDefense()));
 		
 		// weapon attributes "rightHand", "leftHand"
+		Element weapons = document.createElement("weapons");
+		root.appendChild(weapons);
+		
 		if (player.getRightHand() != null) {
 			Element rightHand = document.createElement("rightHand");
+			weapons.appendChild(rightHand);
 			rightHand.appendChild(document.createTextNode(player.getRightHand().getName()));
-			root.appendChild(rightHand);
 			rightHand.setAttribute("lifespawn", String.valueOf(player.getRightHand().getLifespawn()));
 		}
 		
 		if (player.getLeftHand() != null) {
 			Element leftHand = document.createElement("leftHand");
+			weapons.appendChild(leftHand);
 			leftHand.appendChild(document.createTextNode(player.getLeftHand().getName()));
-			root.appendChild(leftHand);
 			leftHand.setAttribute("lifespawn", String.valueOf(player.getLeftHand().getLifespawn()));
 		}
 		
 		// armor attributes "head", "body", "arm", "leg"
+		Element armors = document.createElement("armors");
+		root.appendChild(armors);
+		
 		if (player.getHead() != null) {
 			Element head = document.createElement("head");
+			armors.appendChild(head);
 			head.appendChild(document.createTextNode(player.getHead().getName()));
-			root.appendChild(head);
 			head.setAttribute("lifespawn", String.valueOf(player.getHead().getLifespawn()));
 		}
 		
 		if (player.getBody() != null) {
 			Element body = document.createElement("body");
+			armors.appendChild(body);
 			body.appendChild(document.createTextNode(player.getBody().getName()));
-			root.appendChild(body);
 			body.setAttribute("lifespawn", String.valueOf(player.getBody().getLifespawn()));
 		}
 		
 		if (player.getArm() != null) {
 			Element arm = document.createElement("arm");
+			armors.appendChild(arm);
 			arm.appendChild(document.createTextNode(player.getArm().getName()));
-			root.appendChild(arm);
 			arm.setAttribute("lifespawn", String.valueOf(player.getArm().getLifespawn()));
 		}
 		
 		if (player.getLeg() != null) {
 			Element leg = document.createElement("leg");
+			armors.appendChild(leg);
 			leg.appendChild(document.createTextNode(player.getLeg().getName()));
-			root.appendChild(leg);
 			leg.setAttribute("lifespawn", String.valueOf(player.getLeg().getLifespawn()));
 		}
 		
