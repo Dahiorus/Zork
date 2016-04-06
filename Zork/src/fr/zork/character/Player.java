@@ -31,18 +31,23 @@ public class Player extends MortalCharacter {
 	
 	private Player() {
 		super();
-		
-		this.level = 1;
-		this.maxHp = this.hp = 200;
-		this.power = 30;
-		this.defense = 25;
-		
 		this.bag = new ArrayList<Item>();
 	}
 	
 	
 	public static Player getInstance() {
 		return PlayerHolder.instance;
+	}
+	
+	
+	public void newPlayer(String name) {
+		this.level = 1;
+		this.maxHp = this.hp = 200;
+		this.power = 30;
+		this.defense = 25;
+
+		this.setName(name);
+		this.setStarterStuff();
 	}
 	
 

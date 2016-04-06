@@ -129,16 +129,17 @@ public class Game {
 	 * Demande à l'utilisateur d'entrer un nom pour le joueur.
 	 */
 	public void createPlayer() {
-		System.out.println("Entrez un nom de joueur.");
-		System.out.print("> ");
-		
-		String entryLine;
+		String entryLine = null;
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
 		try {
-			entryLine = reader.readLine();
-			player.setName(entryLine.trim());
-			player.setStarterStuff();
+			while (entryLine == null) {
+				System.out.println("Entrez un nom de joueur.");
+				System.out.print("> ");
+				entryLine = reader.readLine();
+			}
+			
+			player.newPlayer(entryLine.trim());
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(-1);
