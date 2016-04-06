@@ -2,6 +2,7 @@ package fr.zork.utils.reader;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,12 +28,12 @@ import fr.zork.world.Room;
 import fr.zork.world.World;
 
 public class LoadXMLReader {
-	private static final String PATH = "data/saves/";
+	private static final String SOURCE_DIRECTORY = "game/saves/";
 	private static final String PLAYER_FILE = "player.xml";
 	private static final String ROOM_FILE = "rooms.xml";
-	private static final String EXIT_FILE = "exits.xml";
 	
-	private File directory, xmlPlayerFile, xmlRoomFile, xmlExitFile;
+	private File directory, xmlPlayerFile, xmlRoomFile;
+	private InputStream exitFile;
 	private static DocumentBuilder builder;
 	
 	private Map<String, Room> rooms;
@@ -44,6 +45,7 @@ public class LoadXMLReader {
 
 	private LoadXMLReader() {
 		this.rooms = new HashMap<String, Room>();
+		this.exitFile = LoadXMLReader.class.getClassLoader().getResourceAsStream("data/game/exits.xml");
 		
 		try {
 			builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -59,7 +61,7 @@ public class LoadXMLReader {
 	
 	
 	public boolean loadGame(final String name) {
-		this.directory = new File(PATH + name);
+		this.directory = new File(SOURCE_DIRECTORY + name);
 		
 		if (!this.directory.exists()) return false;
 		
@@ -74,7 +76,7 @@ public class LoadXMLReader {
 	
 	
 	private void readRooms(final String name) {
-		this.xmlRoomFile = new File(PATH + name + "/" + ROOM_FILE);
+		this.xmlRoomFile = new File(SOURCE_DIRECTORY + name + "/" + ROOM_FILE);
 		
 		Map<String, Item> items = ItemXMLReader.getInstance().getAllItems();
 		Map<String, Monster> monsters = MonsterXMLReader.getInstance().getAllMonsters();
@@ -192,10 +194,8 @@ public class LoadXMLReader {
 	
 	
 	private void readExits(final String name) {
-		this.xmlExitFile = new File(PATH + name + "/" + EXIT_FILE);
-		
 		try {
-			Document document = builder.parse(this.xmlExitFile);
+			Document document = builder.parse(this.exitFile);
 			document.getDocumentElement().normalize();
 			
 			NodeList exitNodes = document.getElementsByTagName("exit");
@@ -232,8 +232,10 @@ public class LoadXMLReader {
 						
 						source.setExits(north, east, west);
 					}
-				}
-			}
+				} // END if (exitNode.getNodeType() == Node.ELEMENT_NODE)
+			} // END for (int i = 0; i < exitNodes.getLength(); i++)
+			
+			this.exitFile.close();
 		} catch (SAXException | IOException e) {
 			e.printStackTrace();
 		}
@@ -242,7 +244,7 @@ public class LoadXMLReader {
 	
 	
 	private void readPlayer(final String name) {
-		this.xmlPlayerFile = new File(PATH + name + "/" + PLAYER_FILE);
+		this.xmlPlayerFile = new File(SOURCE_DIRECTORY + name + "/" + PLAYER_FILE);
 		
 		Map<String, Item> items = ItemXMLReader.getInstance().getItems();
 		items.putAll(ItemXMLReader.getInstance().getUniqueItems());

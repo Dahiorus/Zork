@@ -24,15 +24,13 @@ import fr.zork.item.Equipment;
 import fr.zork.item.Item;
 import fr.zork.world.Room;
 import fr.zork.world.World;
-import fr.zork.world.enums.Exit;
 
 public class SaveXMLWriter {
-	private static final String PATH = "resources/data/saves/";
+	private static final String TARGET_DIRECTORY = "game/saves/";
 	private static final String PLAYER_FILE = "player.xml";
 	private static final String ROOM_FILE = "rooms.xml";
-	private static final String EXIT_FILE = "exits.xml";
 	
-	private File directory, xmlPlayerFile, xmlRoomFile, xmlExitFile;
+	private File directory, xmlPlayerFile, xmlRoomFile;
 	
 	private static DocumentBuilder builder;
 	
@@ -56,7 +54,7 @@ public class SaveXMLWriter {
 	
 	
 	public boolean saveGame(final String name) {
-		this.directory = new File(PATH + name);
+		this.directory = new File(TARGET_DIRECTORY + name);
 		
 		if (!this.directory.exists()) {
 			this.directory.mkdir();
@@ -64,7 +62,6 @@ public class SaveXMLWriter {
 		
 		this.writePlayer(name);
 		this.writeRooms(name);
-		this.writeExits(name);
 		
 		return this.directory.list().length > 0;
 	}
@@ -74,7 +71,7 @@ public class SaveXMLWriter {
 		Player player = Player.getInstance();
 		Document document = builder.newDocument();
 		
-		this.xmlPlayerFile = new File(PATH + name + "/" + PLAYER_FILE);
+		this.xmlPlayerFile = new File(TARGET_DIRECTORY + name + "/" + PLAYER_FILE);
 		
 		if (this.xmlPlayerFile.exists()) this.xmlPlayerFile.delete();
 		
@@ -158,9 +155,11 @@ public class SaveXMLWriter {
 		
 		
 		// element "previousRoom"
-		Element previousRoomElement = document.createElement("previousRoom");
-		root.appendChild(previousRoomElement);
-		previousRoomElement.appendChild(document.createTextNode(Game.getInstance().getPreviousRoom().getName()));
+		if (Game.getInstance().getPreviousRoom() != null) {
+			Element previousRoomElement = document.createElement("previousRoom");
+			root.appendChild(previousRoomElement);
+			previousRoomElement.appendChild(document.createTextNode(Game.getInstance().getPreviousRoom().getName()));
+		}
 		
 		document.getDocumentElement().normalize();
 		
@@ -185,7 +184,7 @@ public class SaveXMLWriter {
 		World world = World.getInstance();
 		Document document = builder.newDocument();
 		
-		this.xmlRoomFile = new File(PATH + name + "/" + ROOM_FILE);
+		this.xmlRoomFile = new File(TARGET_DIRECTORY + name + "/" + ROOM_FILE);
 		
 		if (this.xmlRoomFile.exists()) this.xmlRoomFile.delete();
 		
@@ -199,9 +198,12 @@ public class SaveXMLWriter {
 		difficulty.setTextContent(Game.getInstance().getDifficulty());
 		
 		// room elements "room"
+		Element rooms = document.createElement("rooms");
+		root.appendChild(rooms);
+		
 		for (Room room : world.getWorldMap()) {
 			Element roomElement = document.createElement("room");
-			root.appendChild(roomElement);
+			rooms.appendChild(roomElement);
 			
 			// attribute "name"
 			roomElement.setAttribute("name", room.getName());
@@ -215,7 +217,7 @@ public class SaveXMLWriter {
 			
 			// element "treasures"
 			if (!room.getTreasures().isEmpty()) {
-				Element treasures = document.createElement("tresures");
+				Element treasures = document.createElement("treasures");
 				roomElement.appendChild(treasures);
 				
 				for (Item item : room.getTreasures()) {
@@ -266,64 +268,6 @@ public class SaveXMLWriter {
 			} catch (TransformerException e) {
 				e.printStackTrace();
 			}
-		}
-	}
-	
-	
-	private void writeExits(final String name) {
-		World world = World.getInstance();
-		Document document = builder.newDocument();
-		
-		this.xmlExitFile = new File(PATH + name + "/" + EXIT_FILE);
-		
-		if (this.xmlExitFile.exists()) this.xmlExitFile.delete();
-		
-		// root element "exits"
-		Element root = document.createElement("exits");
-		document.appendChild(root);
-		
-		// element "exit"
-		for (Room room : world.getWorldMap()) {
-			if (!room.getExits().isEmpty()) {
-				Element exit = document.createElement("exit");
-				root.appendChild(exit);
-				exit.setAttribute("source", room.getName());
-				
-				if (room.hasExit(Exit.NORTH)) {
-					Element north = document.createElement("north");
-					exit.appendChild(north);
-					north.appendChild(document.createTextNode(room.getExits().get(Exit.NORTH).getName()));
-				}
-				
-				if (room.hasExit(Exit.WEST)) {
-					Element west = document.createElement("west");
-					exit.appendChild(west);
-					west.appendChild(document.createTextNode(room.getExits().get(Exit.WEST).getName()));
-				}
-				
-				if (room.hasExit(Exit.EAST)) {
-					Element east = document.createElement("east");
-					exit.appendChild(east);
-					east.appendChild(document.createTextNode(room.getExits().get(Exit.EAST).getName()));
-				}
-			}
-		}
-			
-		document.getDocumentElement().normalize();
-		
-		// write the document into file
-		try {
-			Transformer transformer = TransformerFactory.newInstance().newTransformer();
-			DOMSource source = new DOMSource(document);
-			StreamResult result = new StreamResult(this.xmlExitFile);
-			
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-			transformer.transform(source, result);
-		} catch (TransformerConfigurationException | TransformerFactoryConfigurationError e) {
-			e.printStackTrace();
-		} catch (TransformerException e) {
-			e.printStackTrace();
 		}
 	}
 
