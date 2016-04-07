@@ -3,13 +3,14 @@ import java.util.List;
 
 import fr.zork.character.Monster;
 import fr.zork.game.Game;
+import fr.zork.item.Item;
 import fr.zork.utils.reader.WorldXMLReader;
 import fr.zork.world.Room;
 
 public class TestXMLReader {
 
 	public static void main(String[] args) {
-		List<Room> rooms = WorldXMLReader.getInstance().getWorldMap(Game.HARD, 30);
+		List<Room> rooms = WorldXMLReader.getInstance().getWorldMap(Game.NORMAL, 20);
 		System.out.println("Nombre de salles lues: " + rooms.size());
 		
 		int nbMonsters = 0;
@@ -22,7 +23,13 @@ public class TestXMLReader {
 			for (Monster monster : room.getMonsters()) {
 				System.out.println("  " + monster.getName() + " " + monster.getLevel());
 				System.out.println("  HP=" + monster.getHp() + ", Force=" + monster.getEffectivePower() + ", Defense=" + monster.getEffectiveDefense());
-				System.out.println("  Nombre de loots : " + monster.getLoots().size());
+				
+				System.out.print("Loots=[");
+				for (Item loot : monster.getLoots()) {
+					System.out.print(loot.getName() + ", ");
+				}
+				System.out.println("]");
+				
 				System.out.println();
 			}
 			System.out.println();

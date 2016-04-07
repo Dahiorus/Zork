@@ -280,8 +280,8 @@ public class Player extends MortalCharacter {
 		// target defense calculation
 		totalDmg -= target.getEffectiveDefense();
 		
-		if (totalDmg > 0) target.receiveDamage(totalDmg);
-		else critical = false;
+		target.receiveDamage(totalDmg);
+		if (totalDmg < 0) critical = false;
 		
 		this.decrementWeaponLifespawn();
 		
@@ -300,20 +300,37 @@ public class Player extends MortalCharacter {
 	public void receiveDamage(int damage) {
 		super.receiveDamage(damage);
 		
-		int choice = Dice.D4.roll();
-		switch (choice) {
-			case 1:
-				if (this.head != null) this.head.decrementLifespawn();
-				break;
-			case 2:
-				if (this.body != null) this.body.decrementLifespawn();
-				break;
-			case 3:
-				if (this.arm != null) this.arm.decrementLifespawn();
-				break;
-			case 4:
-				if (this.leg != null) this.leg.decrementLifespawn();
-				break;
+		boolean done = false;
+		
+		while (!done) {
+			int choice = Dice.D4.roll();
+			
+			switch (choice) {
+				case 1:
+					if (this.head != null) {
+						this.head.decrementLifespawn();
+						done = true;
+					}
+					break;
+				case 2:
+					if (this.body != null) {
+						this.body.decrementLifespawn();
+						done = true;
+					}
+					break;
+				case 3:
+					if (this.arm != null) {
+						this.arm.decrementLifespawn();
+						done = true;
+					}
+					break;
+				case 4:
+					if (this.leg != null) {
+						this.leg.decrementLifespawn();
+						done = true;
+					}
+					break;
+			}
 		}
 	}
 	

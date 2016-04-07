@@ -178,6 +178,7 @@ public class LoadXMLReader {
 									}
 								}
 								
+								monster.setNbLoots(monster.getLoots().size());
 								room.getMonsters().add((Monster) monster.clone());
 							}
 						}

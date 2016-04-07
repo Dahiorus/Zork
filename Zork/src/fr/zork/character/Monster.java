@@ -11,6 +11,7 @@ import fr.zork.world.Room;
 import fr.zork.world.enums.Dice;
 
 public class Monster extends MortalCharacter implements Cloneable {
+	private int nbLoots;
 	private List<Item> loots;
 	private Weapon weapon;
 	private Armor armor;
@@ -34,6 +35,16 @@ public class Monster extends MortalCharacter implements Cloneable {
 		return loots;
 	}
 	
+
+	public int getNbLoots() {
+		return nbLoots;
+	}
+
+
+	public void setNbLoots(int nbLoots) {
+		this.nbLoots = nbLoots;
+	}
+
 
 	/**
 	 * @return the weapon
@@ -211,8 +222,8 @@ public class Monster extends MortalCharacter implements Cloneable {
 		// target defense calculation
 		totalDmg -= target.getEffectiveDefense();
 		
-		if (totalDmg > 0) target.receiveDamage(totalDmg);
-		else critical = false;
+		target.receiveDamage(totalDmg);
+		if (totalDmg < 0) critical = false;
 		
 		return critical;
 	}

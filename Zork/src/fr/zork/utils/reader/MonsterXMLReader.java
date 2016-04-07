@@ -153,11 +153,11 @@ public class MonsterXMLReader {
 					}
 				}
 				
-				// adding random loots to the monster
+				// set number of loots to the monster
 				int nbLoots = 0;
 				
 				if (document.equals(this.monsterDocument)) {
-					nbLoots = Dice.D4.roll();
+					nbLoots = Dice.D100.roll() % 3;
 				} else {
 					NodeList lootNodes = element.getElementsByTagName("loots");
 					
@@ -171,10 +171,15 @@ public class MonsterXMLReader {
 					}
 				}
 				
-				for (int j = 0; j < nbLoots; j++) {
-					List<Item> itemList = this.getRandomItemsByClass(this.chooseClass());
-					int index = Dice.D100.roll() % itemList.size();
-					monster.getLoots().add((Item) itemList.get(index).clone());
+				monster.setNbLoots(nbLoots);
+				
+				// set random loots to boss
+				if (monster.getLevel() == Level.EXTREME) {
+					for (int j = 0; j < nbLoots; j++) {
+						List<Item> itemList = this.getRandomItemsByClass(this.chooseClass());
+						int index = Dice.D100.roll() % itemList.size();
+						monster.getLoots().add((Item) itemList.get(index).clone());
+					}
 				}
 				
 				// setting unique items loot to the monster's loots

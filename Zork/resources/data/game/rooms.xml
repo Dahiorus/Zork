@@ -136,7 +136,7 @@
 	
 	<room name="17eme etage">
 		<curse>true</curse>
-		<treasures number="3"/>
+		<treasures number="2"/>
 	</room>
 	<room name="Couloir hante">
 		<monsters number="2" level="normal"/>
@@ -232,7 +232,7 @@
 	</room>
 	<room name="Chambre de tresor">
 		<curse>true</curse>
-		<treasures number="3"/>
+		<treasures number="2"/>
 		<unique>Heaume de Mithril</unique>
 	</room>
 	

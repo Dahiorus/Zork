@@ -31,8 +31,6 @@ import fr.zork.world.Room;
 import fr.zork.world.enums.Dice;
 
 public class WorldXMLReader {
-	//private static File xmlCursesFile, xmlExitsFile, xmlRoomsFile;
-	//private static DocumentBuilder builder;
 	private Document curseDocument, exitDocument, roomDocument;
 	private List<Room> worldMap;
 	private Map<String, Room> rooms;
@@ -192,7 +190,16 @@ public class WorldXMLReader {
 						
 						for (int j = 0; j < nbMonsters; j++) {
 							int index = (Dice.D100.roll() * Dice.D100.roll()) % monsterList.size();
-							room.getMonsters().add((Monster) monsterList.get(index).clone());
+							Monster monster = (Monster) monsterList.get(index).clone();
+							
+							// adding monster's loots
+							for (int n = 0; n < monster.getNbLoots(); n++) {
+								List<Item> itemList = this.getRandomItemsByClass(this.chooseClass());
+								int m = Dice.D100.roll() % itemList.size();
+								monster.getLoots().add((Item) itemList.get(m).clone());
+							}
+							
+							room.getMonsters().add(monster);
 						}
 					}
 				}

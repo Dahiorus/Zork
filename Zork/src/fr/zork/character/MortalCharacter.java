@@ -138,7 +138,6 @@ public abstract class MortalCharacter extends Character {
 	
 	
 	public void receiveDamage(int damage) {
-		if (damage <= 0) return;
 		this.setHp(this.hp - damage);
 	}
 	

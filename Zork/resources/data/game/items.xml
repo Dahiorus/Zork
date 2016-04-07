@@ -63,7 +63,7 @@
 			<type>HAMMER</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="fleau" bonus="36" lifespawn="32" levelMin="7">
+		<weapon name="fleau" bonus="31" lifespawn="32" levelMin="7">
 			<type>HAMMER</type>
 			<hands>LEFT</hands>
 		</weapon>
@@ -80,11 +80,11 @@
 			<type>AXE</type>
 			<hands>RIGHT</hands>
 		</weapon>
-		<weapon name="hache nain" bonus="30" lifespawn="20" levelMin="4">
+		<weapon name="hache nain" bonus="25" lifespawn="20" levelMin="4">
 			<type>AXE</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="hache en acier" bonus="39" lifespawn="23" levelMin="8">
+		<weapon name="hache en acier" bonus="33" lifespawn="23" levelMin="8">
 			<type>AXE</type>
 			<hands>LEFT</hands>
 		</weapon>
@@ -126,19 +126,19 @@
 			<type>DAGGER</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="dague" bonus="16" lifespawn="23" levelMin="1">
+		<weapon name="dague" bonus="14" lifespawn="23" levelMin="1">
 			<type>DAGGER</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="dague de chasse" bonus="24" lifespawn="28" levelMin="3">
-			<type>DAGGER</type>
-			<hands>RIGHT</hands>
-		</weapon>
-		<weapon name="dague de voleur" bonus="30" lifespawn="32" levelMin="5">
+		<weapon name="dague de chasse" bonus="24" lifespawn="27" levelMin="3">
 			<type>DAGGER</type>
 			<hands>LEFT</hands>
 		</weapon>
-		<weapon name="dague de voleur" bonus="30" lifespawn="32" levelMin="5">
+		<weapon name="dague de voleur" bonus="25" lifespawn="30" levelMin="5">
+			<type>DAGGER</type>
+			<hands>LEFT</hands>
+		</weapon>
+		<weapon name="dague silencieuse" bonus="30" lifespawn="32" levelMin="10">
 			<type>DAGGER</type>
 			<hands>LEFT</hands>
 		</weapon>
