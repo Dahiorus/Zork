@@ -69,25 +69,26 @@ public class CombatCommand implements Command {
 	
 
 	@Override
-	public void printCommands() {
-		System.out.println("Commandes:");
+	public String commandsMessage() {
+		StringBuilder builder = new StringBuilder("Commandes:\n");
 		
 		for (KeyWord word : KeyWord.values()) {
-			System.out.print("  " + word);
+			builder.append("  " + word);
 		}
 		
-		System.out.println();
+		return builder.toString();
 	}
+	
 
 	@Override
-	public void printHelp() {
-		System.out.println("Aide:\n");
+	public String helpMessage() {
+		StringBuilder builder = new StringBuilder("Aide:\n");
 		
 		for (KeyWord word : KeyWord.values()) {
-			System.out.println(word + " = " + word.help);
+			builder.append("  " + word + "  =  " + word.help + "\n");
 		}
 		
-		System.out.println();
+		return builder.toString();
 	}
 
 }

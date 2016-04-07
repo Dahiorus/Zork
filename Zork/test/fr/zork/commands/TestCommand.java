@@ -10,7 +10,7 @@ public class TestCommand {
 		System.out.println("Test BasicCommandParser\n");
 		
 		CommandParser parser = BasicCommandParser.getInstance();
-		PreparedCommand command = parser.readEntry();
+		PreparedCommand command = parser.parseInput("prendre potion verte");
 		
 		printCommand(command);
 		
@@ -18,7 +18,7 @@ public class TestCommand {
 		
 		System.out.println("Test CombatCommandParser\n");
 		parser = CombatCommandParser.getInstance();
-		command = parser.readEntry();
+		command = parser.parseInput("lancer foudre");
 		
 		printCommand(command);
 	}

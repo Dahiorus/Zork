@@ -1,8 +1,5 @@
 package fr.zork.commands.parsers;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 import fr.zork.commands.Command;
@@ -10,27 +7,16 @@ import fr.zork.commands.execution.PreparedCommand;
 
 public abstract class CommandParser {
 	protected Command command;
-	protected BufferedReader reader;
 	
 	
-	public CommandParser() {
-		this.reader = new BufferedReader(new InputStreamReader(System.in));
-	}
+	public CommandParser() {}
 
 	
-	public PreparedCommand readEntry() {
-		String entryLine = null, cmdWord = null;
+	public PreparedCommand parseInput(String entryLine) {
+		if (entryLine == null) return new PreparedCommand(null, null);
+		
+		String cmdWord = null;
 		String[] options = null;
-		
-		System.out.print("> ");
-		
-		try { // read line
-			entryLine = this.reader.readLine();
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
-		
 		StringTokenizer tokenizer = new StringTokenizer(entryLine, " ");
 		
 		// get word
@@ -62,13 +48,13 @@ public abstract class CommandParser {
 	}
 	
 	
-	public void printCommands() {
-		this.command.printCommands();
+	public String getCommandsMessage() {
+		return this.command.commandsMessage();
 	}
 
 
-	public void printHelp() {
-		this.command.printHelp();
+	public String getHelpMessage() {
+		return this.command.helpMessage();
 	}
 	
 	
@@ -80,15 +66,6 @@ public abstract class CommandParser {
 		}
 		
 		return false;
-	}
-	
-	
-	protected void finalize() {
-		try {
-			this.reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 }

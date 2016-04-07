@@ -6,8 +6,8 @@ public interface Command {
 	
 	public int getOptionLength(String word);
 	
-	public void printCommands();
+	public String commandsMessage();
 	
-	public void printHelp();
+	public String helpMessage();
 	
 }
