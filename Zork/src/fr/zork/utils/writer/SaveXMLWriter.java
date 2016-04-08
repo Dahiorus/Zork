@@ -19,7 +19,7 @@ import org.w3c.dom.Element;
 
 import fr.zork.character.Monster;
 import fr.zork.character.Player;
-import fr.zork.game.Game;
+import fr.zork.game.GameConsole;
 import fr.zork.item.Equipment;
 import fr.zork.item.Item;
 import fr.zork.world.Room;
@@ -157,14 +157,14 @@ public class SaveXMLWriter {
 		// element "currentRoom"
 		Element currentRoomElement = document.createElement("currentRoom");
 		root.appendChild(currentRoomElement);
-		currentRoomElement.appendChild(document.createTextNode(Game.getInstance().getCurrentRoom().getName()));
+		currentRoomElement.appendChild(document.createTextNode(GameConsole.getInstance().getCurrentRoom().getName()));
 		
 		
 		// element "previousRoom"
-		if (Game.getInstance().getPreviousRoom() != null) {
+		if (GameConsole.getInstance().getPreviousRoom() != null) {
 			Element previousRoomElement = document.createElement("previousRoom");
 			root.appendChild(previousRoomElement);
-			previousRoomElement.appendChild(document.createTextNode(Game.getInstance().getPreviousRoom().getName()));
+			previousRoomElement.appendChild(document.createTextNode(GameConsole.getInstance().getPreviousRoom().getName()));
 		}
 		
 		document.getDocumentElement().normalize();
@@ -201,7 +201,7 @@ public class SaveXMLWriter {
 		// difficulty element "difficulty"
 		Element difficulty = document.createElement("difficulty");
 		root.appendChild(difficulty);
-		difficulty.setTextContent(Game.getInstance().getDifficulty());
+		difficulty.setTextContent(GameConsole.getInstance().getDifficulty());
 		
 		// room elements "room"
 		Element rooms = document.createElement("rooms");

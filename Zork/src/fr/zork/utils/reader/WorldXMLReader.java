@@ -20,7 +20,7 @@ import org.xml.sax.SAXException;
 
 import fr.zork.character.Monster;
 import fr.zork.character.enums.Level;
-import fr.zork.game.Game;
+import fr.zork.game.GameConsole;
 import fr.zork.item.Armor;
 import fr.zork.item.Item;
 import fr.zork.item.Potion;
@@ -129,11 +129,11 @@ public class WorldXMLReader {
 				}
 				
 				// setting random treasures
-				if (difficulty.equals(Game.EASY) || difficulty.equals(Game.NORMAL)) {
+				if (difficulty.equals(GameConsole.EASY) || difficulty.equals(GameConsole.NORMAL)) {
 					int nbTreasures = 0;
 					
 					// if "facile" then read <treasures> line in the XML file
-					if (difficulty.equals(Game.EASY)) {
+					if (difficulty.equals(GameConsole.EASY)) {
 						NodeList treasureNodes = element.getElementsByTagName("treasures");
 						if (treasureNodes.getLength() != 0) {
 							Node treasureNode = treasureNodes.item(0);
@@ -180,7 +180,7 @@ public class WorldXMLReader {
 						Element monsterElement = (Element) monsterNode;
 						Level roomLevel = Level.find(monsterElement.getAttribute("level").trim());
 						
-						if (difficulty.equals(Game.HARD)) {
+						if (difficulty.equals(GameConsole.HARD)) {
 							nbMonsters = Dice.D6.roll();
 						} else {
 							nbMonsters = Integer.parseInt(monsterElement.getAttribute("number").trim());

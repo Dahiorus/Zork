@@ -1,13 +1,13 @@
 package fr.zork.utils.writer;
 import fr.zork.character.Player;
-import fr.zork.game.Game;
+import fr.zork.game.GameConsole;
 import fr.zork.item.Potion;
 import fr.zork.utils.writer.SaveXMLWriter;
 
 public class TestSaveXML {
 
 	public static void main(String[] args) {
-		Game.getInstance();
+		GameConsole.getInstance();
 		
 		Player player = Player.getInstance();
 		

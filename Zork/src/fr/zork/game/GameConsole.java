@@ -31,7 +31,7 @@ import fr.zork.world.World;
 import fr.zork.world.enums.Dice;
 import fr.zork.world.enums.Exit;
 
-public class Game {
+public class GameConsole {
 	public static final String EASY   = "facile";
 	public static final String NORMAL = "normal";
 	public static final String HARD   = "difficile";
@@ -65,13 +65,13 @@ public class Game {
 			ZorkStats stats = null;
 			
 			switch (difficulty) {
-				case Game.EASY:
+				case GameConsole.EASY:
 					stats = ZorkStats.EASY;
 					break;
-				case Game.NORMAL:
+				case GameConsole.NORMAL:
 					stats = ZorkStats.NORMAL;
 					break;
-				case Game.HARD:
+				case GameConsole.HARD:
 					stats = ZorkStats.HARD;
 					break;
 			}
@@ -96,11 +96,11 @@ public class Game {
 	private Room currentRoom, previousRoom, zorkStage;
 	
 	private static class GameHolder {
-		private final static Game instance = new Game();
+		private final static GameConsole instance = new GameConsole();
 	}
 	
 
-	private Game() {
+	private GameConsole() {
 		reader = new BufferedReader(new InputStreamReader(System.in));
 	}
 	
@@ -135,7 +135,7 @@ public class Game {
 	}
 
 
-	public static Game getInstance() {
+	public static GameConsole getInstance() {
 		return GameHolder.instance;
 	}
 	
@@ -512,7 +512,7 @@ public class Game {
 				System.out.println(player.getEquipmentListDescription());
 				break;
 			case BasicCommand.ROOM:
-				System.out.println(Game.getInstance().getCurrentRoom().getDescription());
+				System.out.println(GameConsole.getInstance().getCurrentRoom().getDescription());
 				break;
 			default:
 				System.out.println("Cette action est impossible.");
@@ -640,7 +640,7 @@ public class Game {
 		}
 		
 		String potionName = command.getOptions()[0];
-		Item toUse = Game.getInstance().getItem(potionName, player.getBag());
+		Item toUse = GameConsole.getInstance().getItem(potionName, player.getBag());
 		
 		if (toUse != null) {
 			if (toUse instanceof Potion) {

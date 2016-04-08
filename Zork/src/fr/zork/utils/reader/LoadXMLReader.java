@@ -18,7 +18,7 @@ import org.xml.sax.SAXException;
 
 import fr.zork.character.Monster;
 import fr.zork.character.Player;
-import fr.zork.game.Game;
+import fr.zork.game.GameConsole;
 import fr.zork.item.Armor;
 import fr.zork.item.Equipment;
 import fr.zork.item.Item;
@@ -92,8 +92,8 @@ public class LoadXMLReader {
 				String difficulty = difficultyNode.getTextContent();
 				
 				if (difficulty != null) {
-					Game.getInstance().setDifficulty(difficulty.trim());
-					Game.getInstance().createZork();
+					GameConsole.getInstance().setDifficulty(difficulty.trim());
+					GameConsole.getInstance().createZork();
 				}
 			}
 			
@@ -421,7 +421,7 @@ public class LoadXMLReader {
 							Element currentRoomElement = (Element) currentRoomNode;
 							String roomName = currentRoomElement.getTextContent().trim();
 							Room currentRoom = this.rooms.get(roomName);
-							if (currentRoom != null) Game.getInstance().setCurrentRoom(currentRoom);
+							if (currentRoom != null) GameConsole.getInstance().setCurrentRoom(currentRoom);
 						}
 					}
 					
@@ -434,7 +434,7 @@ public class LoadXMLReader {
 							Element previousRoomElement = (Element) previousRoomNode;
 							String roomName = previousRoomElement.getTextContent().trim();
 							Room previousRoom = this.rooms.get(roomName);
-							if (previousRoom != null) Game.getInstance().setPreviousRoom(previousRoom);
+							if (previousRoom != null) GameConsole.getInstance().setPreviousRoom(previousRoom);
 						}
 					}
 				} // END if (playerNode.getNodeType() == Node.ELEMENT_NODE)
