@@ -1,4 +1,4 @@
-package fr.zork.game;
+package fr.zork.game.console;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,93 +7,25 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import fr.zork.character.Monster;
-import fr.zork.character.Player;
-import fr.zork.character.enums.Level;
 import fr.zork.commands.BasicCommand;
 import fr.zork.commands.CombatCommand;
 import fr.zork.commands.execution.PreparedCommand;
-import fr.zork.commands.parsers.BasicCommandParser;
-import fr.zork.commands.parsers.CombatCommandParser;
-import fr.zork.item.Armor;
+import fr.zork.game.Game;
 import fr.zork.item.Equipment;
 import fr.zork.item.Item;
 import fr.zork.item.Potion;
 import fr.zork.item.Spell;
-import fr.zork.item.Weapon;
 import fr.zork.item.enums.ArmorType;
 import fr.zork.item.enums.Hand;
-import fr.zork.item.enums.WeaponType;
 import fr.zork.utils.reader.LoadXMLReader;
-import fr.zork.utils.reader.WorldXMLReader;
 import fr.zork.utils.writer.SaveXMLWriter;
 import fr.zork.world.Room;
 import fr.zork.world.World;
 import fr.zork.world.enums.Dice;
 import fr.zork.world.enums.Exit;
 
-public class GameConsole {
-	public static final String EASY   = "facile";
-	public static final String NORMAL = "normal";
-	public static final String HARD   = "difficile";
-	
-	public static final String NEW  = "nouveau";
-	public static final String LOAD = "charger";
-	public static final String QUIT = "quitter";
-	
-	public static final int PLAYER = 0;
-	public static final int MONSTER = 1;
-	public static final int END = 2;
-	
-	private enum ZorkStats {
-		EASY(300, 75, 65),
-		NORMAL(600, 175, 115),
-		HARD(999, 195, 150);
-		
-		private final int hp;
-		private final int power;
-		private final int defense;
-		
-		ZorkStats(final int hp, final int power, final int defense) {
-			this.hp = hp;
-			this.power = power;
-			this.defense = defense;
-		}
-		
-		public static ZorkStats getByDifficulty(final String difficulty) {
-			if (difficulty == null) return null;
-			
-			ZorkStats stats = null;
-			
-			switch (difficulty) {
-				case GameConsole.EASY:
-					stats = ZorkStats.EASY;
-					break;
-				case GameConsole.NORMAL:
-					stats = ZorkStats.NORMAL;
-					break;
-				case GameConsole.HARD:
-					stats = ZorkStats.HARD;
-					break;
-			}
-			
-			return stats;
-		}
-	}
-	
-	private static String startRoomName = "Entree du donjon";
-	private static String dungeonBossRoom = "Etage de Zork";
-	
-	private static Player player = Player.getInstance();
-	private static World world = World.getInstance();
-	
+public class GameConsole extends Game {
 	private static BufferedReader reader;
-	private static BasicCommandParser basicCmdParser = BasicCommandParser.getInstance();
-	private static CombatCommandParser combatCmdParser = CombatCommandParser.getInstance();
-	
-	private String difficulty;
-	private int stageNumber;
-	private Monster zork;
-	private Room currentRoom, previousRoom, zorkStage;
 	
 	private static class GameHolder {
 		private final static GameConsole instance = new GameConsole();
@@ -102,36 +34,6 @@ public class GameConsole {
 
 	private GameConsole() {
 		reader = new BufferedReader(new InputStreamReader(System.in));
-	}
-	
-	
-	public Room getCurrentRoom() {
-		return this.currentRoom;
-	}
-	
-	
-	public void setCurrentRoom(Room currentRoom) {
-		this.currentRoom = currentRoom;
-	}
-	
-	
-	public Room getPreviousRoom() {
-		return this.previousRoom;
-	}
-	
-	
-	public void setPreviousRoom(Room previousRoom) {
-		this.previousRoom = previousRoom;
-	}
-	
-	
-	public String getDifficulty() {
-		return difficulty;
-	}
-	
-	
-	public void setDifficulty(final String difficulty) {
-		this.difficulty = difficulty;
 	}
 
 
@@ -147,39 +49,12 @@ public class GameConsole {
 	public void createPlayer() {
 		String entryLine = null;
 		
-		while (entryLine == null) {
+		while (entryLine == null || entryLine.isEmpty()) {
 			System.out.println("Entrez un nom de joueur.");
 			entryLine = this.readLine();
 		}
 		
 		player.newPlayer(entryLine.trim());
-	}
-	
-	
-	public void createWorld() {
-		List<Room> rooms = WorldXMLReader.getInstance().getWorldMap(this.difficulty, this.stageNumber);
-		
-		for (Room room : rooms) {
-			world.addRoom(room);
-		}
-		
-		this.zorkStage = new Room(dungeonBossRoom);
-		this.zorkStage.getMonsters().add(this.zork);
-		
-		Room room = world.getRoom(String.valueOf(this.stageNumber) + "eme etage");
-		room.setExits(this.zorkStage, room.getNextRoom(Exit.EAST), room.getNextRoom(Exit.WEST));
-		world.getWorldMap().add(this.zorkStage);
-		
-		this.currentRoom = world.getRoom(startRoomName);
-	}
-	
-	
-	public void createZork() {
-		ZorkStats stats = ZorkStats.getByDifficulty(this.difficulty);
-		
-		this.zork = new Monster("Maitre Zork", stats.hp, 0, 0, Level.EXTREME);
-		this.zork.setArmor(new Armor("Armure des ombres", stats.power, 1, 1, ArmorType.BODY, true));
-		this.zork.setWeapon(new Weapon("Epee des ombres", stats.defense, 1, 1, WeaponType.SWORD, Hand.BOTH));
 	}
 	
 	
@@ -438,15 +313,15 @@ public class GameConsole {
 	}
 	
 	
-	public void go(PreparedCommand command) {
+	public boolean go(PreparedCommand command) {
 		if (!command.hasOptions()) {
 			System.out.println("Aller ou ?");
-			return;
+			return false;
 		}
 		
 		if (this.currentRoom.hasMonsters()) {
 			System.out.println("Un monstre vous empeche d'avancer...");
-			return;
+			return false;
 		}
 		
 		String direction = command.getOptions()[0];
@@ -454,14 +329,14 @@ public class GameConsole {
 		
 		if (exit == null) {
 			System.out.println("Cette direction est inconnue...");
-			return;
+			return false;
 		}
 		
 		Room nextRoom = this.currentRoom.getNextRoom(exit);
 		
 		if (nextRoom == null) {
 			System.out.println("Il n'y a pas de porte dans cette direction.");
-			return;
+			return false;
 		}
 		
 		this.setPreviousRoom(this.currentRoom);
@@ -476,6 +351,8 @@ public class GameConsole {
 			
 			this.currentRoom.triggerCurse(player);
 		}
+		
+		return true;
 	}
 	
 	
@@ -951,37 +828,7 @@ public class GameConsole {
 	}
 	
 	
-	private Item getItem(String name, List<Item> list) {
-		if (name == null) return null;
-		
-		for (Item item : list) {
-			if (item.getName().equals(name)) return item;
-		}
-		
-		return null;
-	}
-	
-	
-	private Equipment getEquipment(String name, boolean isUsable) {
-		if (name == null) return null;
-		
-		for (Item item : player.getBag()) {
-			if (item.getName().equals(name) && item instanceof Equipment) {
-				Equipment equipment = (Equipment) item;
-				
-				if (isUsable) {
-					if (equipment.isUsable()) return equipment;
-				} else {
-					if (!equipment.isUsable()) return equipment;
-				}
-			}
-		}
-		
-		return null;
-	}
-	
-	
-	private String readLine() {
+	protected String readLine() {
 		String entryLine = null;
 		
 		System.out.print("> ");

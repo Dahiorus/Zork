@@ -1,6 +1,7 @@
 package fr.zork.game;
 
 import fr.zork.character.Player;
+import fr.zork.game.console.GameConsole;
 import fr.zork.item.Potion;
 import fr.zork.item.Spell;
 

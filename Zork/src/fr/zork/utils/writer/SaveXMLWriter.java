@@ -19,7 +19,7 @@ import org.w3c.dom.Element;
 
 import fr.zork.character.Monster;
 import fr.zork.character.Player;
-import fr.zork.game.GameConsole;
+import fr.zork.game.console.GameConsole;
 import fr.zork.item.Equipment;
 import fr.zork.item.Item;
 import fr.zork.world.Room;

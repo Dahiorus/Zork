@@ -20,7 +20,7 @@ import org.xml.sax.SAXException;
 
 import fr.zork.character.Monster;
 import fr.zork.character.enums.Level;
-import fr.zork.game.GameConsole;
+import fr.zork.game.console.GameConsole;
 import fr.zork.item.Armor;
 import fr.zork.item.Item;
 import fr.zork.item.Potion;

@@ -1,6 +1,6 @@
 package fr.zork;
 
-import fr.zork.game.GameConsole;
+import fr.zork.game.console.GameConsole;
 
 public class Zork {
 

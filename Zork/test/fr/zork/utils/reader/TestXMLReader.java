@@ -2,7 +2,7 @@ package fr.zork.utils.reader;
 import java.util.List;
 
 import fr.zork.character.Monster;
-import fr.zork.game.GameConsole;
+import fr.zork.game.console.GameConsole;
 import fr.zork.item.Item;
 import fr.zork.utils.reader.WorldXMLReader;
 import fr.zork.world.Room;

@@ -1,5 +1,5 @@
 package fr.zork.game;
-import fr.zork.game.GameConsole;
+import fr.zork.game.console.GameConsole;
 
 public class TestGame {
 
