@@ -33,6 +33,8 @@ public class GameConsole extends Game {
 	
 
 	private GameConsole() {
+		super();
+		
 		reader = new BufferedReader(new InputStreamReader(System.in));
 	}
 
@@ -187,27 +189,6 @@ public class GameConsole extends Game {
 		}
 		
 		System.out.println("Partie terminee.");
-	}
-	
-	
-	public boolean wins() {
-		if (!this.currentRoom.equals(this.zorkStage)) return false;
-		if (this.currentRoom.hasMonsters()) return false;
-		if (player.isDead()) return false;
-		
-		return true;
-	}
-	
-	
-	public void newGame() {
-		this.createPlayer();
-		this.createZork();
-		this.createWorld();
-	}
-	
-	
-	public void loadGame(final String name) {
-		LoadXMLReader.getInstance().loadGame(name);
 	}
 	
 	

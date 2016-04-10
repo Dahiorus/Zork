@@ -1,4 +1,4 @@
-package fr.zork.game;
+package fr.zork.game.console;
 import fr.zork.game.console.GameConsole;
 
 public class TestGame {

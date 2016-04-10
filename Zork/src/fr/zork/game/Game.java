@@ -16,6 +16,7 @@ import fr.zork.item.Weapon;
 import fr.zork.item.enums.ArmorType;
 import fr.zork.item.enums.Hand;
 import fr.zork.item.enums.WeaponType;
+import fr.zork.utils.reader.LoadXMLReader;
 import fr.zork.utils.reader.WorldXMLReader;
 import fr.zork.world.Room;
 import fr.zork.world.World;
@@ -145,6 +146,27 @@ public abstract class Game {
 	}
 	
 	
+	public boolean wins() {
+		if (!this.currentRoom.equals(this.zorkStage)) return false;
+		if (this.currentRoom.hasMonsters()) return false;
+		if (player.isDead()) return false;
+		
+		return true;
+	}
+	
+	
+	public void newGame() {
+		this.createPlayer();
+		this.createZork();
+		this.createWorld();
+	}
+	
+	
+	public void loadGame(final String name) {
+		LoadXMLReader.getInstance().loadGame(name);
+	}
+	
+	
 	protected Item getItem(String name, List<Item> list) {
 		if (name == null) return null;
 		
@@ -202,6 +224,8 @@ public abstract class Game {
 	public abstract boolean equip(PreparedCommand command);
 	
 	public abstract boolean unequip(PreparedCommand command);
+	
+	public abstract boolean use(PreparedCommand command);
 	
 	public abstract boolean throwOut(PreparedCommand command);
 	
