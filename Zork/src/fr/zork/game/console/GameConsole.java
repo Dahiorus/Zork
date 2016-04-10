@@ -10,6 +10,8 @@ import fr.zork.character.Monster;
 import fr.zork.commands.BasicCommand;
 import fr.zork.commands.CombatCommand;
 import fr.zork.commands.execution.PreparedCommand;
+import fr.zork.commands.parsers.BasicCommandParser;
+import fr.zork.commands.parsers.CombatCommandParser;
 import fr.zork.game.Game;
 import fr.zork.item.Equipment;
 import fr.zork.item.Item;
@@ -197,14 +199,15 @@ public class GameConsole extends Game {
 		System.out.println();
 		
 		boolean end = false;
+		commandParser = BasicCommandParser.getInstance();
 		
 		while (!end && !player.isDead() && !this.wins()) {
 			System.out.println(this.currentRoom.getDescription());
 			System.out.println();
-			System.out.println(basicCmdParser.getCommandsMessage());
+			System.out.println(commandParser.getCommandsMessage());
 			
 			String entryLine = this.readLine();
-			PreparedCommand command = basicCmdParser.parseInput(entryLine);
+			PreparedCommand command = commandParser.parseInput(entryLine);
 			end = this.execute(command);
 			
 			try {
@@ -283,7 +286,7 @@ public class GameConsole extends Game {
 				break;
 			case BasicCommand.HELP:
 				if (preparedCommand.hasOptions()) System.out.println("Cette commande n'a pas d'option.");
-				else System.out.println(basicCmdParser.getHelpMessage());
+				else System.out.println(commandParser.getHelpMessage());
 				break;
 			default:
 				System.out.println("Cette commande est inconnue.");
@@ -555,6 +558,7 @@ public class GameConsole extends Game {
 		
 		Monster opponent = this.currentRoom.getMonsters().get(0);
 		int turn = Dice.D10.roll() % 2;
+		commandParser = CombatCommandParser.getInstance();
 		
 		System.out.println("Vous affrontez : " + opponent.getName());
 		
@@ -568,10 +572,10 @@ public class GameConsole extends Game {
 		while (!player.isDead() && !opponent.isDead() && turn != END) {
 			if (turn == PLAYER) {
 				System.out.println("C'est votre tour.");
-				System.out.println(combatCmdParser.getCommandsMessage());
+				System.out.println(commandParser.getCommandsMessage());
 				
 				String entryLine = this.readLine();
-				PreparedCommand preparedCommand = combatCmdParser.parseInput(entryLine);
+				PreparedCommand preparedCommand = commandParser.parseInput(entryLine);
 				turn = this.executeCombat(opponent, preparedCommand);
 			} else if (turn == MONSTER && !opponent.isDead()) {
 				System.out.println("C'est au tour du monstre.");
@@ -633,6 +637,8 @@ public class GameConsole extends Game {
 			System.out.println("Vous avez pris la fuite");
 			opponent.setHp(opponent.getMaxHp());
 		}
+		
+		commandParser = BasicCommandParser.getInstance();
 	}
 	
 	
@@ -679,7 +685,7 @@ public class GameConsole extends Game {
 				break;
 			case CombatCommand.HELP:
 				if (preparedCommand.hasOptions()) System.out.println("Cette commande n'a pas d'option");
-				else System.out.println(combatCmdParser.getHelpMessage());
+				else System.out.println(commandParser.getHelpMessage());
 				nextTurn = PLAYER;
 				break;
 			default:
