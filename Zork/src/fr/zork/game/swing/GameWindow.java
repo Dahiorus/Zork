@@ -28,6 +28,7 @@ public class GameWindow extends JFrame {
 	private JButton enterBtn = new JButton("Entrer");
 	
 	private String printedText = "";
+	private String entryLine = "";
 	
 	
 	public GameWindow(String title) throws HeadlessException {
@@ -60,6 +61,8 @@ public class GameWindow extends JFrame {
 		this.commandContainer.add(this.enterBtn);
 		this.commandContainer.setBorder(new EmptyBorder(5, 13, 10, 13));
 		this.commandTextField.requestFocusInWindow();
+		
+		this.addEventListeners();
 	}
 	
 	
@@ -80,18 +83,47 @@ public class GameWindow extends JFrame {
 	}
 	
 	
-	public void addCommandTextFieldListener(KeyListener listener) {
-		this.commandTextField.addKeyListener(listener);
-	}
-	
-	
-	public void addEnterBtnListener(ActionListener listener) {
-		this.enterBtn.addActionListener(listener);
-	}
-	
-	
 	public String getCommandText() {
 		return this.commandTextField.getText();
+	}
+	
+	
+	public String getEntryLine() {
+		return this.entryLine;
+	}
+	
+	
+	public void addEventListeners() {
+		final GameWindow window = this;
+		
+		this.commandTextField.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					window.entryLine = window.getCommandText();
+					window.printText(">> " + window.entryLine);
+					window.commandTextField.setText("");
+				}
+			}
+		});
+		
+		this.enterBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				window.entryLine = window.getCommandText();
+				window.printText(">> " + window.entryLine);
+				window.commandTextField.setText("");
+				window.commandTextField.requestFocusInWindow();
+			}
+		});
 	}
 	
 	

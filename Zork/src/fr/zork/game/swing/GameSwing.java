@@ -1,5 +1,7 @@
 package fr.zork.game.swing;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -18,21 +20,7 @@ public class GameSwing extends Game {
 		super();
 		
 		window = new GameWindow("Zork");
-		
-		window.addCommandTextFieldListener(new KeyListener() {
-			GameSwing instance = GameSwing.getInstance();
-			
-			@Override
-			public void keyTyped(KeyEvent e) {
-				String entryLine = instance.readLine();
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			
-			@Override
-			public void keyPressed(KeyEvent e) {}
-		});
+		window.setVisible(true);
 	}
 	
 	
@@ -204,7 +192,7 @@ public class GameSwing extends Game {
 	
 	@Override
 	protected String readLine() {
-		return window.getCommandText();
+		return window.getEntryLine();
 	}
 
 }

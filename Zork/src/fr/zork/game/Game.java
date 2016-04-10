@@ -6,8 +6,7 @@ import fr.zork.character.Monster;
 import fr.zork.character.Player;
 import fr.zork.character.enums.Level;
 import fr.zork.commands.execution.PreparedCommand;
-import fr.zork.commands.parsers.BasicCommandParser;
-import fr.zork.commands.parsers.CombatCommandParser;
+import fr.zork.commands.parsers.CommandParser;
 import fr.zork.game.console.GameConsole;
 import fr.zork.item.Armor;
 import fr.zork.item.Equipment;
@@ -77,8 +76,7 @@ public abstract class Game {
 	protected static Player player = Player.getInstance();
 	protected static World world = World.getInstance();
 	
-	protected static BasicCommandParser basicCmdParser = BasicCommandParser.getInstance();
-	protected static CombatCommandParser combatCmdParser = CombatCommandParser.getInstance();
+	protected static CommandParser commandParser;
 	
 	protected String difficulty;
 	protected int stageNumber;
@@ -131,7 +129,7 @@ public abstract class Game {
 		
 		Room room = world.getRoom(String.valueOf(this.stageNumber) + "eme etage");
 		room.setExits(this.zorkStage, room.getNextRoom(Exit.EAST), room.getNextRoom(Exit.WEST));
-		world.getWorldMap().add(this.zorkStage);
+		world.addRoom(this.zorkStage);
 		
 		this.currentRoom = world.getRoom(startRoomName);
 	}
