@@ -419,23 +419,23 @@ public class Player extends MortalCharacter {
 		switch (hand) {
 			case LEFT:
 				if (this.leftHand != null) {
-					this.bag.add(this.leftHand);
+					if (this.leftHand.isUsable()) this.bag.add(this.leftHand);
 					this.leftHand = null;	
 				}
 				break;
 			case RIGHT:
 				if (this.rightHand != null) {
-					this.bag.add(this.rightHand);
+					if (this.rightHand.isUsable()) this.bag.add(this.rightHand);
 					this.rightHand = null;
 				}
 				break;
 			case BOTH:
 				if (this.leftHand != null) {
-					this.bag.add(this.leftHand);
+					if (this.leftHand.isUsable()) this.bag.add(this.leftHand);
 					this.leftHand = null;	
 				}
 				if (this.rightHand != null) {
-					this.bag.add(this.rightHand);
+					if (this.rightHand.isUsable()) this.bag.add(this.rightHand);
 					this.rightHand = null;
 				}
 				break;
@@ -448,25 +448,25 @@ public class Player extends MortalCharacter {
 		switch (type) {
 			case HEAD:
 				if (this.head != null) {
-					this.bag.add(this.head);
+					if (this.head.isUsable()) this.bag.add(this.head);
 					this.head = null;
 				}
 				break;
 			case BODY:
 				if (this.body != null) {
-					this.bag.add(this.body);
+					if (this.body.isUsable()) this.bag.add(this.body);
 					this.body = null;
 				}
 				break;
 			case ARM:
 				if (this.arm != null) {
-					this.bag.add(this.arm);
+					if (this.arm.isUsable()) this.bag.add(this.arm);
 					this.arm = null;
 				}
 				break;
 			case LEG:
 				if (this.leg != null) {
-					this.bag.add(this.leg);
+					if (this.leg.isUsable()) this.bag.add(this.leg);
 					this.leg = null;
 				}
 				break;
