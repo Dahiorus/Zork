@@ -1,10 +1,5 @@
 package fr.zork.game.swing;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import fr.zork.character.Monster;
 import fr.zork.commands.execution.PreparedCommand;
 import fr.zork.game.Game;
@@ -31,8 +26,14 @@ public class GameSwing extends Game {
 
 	@Override
 	public void createPlayer() {
-		// TODO Auto-generated method stub
-
+		String name = null;
+		
+		while (name == null || name.isEmpty()) {
+			window.printText("Entrez un nom de joueur.");
+			name = this.readLine();
+		}
+		
+		window.printText("Vous avez entré " + name);
 	}
 
 	
