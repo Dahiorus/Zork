@@ -215,6 +215,9 @@ public class GameConsole extends Game {
 		System.out.println("-  Votre but, en tant qu'aventurier, est de parcourir ce  -");
 		System.out.println("-  donjon et de vaincre Maitre Zork.                      -");
 		System.out.println("-                                                         -");
+		System.out.println("-  Combattez les monstres sur votre chemin pour ramasser  -");
+		System.out.println("-  des items et gagner de l'experience.                   -");
+		System.out.println("-                                                         -");
 		System.out.println("-----------------------------------------------------------");
 		System.out.println();
 		System.out.println("Dans ce jeu, vous devez entrer des commandes pour avancer");
