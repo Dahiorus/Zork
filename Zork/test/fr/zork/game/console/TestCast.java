@@ -17,7 +17,7 @@ public class TestCast {
 		player.getBag().add(potion);
 		player.getBag().add(spell);
 		
-		while (!game.displayMenu());
+		game.executeStartMenu();
 		game.run();
 	}
 

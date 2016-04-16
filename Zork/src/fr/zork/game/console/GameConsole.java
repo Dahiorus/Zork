@@ -46,6 +46,48 @@ public class GameConsole extends Game {
 	}
 	
 	
+	public void run() {
+		this.executeStartMenu();
+		System.out.println();
+		
+		this.displayWelcome();
+		System.out.println();
+		
+		boolean end = false;
+		commandParser = BasicCommandParser.getInstance();
+		
+		while (!end && !player.isDead() && !this.wins()) {
+			System.out.println(this.currentRoom.getDescription());
+			System.out.println();
+			System.out.println(commandParser.getCommandsMessage());
+			
+			String entryLine = this.readLine();
+			PreparedCommand command = commandParser.parseInput(entryLine);
+			end = this.execute(command);
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+			
+			System.out.println();
+			System.out.println("    * * * * *    ");
+			System.out.println();
+		}
+		
+		if (end) {
+			this.displayQuit();
+			System.exit(0);
+		} else {
+			if (player.isDead()) this.displayLose();
+			else if (this.wins()) this.displayWin();
+			
+			System.out.println();
+		}
+	}
+	
+	
 	/**
 	 * Créer un nouveau joueur pour le jeu.
 	 * Demande à l'utilisateur d'entrer un nom pour le joueur.
@@ -62,7 +104,99 @@ public class GameConsole extends Game {
 	}
 	
 	
-	public boolean displayMenu() {
+	public void executeStartMenu() {
+		boolean created = false;
+		
+		while (!created) {
+			this.displayStartMenu();
+			System.out.println();
+			
+			String entryLine = this.readLine();
+			StringTokenizer tokenizer = new StringTokenizer(entryLine);
+			
+			if (tokenizer.hasMoreTokens()) {
+				String response = tokenizer.nextToken();
+				
+				if (response.equals(NEW)) {
+					if (tokenizer.hasMoreTokens()) {
+						String difficulty = tokenizer.nextToken();
+						created = this.newGame(difficulty.trim());
+					} else {
+						System.out.println("Entrez un niveau de difficulte.");
+					}
+				} else if (response.equals(LOAD)) {
+					if (tokenizer.hasMoreTokens()) {
+						String name = tokenizer.nextToken();
+						created = this.loadGame(name.trim());
+					} else {
+						System.out.println("Entrez le nom d'une partie.");
+					}
+				} else if (response.equals(QUIT)) {
+					System.out.println("Vous quittez le jeu.");
+					System.exit(0);
+				} else {
+					System.out.println("Cette option ne se trouve pas dans le menu.");
+					System.out.println();
+					created = false;
+				}
+			} else {
+				System.out.println("Entrez une commande.");
+				created = false;
+			}
+			
+			System.out.println();
+		}
+	}
+	
+	
+	public boolean newGame(final String difficulty) {
+		boolean result = true;
+		
+		switch (difficulty) {
+			case EASY:
+				this.stageNumber = 10;
+				break;
+			case NORMAL:
+				this.stageNumber = 20;
+				break;
+			case HARD:
+				this.stageNumber = 30;
+				break;
+			default:
+				System.out.println("Quel niveau de difficulte ?");
+				result = false;
+				break;
+		}
+	
+		if (result) {
+			this.difficulty = difficulty;
+			
+			System.out.println("Nouvelle partie (" + this.difficulty + ")");
+			System.out.println();
+			this.createPlayer();
+			this.createZork();
+			this.createWorld();
+		}
+		
+		return result;
+	}
+	
+	
+	public boolean loadGame(final String name) {
+		if (!LoadXMLReader.getInstance().loadGame(name)) {
+			System.out.println("Cette partie n'existe pas.");
+			System.out.println();
+			
+			return false;
+		}
+		
+		System.out.println("Chargement de la partie '" + name + "'...");
+		
+		return true;
+	}
+	
+	
+	public void displayStartMenu() {
 		System.out.println("----------------------------  Zork MENU  ----------------------------");
 		System.out.println("-                                                                   -");
 		System.out.println("-  * Nouvelle partie :    'nouveau [facile | normal | difficile]'   -");
@@ -70,77 +204,9 @@ public class GameConsole extends Game {
 		System.out.println("-  * Quitter le jeu :     'quitter'                                 -");
 		System.out.println("-                                                                   -");
 		System.out.println("---------------------------------------------------------------------");
-		System.out.println();
-
-		boolean result = true;
-		String entryLine = this.readLine();
-		StringTokenizer tokenizer = new StringTokenizer(entryLine);
-		
-		if (tokenizer.hasMoreTokens()) {
-			String response = tokenizer.nextToken();
-			
-			if (response.equals(NEW)) {
-				if (tokenizer.hasMoreTokens()) {
-					String difficulty = tokenizer.nextToken();
-					
-					switch (difficulty) {
-						case EASY:
-							this.stageNumber = 10;
-							break;
-						case NORMAL:
-							this.stageNumber = 20;
-							break;
-						case HARD:
-							this.stageNumber = 30;
-							break;
-						default:
-							System.out.println("Quel niveau de difficulte ?");
-							result = false;
-							break;
-					}
-					
-					if (result) {
-						this.difficulty = difficulty;
-						
-						System.out.println("Nouvelle partie (" + this.difficulty + ")");
-						System.out.println();
-
-						this.newGame();
-					}
-				} else {
-					System.out.println("Entrez un niveau de difficulte.");
-					System.out.println();
-					result = false;
-				}
-			} else if (response.equals(LOAD)) {
-				if (tokenizer.hasMoreTokens()) {
-					String name = tokenizer.nextToken();
-					
-					System.out.println("Chargement de la partie '" + name + "'...");
-					
-					if (!LoadXMLReader.getInstance().loadGame(name)) {
-						System.out.println("Cette partie n'existe pas.");
-						System.out.println();
-						result = false;
-					}
-				}
-			} else if (response.equals(QUIT)) {
-				System.out.println("Vous quittez la partie.");
-				System.exit(0);
-			} else {
-				System.out.println("Cette option ne se trouve pas dans le menu.");
-				System.out.println();
-				result = false;
-			}
-		} else {
-			System.out.println("Entrez une commande.");
-			result = false;
-		}
-
-		return result;
 	}
-	
-	
+
+
 	public void displayWelcome() {
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("-                                                         -");
@@ -191,50 +257,6 @@ public class GameConsole extends Game {
 		}
 		
 		System.out.println("Partie terminee.");
-	}
-	
-	
-	public void run() {
-		this.displayWelcome();
-		System.out.println();
-		
-		boolean end = false;
-		commandParser = BasicCommandParser.getInstance();
-		
-		while (!end && !player.isDead() && !this.wins()) {
-			System.out.println(this.currentRoom.getDescription());
-			System.out.println();
-			System.out.println(commandParser.getCommandsMessage());
-			
-			String entryLine = this.readLine();
-			PreparedCommand command = commandParser.parseInput(entryLine);
-			end = this.execute(command);
-			
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-			
-			System.out.println();
-			System.out.println("    * * * * *    ");
-			System.out.println();
-		}
-		
-		if (end) {
-			this.displayQuit();
-			System.exit(0);
-		} else {
-			if (player.isDead()) {
-				this.displayLose();
-			} else if (this.wins()) {
-				this.displayWin();
-			}
-			
-			System.out.println();
-		}
-		
-		System.out.println();
 	}
 	
 	

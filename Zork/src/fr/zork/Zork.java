@@ -7,8 +7,6 @@ public class Zork {
 
 	public static void main(String[] args) {
 		Game game = GameConsole.getInstance();
-		
-		while (!game.displayMenu());
 		game.run();
 	}
 
