@@ -210,6 +210,9 @@
 		<armor name="bras bioniques" bonus="34" lifespawn="36" isBig="true" levelMin="16">
 			<type>ARM</type>
 		</armor>
+		<armor name="gantelets en plaques" bonus="32" lifespawn="24" isBig="false" levelMin="15">
+            <type>ARM</type>
+        </armor>
 		
 		<armor name="pantalon" bonus="12" lifespawn="22" isBig="false" levelMin="1">
 			<type>LEG</type>

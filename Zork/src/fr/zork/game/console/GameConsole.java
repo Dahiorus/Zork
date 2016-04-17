@@ -36,7 +36,6 @@ public class GameConsole extends Game {
 
 	private GameConsole() {
 		super();
-		
 		reader = new BufferedReader(new InputStreamReader(System.in));
 	}
 
@@ -47,6 +46,7 @@ public class GameConsole extends Game {
 	
 	
 	public void run() {
+		// display start menu
 		this.executeStartMenu();
 		System.out.println();
 		
@@ -56,6 +56,7 @@ public class GameConsole extends Game {
 		boolean end = false;
 		commandParser = BasicCommandParser.getInstance();
 		
+		// game loop
 		while (!end && !player.isDead() && !this.wins()) {
 			System.out.println(this.currentRoom.getDescription());
 			System.out.println();
@@ -72,7 +73,7 @@ public class GameConsole extends Game {
 			}
 			
 			System.out.println();
-			System.out.println("    * * * * *    ");
+			System.out.println("    * * * * * * * * * *    ");
 			System.out.println();
 		}
 		
@@ -812,7 +813,10 @@ public class GameConsole extends Game {
 			Thread.currentThread().interrupt();
 		}
 		
-		if (Dice.D6.roll() >= 5) {
+		int monsterRoll = Dice.D8.roll();
+		int playerRoll = Dice.D8.roll();
+		
+		if (playerRoll > monsterRoll) {
 			System.out.println("Vous fuyez.");
 			return true;
 		}
