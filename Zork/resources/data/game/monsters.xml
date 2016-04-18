@@ -8,9 +8,19 @@
 	</monster>
 	<monster name="Chauve-souris" maxHp="132" power="50" defense="39" level="EASY">
 	</monster>
-	<monster name="Cafards" maxHp="128" power="45" defense="43" level="EASY">
+	<monster name="Rampant" maxHp="130" power="36" defense="28" level="EASY">
+	</monster>
+	<monster name="Ecuyer perdu" maxHp="121" power="15" defense="11" level="EASY">
+	   <weapon>dague rouillee</weapon> <!-- +9 -->
+	   <armor>plastron de cuir</armor> <!-- +10 -->
+	</monster>
+	<monster name="Nuee de cafards" maxHp="128" power="45" defense="43" level="EASY">
+	</monster>
+	<monster name="Araignee" maxHp="125" power="43" defense="39" level="EASY">
 	</monster>
 	<monster name="Apparation sinistre" maxHp="146" power="45" defense="42" level="EASY">
+	</monster>
+	<monster name="Lierre vivante" maxHp="151" power="34" defense="40" level="EASY">
 	</monster>
 	<monster name="Barbares" maxHp="160" power="34" defense="35" level="EASY">
 		<weapon>epee courte</weapon> <!-- +22 -->
@@ -40,6 +50,14 @@
 	</monster>
 	<monster name="Momie" maxHp="362" power="150" defense="90" level="NORMAL">
 	</monster>
+	<monster name="Sanglier enrage" maxHp="361" power="156" defense="113" level="NORMAL">
+	</monster>
+	<monster name="Lancier" maxHp="403" power="92" defense="65" level="NORMAL">
+	   <weapon>lance</weapon> <!-- +42 -->
+	   <armor>plastron cloute</armor> <!-- +24 -->
+	</monster>
+	<monster name="Molosse de garde" maxHp="357" power="149" defense="81" level="NORMAL">
+	</monster>
 	
 	<monster name="Troll" maxHp="630" power="160" defense="123" level="HARD">
 		<weapon>dague</weapon> <!-- +16 -->
@@ -63,5 +81,15 @@
 	<monster name="Orc moche" maxHp="767" power="137" defense="114" level="HARD">
 		<weapon>massue</weapon> <!-- +44 -->
 		<armor>crane cornu</armor> <!-- +19 -->
+	</monster>
+	<monster name="Vampire noble" maxHp="684" power="134" defense="125" level="HARD">
+	   <weapon>rapiere</weapon> <!-- +38 -->
+	</monster>
+	<monster name="Demon vassal" maxHp="615" power="129" defense="122" level="HARD">
+	   <weapon>hache en acier</weapon> <!-- +33 -->
+	</monster>
+	<monster name="Mage noir" maxHp="631" power="101" defense="108" level="HARD">
+	   <weapon>baton de sorcier</weapon> <!-- +62 -->
+	   <armor>robe de mage</armor> <!-- +23 -->
 	</monster>
 </monsters>

@@ -23,6 +23,7 @@
 		<spell name="projectiles" damage="100"/>
 		<spell name="boule de feu" damage="120"/>
 		<spell name="tempete" damage="150"/>
+		<spell name="cataclysme" damage="300"/>
 	</spells>
 	
 	<weapons>
