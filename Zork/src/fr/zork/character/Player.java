@@ -270,10 +270,16 @@ public class Player extends MortalCharacter {
 		totalDmg = basicDmg + this.getEffectivePower();
 		
 		// critical damage calculation
-		int ccProba = Dice.D100.roll() + this.level;
-		if (ccProba >= 90) {
-			int bonus = Dice.D12.roll();
-			totalDmg += bonus;
+		int ccProba = Dice.D100.roll();
+		if (ccProba >= 85) {
+			if (ccProba < 90) {
+				totalDmg += Dice.D10.roll() + this.level;
+			} else if (ccProba < 95) {
+				totalDmg = (int) Math.floor(totalDmg * 1.5);
+			} else {
+				totalDmg *= 2;
+			}
+			
 			critical = true;
 		}
 		

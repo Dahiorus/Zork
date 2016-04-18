@@ -47,7 +47,7 @@ public class GameConsole extends Game {
 	
 	public void run() {
 		// display start menu
-		this.executeStartMenu();
+		//this.executeStartMenu();
 		System.out.println();
 		
 		this.displayWelcome();

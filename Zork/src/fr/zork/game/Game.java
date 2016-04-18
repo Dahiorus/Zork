@@ -34,9 +34,9 @@ public abstract class Game {
 	public static final int END = 2;
 	
 	protected enum ZorkStats {
-		EASY(300, 75, 65),
-		NORMAL(600, 175, 115),
-		HARD(999, 195, 150);
+		EASY(500, 100, 80),
+		NORMAL(1000, 175, 115),
+		HARD(1500, 255, 170);
 		
 		private final int hp;
 		private final int power;
@@ -116,6 +116,13 @@ public abstract class Game {
 	}
 	
 	
+	/**
+	 * <p>Read XML resources and instantiate the World.</p>
+	 * <p>Depending on the difficulty, the world will be a tower with
+	 * a predefined number of stage (10 if EASY, 20 if NORMAL, 30 if HARD).</p>
+	 * <p>The player will be placed in the first room "Entree du donjon",
+	 * Zork's stage will be placed in the North of the last tower's stage.</p>
+	 */
 	public void createWorld() {
 		List<Room> rooms = WorldXMLReader.getInstance().getWorldMap(this.difficulty, this.stageNumber);
 		
@@ -134,15 +141,24 @@ public abstract class Game {
 	}
 	
 	
+	/**
+	 * <p>Create Zork, the final boss, depending on the difficulty.</p>
+	 */
 	public void createZork() {
 		ZorkStats stats = ZorkStats.getByDifficulty(this.difficulty);
 		
 		this.zork = new Monster("Maitre Zork", stats.hp, 0, 0, Level.EXTREME);
-		this.zork.setArmor(new Armor("Armure des ombres", stats.power, 1, 1, ArmorType.BODY, true));
-		this.zork.setWeapon(new Weapon("Epee des ombres", stats.defense, 1, 1, WeaponType.SWORD, Hand.BOTH));
+		this.zork.setWeapon(new Weapon("Epee des ombres", stats.power, 1, 1, WeaponType.SWORD, Hand.BOTH));
+		this.zork.setArmor(new Armor("Armure des ombres", stats.defense, 1, 1, ArmorType.BODY, true));
 	}
 	
 	
+	/**
+	 * <p>Indicates if the player wins the game.</p>
+	 * <p>The player wins the game if he or she is in Zork's stage and has defeated him.</p>
+	 * 
+	 * @return <code>true</code> if the player wins the game, <code>false</code> otherwise
+	 */
 	public boolean wins() {
 		if (!this.currentRoom.equals(this.zorkStage)) return false;
 		if (this.currentRoom.hasMonsters()) return false;
@@ -152,6 +168,13 @@ public abstract class Game {
 	}
 	
 	
+	/**
+	 * Get an item with the specified name from the specified list.
+	 * 
+	 * @param name - the name of the item
+	 * @param list - the list of items
+	 * @return the item which has the specified name
+	 */
 	protected Item getItem(String name, List<Item> list) {
 		if (name == null) return null;
 		
@@ -163,6 +186,15 @@ public abstract class Game {
 	}
 	
 	
+	/**
+	 * Get an equipment with the specified name from the player's bag.
+	 * The returned equipment is usable or not depending on the specified
+	 * boolean parameter.
+	 *  
+	 * @param name		- the name of the equipment
+	 * @param isUsable	- indicates if the equipment is usable or not
+	 * @return the equipment which has the specified name and has the specified usability
+	 */
 	protected Equipment getEquipment(String name, boolean isUsable) {
 		if (name == null) return null;
 		

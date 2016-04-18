@@ -209,7 +209,7 @@ public class Monster extends MortalCharacter implements Cloneable {
 		totalDmg = basicDmg + this.getEffectivePower();
 		
 		// critical damage calculation
-		int ccProba = Dice.D100.roll();
+		int ccProba = Dice.D100.roll() - 1;
 		if (ccProba >= 80) {
 			int bonus = Dice.D6.roll();
 			totalDmg += bonus;
@@ -222,8 +222,12 @@ public class Monster extends MortalCharacter implements Cloneable {
 		// target defense calculation
 		totalDmg -= target.getEffectiveDefense();
 		
+		if (totalDmg < 0) {
+			critical = false;
+			totalDmg = Dice.D4.roll() - 1;
+		}
+		
 		target.receiveDamage(totalDmg);
-		if (totalDmg < 0) critical = false;
 		
 		return critical;
 	}
