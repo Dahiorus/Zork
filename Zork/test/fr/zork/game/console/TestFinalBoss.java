@@ -18,10 +18,10 @@ public class TestFinalBoss {
 		Game game = GameConsole.getInstance();
 		Player player = Player.getInstance();
 		
-		game.newGame(Game.HARD);
+		game.newGame(Game.EASY);
 		game.setCurrentRoom(World.getInstance().getRoom("Etage de Zork"));
 		
-		for (int i = 1; i < 99; i++) {
+		for (int i = 1; i < 38; i++) {
 			player.levelUp();
 		}
 		

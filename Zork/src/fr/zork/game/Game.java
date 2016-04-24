@@ -34,9 +34,9 @@ public abstract class Game {
 	public static final int END = 2;
 	
 	protected enum ZorkStats {
-		EASY(500, 100, 80),
-		NORMAL(1000, 175, 115),
-		HARD(1500, 255, 170);
+		EASY(500, 100, 80), // Player lvl 20 PV: 390/390 - Force: 138 - Defense: 169
+		NORMAL(1000, 175, 115), // Player lvl 38 PV: 570/570 - Force: 174 - Defense: 187
+		HARD(3000, 400, 260); // Player lvl 149 PV: 1680/1680 - Force: 396 - Defense: 298
 		
 		private final int hp;
 		private final int power;

@@ -306,36 +306,38 @@ public class Player extends MortalCharacter {
 	public void receiveDamage(int damage) {
 		super.receiveDamage(damage);
 		
-		boolean done = false;
-		
-		while (!done) {
-			int choice = Dice.D4.roll();
+		if (this.head != null || this.body != null || this.arm != null || this.leg != null) {
+			boolean done = false;
 			
-			switch (choice) {
-				case 1:
-					if (this.head != null) {
-						this.head.decrementLifespawn();
-						done = true;
-					}
-					break;
-				case 2:
-					if (this.body != null) {
-						this.body.decrementLifespawn();
-						done = true;
-					}
-					break;
-				case 3:
-					if (this.arm != null) {
-						this.arm.decrementLifespawn();
-						done = true;
-					}
-					break;
-				case 4:
-					if (this.leg != null) {
-						this.leg.decrementLifespawn();
-						done = true;
-					}
-					break;
+			while (!done) {
+				int choice = Dice.D4.roll();
+				
+				switch (choice) {
+					case 1:
+						if (this.head != null) {
+							this.head.decrementLifespawn();
+							done = true;
+						}
+						break;
+					case 2:
+						if (this.body != null) {
+							this.body.decrementLifespawn();
+							done = true;
+						}
+						break;
+					case 3:
+						if (this.arm != null) {
+							this.arm.decrementLifespawn();
+							done = true;
+						}
+						break;
+					case 4:
+						if (this.leg != null) {
+							this.leg.decrementLifespawn();
+							done = true;
+						}
+						break;
+				}
 			}
 		}
 	}

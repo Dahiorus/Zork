@@ -47,7 +47,7 @@ public class GameConsole extends Game {
 	
 	public void run() {
 		// display start menu
-		//this.executeStartMenu();
+		this.executeStartMenu();
 		System.out.println();
 		
 		this.displayWelcome();
@@ -481,7 +481,7 @@ public class GameConsole extends Game {
 				
 				if (armorType != null) {
 					player.unequip(armorType);
-					System.out.println("L'armure se trouve dans votre inventaire.");
+					System.out.println("L'armure a ete retire.");
 					return true;
 				}
 				
@@ -506,7 +506,7 @@ public class GameConsole extends Game {
 					return false;
 				}
 				
-				System.out.println("Votre arme se trouve dans votre inventaire.");
+				System.out.println("L'arme a ete retire.");
 				return true;
 			}
 			

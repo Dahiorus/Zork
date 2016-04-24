@@ -42,7 +42,7 @@
 		<monsters number="3" level="facile"/>
 	</room>
 	<room name="Impasse">
-		<monsters number="2" level="normal"/>
+		<monsters number="2" level="facile"/>
 	</room>
 	
 	<room name="5eme etage">
